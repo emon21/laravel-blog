@@ -33,6 +33,7 @@ class CategoryController extends Controller
         Category::create([
             'category_name' => $req->category_name,
             'slug' => Str::slug($req->category_name),
+            'image' => 'backend/default.jpg'
         ]);
         // return view('category::create');
         return back();

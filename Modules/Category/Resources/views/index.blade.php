@@ -32,13 +32,14 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('create') }}" method="post">
+                        <form action="{{ route('CreateCategory') }}" method="post">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Category Name</label>
                                     <input type="text" class="form-control @error('category_name') is-invalid @enderror"
-                                        name="category_name" id="exampleInputEmail1" placeholder="Enter Category Name">
+                                        name="category_name" value="{{ old('category_name') }}" id="exampleInputEmail1"
+                                        placeholder="Enter Category Name">
                                     @error('category_name')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -84,9 +85,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="{{ route('edit', $value->id) }}" class="btn btn-info"><i
+                                            <a href="{{ route('EditCategory', $value->id) }}" class="btn btn-info"><i
                                                     class="fas fa-edit"></i></a>
-                                            <a href="{{ route('delete', $value->id) }}" class="btn btn-danger"
+                                            <a href="{{ route('DeleteCategory', $value->id) }}" class="btn btn-danger"
                                                 onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
                                                     class="fas fa-trash"></i></a>
                                             <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i

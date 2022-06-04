@@ -15,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin/category')->group(function() {
     Route::get('/', 'CategoryController@index')->name('category');
-    Route::post('/create', 'CategoryController@create')->name('create');
-    Route::get('/edit/{category}', 'CategoryController@edit')->name('edit');
-    Route::put('/update/{category}', 'CategoryController@update')->name('update');
-    Route::get('/delete/{category}', 'CategoryController@destroy')->name('delete');
+    Route::post('/create', 'CategoryController@create')->name('CreateCategory');
+    Route::get('/edit/{category}', 'CategoryController@edit')->name('EditCategory');
+    Route::put('/update/{category}', 'CategoryController@update')->name('UpdateCategory');
+    Route::get('/delete/{category}', 'CategoryController@destroy')->name('DeleteCategory');
     Route::get('/status/{category}', 'CategoryController@status')->name('status');
 });
 
