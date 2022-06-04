@@ -1,0 +1,9 @@
+.dropdown-menu.dropdown-menu-lg.dropdown-menu-right.show {
+    margin-top: 10px;
+}
+
+
+ul.dropdown-menu.dropdown-menu-lg.dropdown-menu-right.rounded.border-0.show {
+    margin-top: 10px;
+    margin-right: -7px;
+}

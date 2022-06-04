@@ -1,0 +1,25 @@
+<?php
+
+namespace Modules\Tag\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+use Modules\Tag\Entities\Tag;
+
+class TagTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Model::unguard();
+
+        // $this->call("OthersTableSeeder");
+        $tag = New Tag();
+        $tag->tag_name = 'Html';
+        $tag->save();
+    }
+}

@@ -1,0 +1,9 @@
+==========================  Projcet Feature =======================
+- [] Frontend tamplate
+- [] Admin tamplate
+- [] Module Package
+        - [X] Blog
+        - [X] Tag
+        - [X] Category
+                        =>Model,Migration,Controller,Route
+                        =>Create,Read,Update,Delete
