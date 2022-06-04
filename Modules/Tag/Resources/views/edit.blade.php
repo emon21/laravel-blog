@@ -27,22 +27,25 @@
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Create Tag</h3>
+                            <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Edit Tag</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('CreateTag') }}" method="post">
+                        <form action="{{ route('UpdateTag', $tag->id) }}" method="post">
                             @csrf
+                            @method('PUT')
                             <div class="card-body">
+                                {{--  <input type="text" name="tagid" value="{{ $tag->id }}">  --}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tag Name</label>
                                     <input type="text" class="form-control @error('tag_name') is-invalid @enderror"
-                                        name="tag_name" id="exampleInputEmail1" placeholder="Enter Tag Name">
+                                        name="tag_name" value="{{ $tag->tag_name }}" id="exampleInputEmail1"
+                                        placeholder="Enter Tag Name">
                                     @error('tag_name')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <button type="submit" class="btn btn-success">Create Tag</button>
+                                <button type="submit" class="btn btn-success">Update Tag</button>
                             </div>
                             <!-- /.card-body -->
                             {{-- <div class="card-footer">
@@ -51,56 +54,6 @@
                         </form>
                     </div>
                     <!-- /.card -->
-                </div>
-                <!-- view data -->
-                <div class="col-md-8">
-                    <!-- general form elements -->
-                    <div class="card card-success">
-                        <div class="card-header">
-                            <h3 class="card-title">All Data</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sl No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($tagList as $value)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $value->tag_name }}</td>
-                                        <td>{{ $value->slug }}</td>
-                                        {{-- <td>
-                                            @if ($value->status == 1)
-                                                <span class="text-success"
-                                                    style="color:green;font-weight: bold;font-size:20px">Enable</span>
-                                            @else
-                                                <span style="color:red;font-weight: bold;font-size:20px">Disable</span>
-                                            @endif
-                                        </td> --}}
-                                        <td>
-                                            <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
-                                                onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
-                                                    class="fas fa-trash"></i></a>
-                                            {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
-                                                    class="fa fa-solid fa-eye"></i></a> --}}
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <!-- /.card -->
-                    <div class="text-center">
-                        {{ $tagList->links() }}
-                    </div>
                 </div>
 
                 <!-- /.row -->

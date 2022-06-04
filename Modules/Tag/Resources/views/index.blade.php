@@ -37,7 +37,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tag Name</label>
                                     <input type="text" class="form-control @error('tag_name') is-invalid @enderror"
-                                        name="tag_name" id="exampleInputEmail1" placeholder="Enter Tag Name">
+                                        name="tag_name" value="{{ old('tag_name') }}" id="exampleInputEmail1"
+                                        placeholder="Enter Tag Name">
                                     @error('tag_name')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
@@ -70,12 +71,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($tagList as $value)
-                                    <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $value->tag_name }}</td>
-                                        <td>{{ $value->slug }}</td>
-                                        {{-- <td>
+                                @if ($tagList->count() > 0)
+
+
+                                    @foreach ($tagList as $value)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>{{ $value->tag_name }}</td>
+                                            <td>{{ $value->slug }}</td>
+                                            {{-- <td>
                                             @if ($value->status == 1)
                                                 <span class="text-success"
                                                     style="color:green;font-weight: bold;font-size:20px">Enable</span>
@@ -83,17 +87,25 @@
                                                 <span style="color:red;font-weight: bold;font-size:20px">Disable</span>
                                             @endif
                                         </td> --}}
-                                        <td>
-                                            <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
-                                                onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
-                                                    class="fas fa-trash"></i></a>
-                                            {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
+                                            <td>
+                                                <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
+                                                        class="fas fa-edit"></i></a>
+                                                <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
+                                                    onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
+                                                        class="fas fa-trash"></i></a>
+                                                {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
                                                     class="fa fa-solid fa-eye"></i></a> --}}
-                                        </td>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="5"><span class="text-danger text-center">No Tag Found</span></td>
+
                                     </tr>
-                                @endforeach
+
+
+                                @endif
                             </tbody>
                         </table>
                     </div>

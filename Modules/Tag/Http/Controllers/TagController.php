@@ -15,7 +15,7 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tagList = Tag::SimplePaginate(5);
+        $tagList = Tag::SimplePaginate(8);
         return view('tag::index',compact('tagList'));
     }
 
@@ -63,10 +63,10 @@ class TagController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Tag $tag)
     {
 
-        $tag = Tag::frist();
+
         return view('tag::edit',compact('tag'));
     }
 
@@ -76,9 +76,22 @@ class TagController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Tag $tag)
     {
-        //
+    //     $tag = $request->tagid;
+
+    //    Tag::update([
+    //        'tag_name' => $request->tag_name,
+    //    ])->where('id',$tag)->get();
+      // $tag = New Tag();
+      $request->validate([
+        'tag_name' => "required|unique:tags,tag_name,$tag->tag_name",
+    ]);
+       $tag->tag_name = $request->tag_name;
+       $tag->slug = Str::slug($request->tag_name);
+       $tag->save();
+
+       return redirect()->route('taglist');
     }
 
     /**

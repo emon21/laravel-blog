@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Modules\Category\Database\Seeders\CategorySeederTableSeeder;
+use Modules\tag\Database\Seeders\TagTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             //Module Category
            CategorySeederTableSeeder::class,
+           TagTableSeeder::class,
 
         ]);
     }
