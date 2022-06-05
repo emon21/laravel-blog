@@ -19,6 +19,7 @@ Route::prefix('admin/tag')->group(function() {
     Route::get('/edit/{tag}', 'TagController@edit')->name('EditTag');
     Route::put('/update/{tag}', 'TagController@update')->name('UpdateTag');
     Route::get('/delete/{tag}', 'TagController@destroy')->name('DeleteTag');
+    Route::delete('/deleteall', 'TagController@deleteall')->name('deleteall');
 
 });
 

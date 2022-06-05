@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Tag\Entities\Tag;
 use Illuminate\Support\Str;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 class TagController extends Controller
 {
     /**
@@ -33,6 +37,10 @@ class TagController extends Controller
             'tag_name' => $req->tag_name,
             'slug' => Str::slug($req->tag_name),
         ]);
+
+       Toastr::success('Create Tag Successfully', 'Tag', ["positionClass" => "toast-top-right","progressBar" => true,]);
+      // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+     // Session::flash('success', 'Tag Create Successfully !!');
         // return view('category::create');
         return back();
         // return view('tag::create');
@@ -90,7 +98,8 @@ class TagController extends Controller
        $tag->tag_name = $request->tag_name;
        $tag->slug = Str::slug($request->tag_name);
        $tag->save();
-
+       Toastr::success('Update Tag Successfully', 'Tag', ["positionClass" => "toast-top-right","progressBar" => true,]);
+       //Toastr()->info('message', 'title', ['options']);
        return redirect()->route('taglist');
     }
 
@@ -102,6 +111,27 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
-        return back();
+      Toastr::error('Delete Tag Successfully', 'Tag', ["positionClass" => "toast-top-right","progressBar" => true,]);
+
+      return redirect()->route('taglist');
+
+    }
+
+    public function deleteall(Request $request)
+    {
+
+       // return $tag;
+      //  $ids = $request->get('ids');
+       // $dbc = DB::delete('delete form tag where id in(',implode(",",$ids)')');
+       // $dbc = DB::table('tag')->whereIn('id',explode(',',$ids))->delete();
+    //    $org->products()->whereIn('id', $ids)->delete()
+        // return redirect()->route('taglist');
+
+        $ids = $request->ids;
+       // DB::table('tag')->whereIn('id',explode(',',$ids))->delete();
+       Tag::whereIn('id', $ids)->delete();
+       // return response()->json(['success'=>"Products Deleted successfully."]);
+        return redirect()->route('taglist');
+
     }
 }

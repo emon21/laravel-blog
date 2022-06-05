@@ -1,4 +1,10 @@
 @extends('backend.layouts.master')
+@section('styles')
+
+    <!-- Toaser  Css -->
+    <link rel="stylesheet" href="{{ asset('toastr') }}/toastr.min.css">
+
+@endsection
 @section('title', 'Tag List')
 @section('header')
     {{-- @include('backend.layouts.partials.header') --}}
@@ -61,53 +67,75 @@
                             <h3 class="card-title">All Data</h3>
                         </div>
                         <!-- /.card-header -->
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sl No</th>
-                                    <th>Tag Name</th>
-                                    <th>Slug</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if ($tagList->count() > 0)
-
-
-                                    @foreach ($tagList as $value)
-                                        <tr>
-                                            <td>{{ $loop->index + 1 }}</td>
-                                            <td>{{ $value->tag_name }}</td>
-                                            <td>{{ $value->slug }}</td>
-                                            {{-- <td>
-                                            @if ($value->status == 1)
-                                                <span class="text-success"
-                                                    style="color:green;font-weight: bold;font-size:20px">Enable</span>
-                                            @else
-                                                <span style="color:red;font-weight: bold;font-size:20px">Disable</span>
-                                            @endif
-                                        </td> --}}
-                                            <td>
-                                                <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
-                                                        class="fas fa-edit"></i></a>
-                                                <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
-                                                    onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
-                                                        class="fas fa-trash"></i></a>
-                                                {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
-                                                    class="fa fa-solid fa-eye"></i></a> --}}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                @else
+                        <form action="{{ route('deleteall') }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-outline-danger">Delete All Select</button>
+                            <table class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td colspan="5"><span class="text-danger text-center">No Tag Found</span></td>
 
+                                        {{-- <th>
+                                            <div class="form-group form-check">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input selectall" type="checkbox"> Select All
+                                                </label>
+                                            </div>
+                                            <input type="checkbox" class="selectall"> Delete all
+                                        </th> --}}
+                                        {{-- <button id="selectall">Delete all</button> --}}
+                                        <th>Sl No</th>
+                                        <th>Tag Name</th>
+                                        <th>Slug</th>
+                                        <th>Action</th>
+                                        <th class="text-center"><label class="form-check-label">
+                                                <input class="form-check-input selectall" type="checkbox"> Select All
+                                            </label></th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    @if ($tagList->count() > 0)
 
 
-                                @endif
-                            </tbody>
-                        </table>
+                                        @foreach ($tagList as $value)
+                                            <tr>
+                                                {{-- <td>
+                                                    <input type="checkbox" class="form-control selectbox" name="ids[]"
+                                                        value="{{ $value->id }}">
+
+                                                    <input type="checkbox" name="ids[]" class="selectbox"
+                                                        value="{{ $value->id }}">
+                                                </td> --}}
+                                                <td>{{ $loop->index + 1 }}</td>
+                                                <td>{{ $value->tag_name }}</td>
+                                                <td>{{ $value->slug }}</td>
+
+                                                <td>
+                                                    <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
+                                                            class="fas fa-edit"></i></a>
+                                                    <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
+                                                        onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
+                                                            class="fas fa-trash"></i></a>
+
+                                                </td>
+                                                <td>
+
+                                                    <input type="checkbox" class="form-control selectbox" name="ids[]"
+                                                        value="{{ $value->id }}" id="exampleInputEmail1">
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
+                                        <tr>
+                                            <td colspan="5"><span class="text-danger text-center">No Tag Found</span></td>
+
+                                        </tr>
+
+
+                                    @endif
+                                </tbody>
+                            </table>
+                        </form>
                     </div>
                     <!-- /.card -->
                     <div class="text-center">
@@ -119,4 +147,61 @@
             </div>
         </div>
     </section>
+@endsection
+{!! Toastr::message() !!}
+@section('script')
+    <script src="{{ asset('toastr') }}/toastr.min.js"></script>
+    <script>
+        {{-- {!! Toastr::message() !!} --}}
+        $('.selectall').click(function() {
+            $('.selectbox').prop('checked', $(this).prop('checked'));
+            // $('.selectall2').prop('checked',$(this).prop('checked'));
+
+        });
+        {{-- $('.selectall2').click(function(){
+
+        $('.selectbox').prop('checked',$(this).prop('checked'));
+        $('.selectall').prop('checked',$(this).prop('checked'));
+
+        }); --}}
+
+        $('.selectbox').change(function() {
+
+            var total = $('.selectbox').length;
+            var number = $('.selectbox:checked').length;
+            if (total == number) {
+                $('.selectall').prop('checked', true);
+                // $('.selectall2').prop('checked',true);
+            } else {
+                $('.selectall').prop('checked', false);
+                // $('.selectall2').prop('checked',false);
+            }
+
+        });
+    </script>
+    <script>
+        /*  @if (Session::has('success'))
+            toaser.success("{{ Session::get('success') }}");
+        @endif
+        Command: toastr["success"]("Tag Create Successfully !!", "Create Tag")
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }*/
+    </script>
+
 @endsection

@@ -116,9 +116,9 @@
                 </li> --}}
 
                 <li
-                    class="nav-item {{ Route::is('admin/blog') || Route::is('category') || Route::is('taglist') ? 'active menu-open' : '' }}">
+                    class="nav-item {{ Route::is('postList') || Route::is('category') || Route::is('taglist') ? 'active menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('admin/blog') || request()->is('category') || Route::is('taglist') ? 'active' : '' }}">
+                        class="nav-link {{ request()->is('postList') || request()->is('category') || Route::is('taglist') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Blog
@@ -127,9 +127,10 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ Route::is('admin/blog') ? 'active' : '' }}">
+                            <a href="{{ route('postList') }}"
+                                class="nav-link {{ Route::is('postList') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Blog</p>
+                                <p>Post</p>
                             </a>
                         </li>
                         <li class="nav-item">

@@ -19,9 +19,10 @@ class TagDatabaseSeeder extends Seeder
         Model::unguard();
         $this->call([
             // CategorySeederTableSeeder::class,
+            TagTableSeeder::class,
              // UserSeeder::class,
          ]);
         // $this->call("OthersTableSeeder");
-        Tag::factory(10)->create();
+        //Tag::factory(10)->create();
     }
 }

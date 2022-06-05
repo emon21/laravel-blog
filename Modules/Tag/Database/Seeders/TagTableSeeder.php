@@ -19,9 +19,20 @@ class TagTableSeeder extends Seeder
         Model::unguard();
 
         // $this->call("OthersTableSeeder");
-        $tag = New Tag();
-        $tag->tag_name = 'Html';
-        $tag->slug =  Str::slug($tag->tag_name);
-        $tag->save();
+        // $tag = New Tag();
+        // $tag->tag_name = 'Html';
+        // $tag->slug =  Str::slug($tag->tag_name);
+        // $tag->save();
+
+        $tags = [
+            'PHP','Laravel','CSS','Vue jS'
+        ];
+    foreach ($tags as $value) {
+
+        Tag::create([
+            'tag_name' => $value,
+            'slug' => Str::slug($value),
+        ]);
+    }
     }
 }

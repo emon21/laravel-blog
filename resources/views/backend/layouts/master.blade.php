@@ -47,7 +47,7 @@
     <!-- ./wrapper -->
     @include('backend.layouts.partials.scripts')
     @yield('script')
-
+    {!! Toastr::message() !!}
 </body>
 
 </html>
