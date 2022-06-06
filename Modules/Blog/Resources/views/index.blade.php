@@ -136,7 +136,9 @@
                                 <td>{{ $loop->index + 1 }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td>{{ $post->slug }}</td>
-                                <td>{{ $post->title }}</td>
+                                <td class="text-center">
+                                    <img src="{{ asset('backend/blog') }}/{{ $post->image }}" width="150" height="150" alt="">
+                                </td>
                                 <td>{{ $post->category_id }}</td>
                                 <td>
                                     @if ($post->status == 'publish')

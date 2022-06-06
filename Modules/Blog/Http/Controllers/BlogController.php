@@ -39,17 +39,48 @@ class BlogController extends Controller
         'status' => "required",
         'publish_date' => "required",
       ]);
-        $post = Post::create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title),
-            'image' => 'post.jpg',
-            'description' => $request->post_desc,
-            'category_id' => $request->category_list,
-            'user_id' => '1',
-            'status' => $request->status,
-            'published_at' => $request->publish_date,
+      $post = new Post();
+      //   $post = Post::create([
+      //       'title' => $request->title,
+      //       'slug' => Str::slug($request->title),
+      //       'image' => 'backend/blog/default.jpg',
+      //       'description' => $request->post_desc,
+      //       'category_id' => $request->category_list,
+      //       'user_id' => '1',
+      //       'status' => $request->status,
+      //       'published_at' => $request->publish_date,
 
-        ]);
+      //   ]);
+
+        if($request->has('post_picture')) {
+           
+         $image = $request->file('post_picture');
+         $filename = $image->getClientOriginalName();
+         $image->move(public_path('backend/blog'), $filename);
+         $post->image = $filename;
+     }
+
+     else{
+      $post->title = $request->title;
+      $post->slug = Str::slug($request->title);
+      $post->image = 'backend/blog/default.jpg';
+      $post->description = $request->post_desc;
+      $post->category_id = $request->category_list;
+      $post->user_id = '1';
+      $post->status = $request->status;
+      $post->published_at = $request->publish_date;
+     }
+
+     //zakir vhi code
+   //      if($request->has('post_picture')) {
+   //       $image = $request->post_picture;
+   //       $filename = time() . '.' .$image->getClientOriginalName();
+   //       $image->move('backend/blog', $filename);
+   //       $post->image = 'backend/blog'.$filename;
+   //     //  $post->image = $filename;
+   //       $post->save();
+   //   }
+
        $post->save();
         return redirect()->back();
     }
