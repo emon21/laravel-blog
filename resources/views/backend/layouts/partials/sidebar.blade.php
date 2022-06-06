@@ -118,7 +118,7 @@
                 <li
                     class="nav-item {{ Route::is('postList') || Route::is('category') || Route::is('taglist') ? 'active menu-open' : '' }}">
                     <a href="#"
-                        class="nav-link {{ request()->is('postList') || request()->is('category') || Route::is('taglist') ? 'active' : '' }}">
+                        class="nav-link {{ Route::is('postList') || request()->is('category') || Route::is('taglist') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
                         <p>
                             Blog

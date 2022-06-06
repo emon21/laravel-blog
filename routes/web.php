@@ -17,9 +17,9 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -52,7 +52,7 @@ Route::prefix('user')->group(function () {
 
 // =================================== Website Controller Route Start ===================================
 
-Route::view('/',[WebsiteController::class,'index']);
+//Route::view('/',[WebsiteController::class,'index']);
 Route::view('/','frontend.index');
 
 // =================================== Website Controller Route End   ===================================

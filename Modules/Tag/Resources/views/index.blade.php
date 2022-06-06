@@ -70,7 +70,7 @@
                         <form action="{{ route('deleteall') }}" method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-outline-danger">Delete All Select</button>
+                            <button type="submit" class="btn btn-outline-danger float-right m-2">Delete All Select</button>
                             <table class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
@@ -88,9 +88,11 @@
                                         <th>Tag Name</th>
                                         <th>Slug</th>
                                         <th>Action</th>
-                                        <th class="text-center"><label class="form-check-label">
-                                                <input class="form-check-input selectall" type="checkbox"> Select All
-                                            </label></th>
+                                        <th class="text-center">
+                                            <label class="form-check-label">
+                                                <input class="form-control selectall" type="checkbox"> Select All
+                                            </label>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,14 +111,12 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $value->tag_name }}</td>
                                                 <td>{{ $value->slug }}</td>
-
                                                 <td>
                                                     <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
                                                     <a href="{{ route('DeleteTag', $value->id) }}" class="btn btn-danger"
                                                         onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
                                                             class="fas fa-trash"></i></a>
-
                                                 </td>
                                                 <td>
 

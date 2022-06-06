@@ -21,10 +21,13 @@ return new class extends Migration
             $table->longText('description');
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->timestamp('published_at')->nullable();
+            $table->string('status')->nullable();
+            $table->dateTime('published_at');
             $table->timestamps();
 
-           // $table->foreign('seller_id')->references('id')->on('posts');
+            //if you category data delete on post data delete
+            // $table->foreign('category_id')->references('id')->on('posts')->OnDelete('cascade');
+            // $table->foreign('category_id')->on('categories')->onDelete('cascade');
 
         });
     }

@@ -14,4 +14,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin/blog')->group(function() {
     Route::get('/', 'BlogController@index')->name('postList');
+    Route::post('/addpost', 'BlogController@create')->name('addPost');
+    Route::get('/deletepost/{post}', 'BlogController@destroy')->name('deletepost');
 });

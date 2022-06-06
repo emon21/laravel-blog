@@ -10,12 +10,12 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'created_at','updated_at'
+        'title','slug','image','description','category_id','user_id','status','published_at'
     ];
 
     protected $dates = [
         'published_at',
-        // 'published_at' => 'date:Y-m-d',
+        //'published_at' => 'date:Y-m-d',
         // 'joined_at' => 'datetime:Y-m-d H:00',
     ];
 

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Modules\Category\Database\Seeders\CategorySeederTableSeeder;
 use Modules\tag\Database\Seeders\TagTableSeeder;
+use Modules\Blog\Database\Seeders\PostSeederTableSeeder;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
             //Module Category
            CategorySeederTableSeeder::class,
            TagTableSeeder::class,
+           PostSeederTableSeeder::class
 
         ]);
     }
