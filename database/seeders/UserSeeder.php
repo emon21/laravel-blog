@@ -15,11 +15,28 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = New User();
-        $user->name = 'User';
-        $user->email = 'user@user.com';
-        $user->email_verified_at = Carbon::now();
-        $user->password = bcrypt('12345678');
-        $user->save();
+
+       
+     User::insert([
+          
+         [
+            //User
+            'name' => 'User',
+            'email' => 'user@mail.com',
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('12345678'),
+            'user_type' => '0',
+        ],
+         [
+            //Admin
+            'name' => 'Admin',
+            'email' => 'admin@mail.com',
+            'email_verified_at' => Carbon::now(),
+            'password' => bcrypt('12345678'),
+            'user_type' => '1',
+         ]
+          
+       ]);
+     
     }
 }

@@ -12,8 +12,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin/blog')->group(function() {
+Route::prefix('admin/post')->middleware(['auth','admin'])->group(function() {
     Route::get('/', 'BlogController@index')->name('postList');
     Route::post('/addpost', 'BlogController@create')->name('addPost');
+   // Route::get('/editPost/{title}', 'BlogController@edit')->name('editPost');
+    Route::get('/edit/{post}', 'BlogController@edit')->name('editPost');
+    Route::post('/UpdatePost/{post}', 'BlogController@update')->name('updatePost');
     Route::get('/deletepost/{post}', 'BlogController@destroy')->name('deletepost');
+    Route::get('/view/{post}', 'BlogController@view')->name('viewpost');
 });

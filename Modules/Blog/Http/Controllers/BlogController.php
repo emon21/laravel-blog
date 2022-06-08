@@ -10,6 +10,8 @@ use Modules\Category\Entities\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
     /**
@@ -20,7 +22,7 @@ class BlogController extends Controller
     {
        
         $categoryList = Category::all();
-        $postList = Post::all();
+        $postList = Post::latest()->get();
         return view('blog::index',compact('categoryList','postList'));
     }
 
@@ -30,59 +32,53 @@ class BlogController extends Controller
      */
     public function create(Request $request)
     {
-      // return $request->all();
-     // $publish_date = date('Y-m-d');
-      $request->validate([
-        'title' => "required|unique:posts,title,$request->title",
-        'post_desc' => "required",
-        'category_list' => "required",
-        'status' => "required",
-        'publish_date' => "required",
+
+   
+      $user = Auth::user()->id;
+      // $request->validate([
+      //   'title' => "required|unique:posts,title",
+      //   'post_desc' => "required",
+      //   'category_list' => "required",
+      //   'status' => "required",
+      //   'publish_date' => "required",
+      // ]);
+       $post = Post::create([
+         'title' => $request->title,
+         'slug' => Str::slug($request->title),
+         'description' => $request->title,
+         'image' => 'backend/blog/default.jpg',
+         'category_id' => $request->category_list,
+         'user_id' => $user,
+         'status' => $request->status,
       ]);
-      $post = new Post();
-      //   $post = Post::create([
-      //       'title' => $request->title,
-      //       'slug' => Str::slug($request->title),
-      //       'image' => 'backend/blog/default.jpg',
-      //       'description' => $request->post_desc,
-      //       'category_id' => $request->category_list,
-      //       'user_id' => '1',
-      //       'status' => $request->status,
-      //       'published_at' => $request->publish_date,
 
-      //   ]);
+    
+      if($request->has('post_picture')) {
 
-        if($request->has('post_picture')) {
-           
-         $image = $request->file('post_picture');
-         $filename = $image->getClientOriginalName();
-         $image->move(public_path('backend/blog'), $filename);
-         $post->image = $filename;
-     }
+      //    $imageName = time().'.'.$request->post_picture->extension();  
+     
+      //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
+      //   return $post->imageName;
 
-     else{
-      $post->title = $request->title;
-      $post->slug = Str::slug($request->title);
-      $post->image = 'backend/blog/default.jpg';
-      $post->description = $request->post_desc;
-      $post->category_id = $request->category_list;
-      $post->user_id = '1';
-      $post->status = $request->status;
-      $post->published_at = $request->publish_date;
-     }
+         $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+       //$request->post_picture->move('backend/blog/', $filename);
+         $request->post_picture->move(public_path('backend/blog/'), $filename);
+         $post->image = 'backend/blog/'.$filename;
+         $post->save();
+      }
 
-     //zakir vhi code
-   //      if($request->has('post_picture')) {
-   //       $image = $request->post_picture;
-   //       $filename = time() . '.' .$image->getClientOriginalName();
-   //       $image->move('backend/blog', $filename);
-   //       $post->image = 'backend/blog'.$filename;
-   //     //  $post->image = $filename;
-   //       $post->save();
-   //   }
+         //zakir vhi code
+         //      if($request->has('post_picture')) {
+         //       $image = $request->post_picture;
+         //       $filename = time() . '.' .$image->getClientOriginalName();
+         //       $image->move('backend/blog', $filename);
+         //       $post->image = 'backend/blog'.$filename;
+         //       $post->image = $filename;
+         //       $post->save();
+         //   }
 
-       $post->save();
-        return redirect()->back();
+        return redirect('admin/post')->with('status','Post Inserted Successfully');
+
     }
 
     /**
@@ -110,9 +106,12 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        return view('blog::edit');
+     
+       // $post = Post::find($id);
+         $categoryList = Category::all();
+         return view('blog::edit',compact('categoryList','post'));
     }
 
     /**
@@ -121,9 +120,32 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Post $post)
     {
-        //
+       
+      
+      $user_id = Auth::user()->id;
+
+      $post->title = $request->title;
+      $post->slug = Str::slug($request->title);
+      $post->description = $request->post_desc;
+      $post->category_id = $request->category_list;
+      $post->user_id = $user_id;
+      $post->status = $request->status;
+      
+      if($request->has('post_picture')) {
+         
+         $image = $request->file('post_picture');
+         $filename = $image->getClientOriginalName();
+         // $location = $image->move(public_path('backend/blog'), $filename);
+         $location = $image->move('backend/blog/', $filename);
+         $post->image = $location;
+      }
+
+      $post->save();
+      // return redirect()->route('postList');
+      return redirect('admin/post')->with('status','Post Update Successfully');
+
     }
 
     /**
@@ -131,12 +153,70 @@ class BlogController extends Controller
      * @param int $id
      * @return Renderable
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        //return $id;
-       // $post = Post::find($id);
-       //$post->delete();
-        Post::destroy($id);
-        return back();
+       
+    
+// return $post->image;
+      //  $image_path = "backend/blog/";  // Value is not URL but directory file path
+      // if(File::exists($image_path)) {
+      //    File::delete($image_path);
+      // }
+   //    $imageExists = file_exists($post->image);
+   //    if ($imageExists) {
+   //       if ($imageExists != 'backend/blog/default.png') {
+   //           @unlink($post->image);
+   //       }
+   //   }
+
+   //    if(file_exists($post->image)){
+   //       @unlink($post->image);
+   //   }
+
+   
+  // return $post->image;
+
+  //  $filename = public_path().'/backend/blog/'.$file;
+   // File::delete($filename);
+  //  @unlink($post->image);
+
+//   $filename = time() . '.' .$post->image->getClientOriginalextension();
+//     ='backend/blog/'.$filename;
+   //  return $post->image;
+   //  return $filename = public_path().'/backend/blog/'.$post->image;
+ 
+
+    $path = '/backend/blog/'.$post->image;
+
+    if(file_exists($path)){
+            @unlink($path);
+        }
+
+      // if($post->image != 'default.jpg'){
+      //    $location = '/backend/blog/'.$post->image;
+      //    @unlink($location);
+
+      // // File::delete($post->image);
+      // }
+     $post->delete();
+     return back()->with("success", "Image deleted successfully.");
+     
+   //      $post->delete();
+   //      return back();
+
+      //   $image = Image::find($request->id);
+
+       // unlink("uploads/".$post->image);
+
+       // Image::where("id", $image->id)->delete();
+
+
+    }
+
+    public function view(Post $post)
+    {
+      // return $postView = Post::first($post);
+      $categoryList = Category::all();
+        return view('blog::view',compact('post','categoryList'));
     }
 }

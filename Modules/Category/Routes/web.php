@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin/category')->group(function() {
+Route::prefix('admin/category')->middleware(['auth','admin'])->group(function() {
     Route::get('/', 'CategoryController@index')->name('category');
     Route::post('/create', 'CategoryController@create')->name('CreateCategory');
     Route::get('/edit/{category}', 'CategoryController@edit')->name('EditCategory');

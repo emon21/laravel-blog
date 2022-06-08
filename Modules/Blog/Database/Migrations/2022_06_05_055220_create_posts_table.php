@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('slug');
-            $table->string('image');
-            $table->longText('description');
+            $table->string('title')->nullable();
+            $table->string('slug')->nullable();
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
             $table->integer('category_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('status')->nullable();
-            $table->dateTime('published_at');
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
 
             //if you category data delete on post data delete

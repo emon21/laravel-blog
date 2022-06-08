@@ -20,10 +20,11 @@ class PostSeederTableSeeder extends Seeder
         $post = New Post();
         $post->title = 'this title';
         $post->slug = Str::slug($post->title);
-        $post->image = 'blog/default,jpg';
+        $post->image = 'backend/blog/default.jpg';
         $post->description = 'good php code';
         $post->category_id = '1';
         $post->user_id = '1';
+        $post->status = 'publish';
         $post->published_at = Now();
         $post->save();
         // $this->call("OthersTableSeeder");

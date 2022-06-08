@@ -10,4 +10,20 @@
         class="list-group-item list-group-item-action {{ Route::is('UserSetting') ? 'active' : '' }}"><i
             class="fa fa-cog fa-1x"></i>
         &nbsp;User Setting</a>
+
+    <a href="javascript:void(0)" onclick="event.preventDefault();
+    document.getElementById('logout-form').submit();"
+        class="list-group-item list-group-item-action bg-danger text-white">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+    </a>
+    {{-- <a href="javascript:void(0)" onclick="event.preventDefault();
+        document.getElementById('logout-form').submit();"
+        class="btn btn-danger ml-auto w-50 list-group-item list-group-item-action">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+
+    </a> --}}
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        @csrf
+    </form>
 </div>

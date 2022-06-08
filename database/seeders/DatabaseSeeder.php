@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\Category\Database\Seeders\CategorySeederTableSeeder;
 use Modules\tag\Database\Seeders\TagTableSeeder;
 use Modules\Blog\Database\Seeders\PostSeederTableSeeder;
+use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -17,7 +18,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-            UserSeeder::class,
+           UserSeeder::class,
             AdminSeeder::class,
             //Module Category
            CategorySeederTableSeeder::class,
@@ -25,5 +26,6 @@ class DatabaseSeeder extends Seeder
            PostSeederTableSeeder::class
 
         ]);
+      //  User::factory(10)->create();
     }
 }

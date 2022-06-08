@@ -66,8 +66,6 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //$category = Category::first('id',$category);
-      //  return $category;
         return view('category::edit',compact('category'));
     }
 
@@ -79,7 +77,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request,Category $category)
     {
-       // return $request->category_name;
+      // return $request->category_name;
       // dd($request->all());
       $request->validate([
         'category_name' => "required|unique:categories,category_name,$category->category_name",

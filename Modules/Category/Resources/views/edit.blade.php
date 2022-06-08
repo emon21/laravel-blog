@@ -41,8 +41,8 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Category Name</label>
                                     <input type="text" class="form-control @error('category_name') is-invalid @enderror"
-                                        name="category_name" value="{{ old('category_name') }}" id="exampleInputEmail1"
-                                        placeholder="Enter Category Name" value="{{ $category->category_name }}">
+                                        name="category_name" id="exampleInputEmail1" placeholder="Enter Category Name"
+                                        value="{{ $category->category_name }}">
                                     @error('category_name')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror

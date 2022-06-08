@@ -25,6 +25,8 @@
             <div class="row">
                 <!-- left column -->
                 <div class="col-md-4 justify-content-center d-block mx-auto">
+
+
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
@@ -90,9 +92,24 @@
                                             <a href="{{ route('DeleteCategory', $value->id) }}" class="btn btn-danger"
                                                 onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
                                                     class="fas fa-trash"></i></a>
-                                            <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
-                                                    class="fa fa-solid fa-eye"></i></a>
+                                            {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
+                                                    class="fa fa-solid fa-eye"></i></a> --}}
+
+                                            @if ($value->status == 1)
+                                                <a href="{{ route('status', $value->id) }}" class="btn btn-dark"><i
+                                                        class="fa fa-eye-slash text-danger" aria-hidden="true"></i></a>
+                                            @else
+                                                <a href="{{ route('status', $value->id) }}" class="btn btn-dark"> <i
+                                                        class="fa fa-solid fa-eye text-success"></i></a>
+                                            @endif
+                                            {{-- <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="switch1">
+                                                <label class="custom-control-label" for="switch1">Toggle me</label>
+                                            </div> --}}
+
+                                            <input type="checkbox" checked data-toggle="toggle">
                                         </td>
+
                                     </tr>
                                 @endforeach
                             </tbody>

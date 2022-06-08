@@ -34,6 +34,8 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('backend/assets') }}/dist/js/pages/dashboard.js"></script>
 <!-- DataTables  & Plugins -->
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+<!-- DataTables  & Plugins -->
 <script src="{{ asset('backend/assets') }}/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="{{ asset('backend/assets') }}/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script>

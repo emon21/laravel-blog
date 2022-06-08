@@ -5,12 +5,12 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{ url('clear_cache') }}" class="nav-link">Clear</a>
         </li>
 
-        <li class="nav-item d-none d-sm-inline-block">
+        {{-- <li class="nav-item d-none d-sm-inline-block">
             <a href="#" class="nav-link">Contact</a>
-        </li>
+        </li> --}}
 
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ url('/') }}" class="nav-link" alt="Website" target="_blank"><i
@@ -146,7 +146,7 @@
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset('backend/assets') }}/dist/img/user2-160x160.jpg"
                     class="user-image img-circle elevation-2" alt="User Image">
-                <span class="d-none d-md-inline">Demo</span>
+                <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right rounded border-0"
                 style="left: inherit; right: 0px;">
@@ -155,22 +155,22 @@
                     <img src="{{ asset('backend/assets') }}/dist/img/user2-160x160.jpg"
                         class="user-image img-circle elevation-2" alt="User Image">
                     <p>
-                        Hi -
+                        Hi - {{ Auth::user()->name }}
                         <small>{{ __('member_since') }} {{ date('y-m-d') }}</small>
                     </p>
                 </li>
 
                 <!-- Menu Footer-->
                 <li class="user-footer border-bottom d-flex">
-                    <a href="{{ route('logout') }}" class="btn btn-outline-success">Profile</a>
-
+                    <a href="" class="btn btn-outline-success"> <i class="fa fa-list"></i>&nbsp;Profile
+                    </a>
+                    <!-- Logout -->
                     <a href="javascript:void(0)" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();" class="btn btn-outline-danger ml-auto w-50">
-                        <i class="fas fa-sign-out float-left fa-2x" aria-hidden="true"></i>
-                        <p class="pt-1">{{ __('SignOut') }}</p>
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+
                     </a>
-                    {{-- {{ route('admin/logout') }} --}}
-                    <form id="logout-form" action="" method="POST" class="d-none invisible">
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
 

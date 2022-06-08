@@ -17,4 +17,6 @@ class Category extends Model
     {
         return \Modules\Category\Database\factories\CategoryFactory::new();
     }
+
+    
 }

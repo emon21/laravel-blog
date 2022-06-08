@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix('admin/tag')->group(function() {
+Route::prefix('admin/tag')->middleware(['auth','admin'])->group(function() {
     Route::get('/', 'TagController@index')->name('taglist');
     Route::post('/create', 'TagController@create')->name('CreateTag');
     Route::get('/edit/{tag}', 'TagController@edit')->name('EditTag');
