@@ -5,6 +5,7 @@ namespace Modules\Blog\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Entities\Category;
+use Modules\Tag\Entities\Tag;
 use App\Models\User;
 class Post extends Model
 {
@@ -25,6 +26,7 @@ class Post extends Model
         return \Modules\Blog\Database\factories\PostFactory::new();
     }
 
+    protected $appends = ['logo_image_url', 'value','logo_image2_url', 'favicon_image_url'];
     
    //  public function getImageUrlAttribute($image)
    //  {
@@ -35,7 +37,6 @@ class Post extends Model
    //      return asset($this->image);
    //  }
 
-  // protected $appends = ['logo_image_url', 'logo_image2_url', 'favicon_image_url'];
 
   //Accessor 
    public function getImageAttribute($value) 
@@ -55,4 +56,11 @@ class Post extends Model
     {
        return $this->belongsTo(User::class);
     }
+
+    public function tags()
+    {
+       return $this->belongsToMany(Tag::class);
+    }
+
+   
 }

@@ -48,18 +48,17 @@
                             @enderror
                         </div>
 
+                        <div class="form-group col-sm-12">
+                            <label for="comment">Description:</label>
+                            <textarea id="summernote" name="post_desc" class=" @error('post_desc') is-invalid @enderror"></textarea>
+
+                        </div>
+
                         <div class="row">
-                            <div class="form-group col-sm-6">
-                                <label for="comment">Description:</label>
-                                {{-- <textarea id="summernote" name="post_desc" class=" @error('post_desc') is-invalid @enderror"></textarea> --}}
-                                <textarea class="form-control @error('post_desc') is-invalid @enderror" rows="5" name="post_desc" id="comment"
-                                    placeholder="Enter Post Description" style="height: 165px"></textarea>
-                            </div>
 
-
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-12">
                                 <label for="exampleInputFile">Picture</label>
-                                <input type="file" class="dropify" data-height="150" id="id_member_photo"
+                                <input type="file" class="dropify" data-height="200" id="id_member_photo"
                                     name="post_picture" />
 
                             </div>
@@ -78,17 +77,6 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                            {{-- <div class="form-group col-sm-5">
-                                <label for="exampleInputFile">Picture</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile"
-                                            name="post_picture">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
-                                </div>
-                            </div> --}}
 
                             <!-- Status Start -->
                             <div class="form-group col-sm-4" style="margin-top:2px">
@@ -112,6 +100,31 @@
 
                         </div>
 
+                        <!-- checkbox -->
+                        <div class="form-group col-sm-12 ">
+                            <label for="sel1">Choose Tag List:</label>
+                            <div class="d-flex flex-wrap">
+                                @foreach ($tags as $tag)
+                                    <div class="custom-control custom-checkbox mr-2">
+                                        <input
+                                            class="custom-control-input custom-control-input-danger custom-control-input-outline"
+                                            type="checkbox" name="tags[]" id="tag{{ $tag->id }}"
+                                            value="{{ $tag->id }}">
+                                        <label for="tag{{ $tag->id }}"
+                                            class="custom-control-label">{{ $tag->tag_name }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        </div>
+
+
+
+
+
+
+
+
                         <!-- Status Start -->
                         {{-- <div class="form-group col-sm-4">
                             <label for="exampleInputFile">Status</label>
@@ -130,6 +143,8 @@
                             </div>
                         </div> --}}
                         <!-- Status End --->
+
+
 
                         <div class="form-group col-sm-4">
                             <button type="submit" class="btn btn-success w-50">Create Post</button>
@@ -158,6 +173,7 @@
                             <th>Slug</th>
                             <th>Image</th>
                             <th>Category</th>
+                            <th>Tag</th>
                             <th>Author</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -174,6 +190,13 @@
                                     <img src="{{ $post->image }}" width="150" height="150" alt="">
                                 </td>
                                 <td>{{ $post->category->category_name }}</td>
+                                <td>
+
+                                    @foreach ($post->tags as $tag)
+                                        <span class="badge badge-info">{{ $tag->tag_name }}</span>
+                                    @endforeach
+
+                                </td>
                                 <td>{{ $post->user->name }}</td>
                                 <td>
                                     @if ($post->status == 'publish')
@@ -183,19 +206,20 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ route('editPost', $post->id) }}" class="btn btn-success"
-                                        data-toggle="tooltip" title="Edit Post" data-placement="top">
-                                        <i class="fa fa-edit" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="{{ route('deletepost', $post->id) }}" class="btn btn-danger"
-                                        data-toggle="tooltip" title="Delete Post" data-placement="bottom"
-                                        onclick="return confirm('Are You Sure Delete This Items Y/N')">
-                                        <i class="fa fa-trash" aria-hidden="true"></i>
-                                    </a>
-                                    <a href="{{ route('viewpost', $post->id) }}" class="btn btn-warning"
+                                    <a href="{{ route('viewpost', $post->id) }}" class="btn btn-success"
                                         data-toggle="tooltip" title="View Post">
                                         <i class="fa fa-eye" aria-hidden="true"></i>
                                     </a>
+                                    <a href="{{ route('editPost', $post->id) }}" class="btn btn-primary"
+                                        data-toggle="tooltip" title="Edit Post" data-placement="bottom">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="{{ route('deletepost', $post->id) }}" class="btn btn-danger"
+                                        data-toggle="tooltip" title="Delete Post" data-placement="top"
+                                        onclick="return confirm('Are You Sure Delete This Items Y/N')">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+
                                 </td>
                             </tr>
                         @endforeach
@@ -207,6 +231,7 @@
                             <th>Slug</th>
                             <th>Image</th>
                             <th>Category</th>
+                            <th>Tag</th>
                             <th>Author</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -238,8 +263,9 @@
             // Summernote
             //$('#summernote').summernote()
             $('#summernote').summernote({
-                height: 150, //set editable area's height
+                height: 200, //set editable area's height
                 title: 'Enter Title',
+                tabsize: 2,
                 codemirror: { // codemirror options
                     theme: 'monokai'
                 }

@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-@section('title', 'Post List')
+@section('title', 'Post View')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('backend/dropify/dist/css/dropify.css') }}">
 @endsection
@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Post</h1>
+                    <h1 class="m-0">Post View</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -23,117 +23,59 @@
 @section('admin-content')
     <div class="container-fluid">
         <!-- Create Post Start -->
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-        <div class="col-md-6 justify-content-center mx-auto d-block">
-            <!-- general form elements -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;View Post</h3>
-                    <a href="{{ route('postList') }}">
-                        <h3 class="card-title float-right"><i class="fa fa-reply" aria-hidden="true"></i>&nbsp;Return
-                        </h3>
-                    </a>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form action="{{ route('updatePost', $post->id) }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Post Name</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                                value="{{ $post->title }}" id="exampleInputEmail1" placeholder="Enter Your Title">
-                            @error('title')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="row">
-
-                            <div class="form-group col-sm-7">
-                                <label for="comment">Description:</label>
-                                {{-- <textarea id="summernote" name="post_desc" class=" @error('post_desc') is-invalid @enderror"></textarea> --}}
-                                <textarea class="form-control @error('post_desc') is-invalid @enderror" rows="5" name="post_desc" id="comment">{{ $post->description }}</textarea>
-                            </div>
-
-
-                            <div style="    height: 209px;
-                                                                                    width: 308px;
-                                                                                    margin-left: 469px;
-                                                                                    margin-top: -151px;
-                                                                                    box-shadow: 0px 0px 5px 2px #0aa4e1;
-                                                                                    border-radius: 5px;">
-                                <img src="{{ asset($post->image) }}" width="292" height="192"
-                                    class="mt-2 mb-2 ml-2 border-2">
-                            </div>
-                            <div class="form-group col-sm-7" style="margin-top: -69px">
-                                <label for="exampleInputFile">Picture</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="exampleInputFile"
-                                            name="post_picture">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                    </div>
+        <div class="card">
+            <div class="card-header">Post View</div>
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                        <tr>
+                            <td style="width: 250px;">Image</td>
+                            <td>
+                                <div style="max-width:300px;max-height:300px;overflow:hidden">
+                                    <img src="{{ $post->image }}" alt="" class="img-fluid">
                                 </div>
-                            </div>
-
-                        </div>
-
-                        <div class="row" style="margin-top: -9px;">
-                            <div class="form-group col-sm-3">
-                                <label for="sel1">Category List:</label>
-                                <select class="form-control  @error('category_list') is-invalid @enderror" id="sel1"
-                                    name="category_list">
-                                    <option style="display: none" selected
-                                        class="@error('category_list') is-invalid @enderror"> Select Category </option>
-                                    @foreach ($categoryList as $category)
-                                        <option class="mt-4" value="{{ $category->id }}"
-                                            @if ($post->category_id == $category->id) selected @endif>
-                                            {{ $category->category_name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- Status Start -->
-                            <div class="form-group col-sm-4">
-                                <label for="exampleInputFile">Status</label>
-                                <div class="mt-2">
-                                    @if ($post->status == 'publish')
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" @if ($post->status == 'publish') checked @endif
-                                                class="custom-control-input @error('status') is-invalid @enderror"
-                                                id="customRadio" name="status" value="publish">
-                                            <label class="custom-control-label" for="customRadio">Publish</label>
-                                        </div>
-                                    @else
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input type="radio" @if ($post->status == 'unpublish') checked @endif
-                                                class="custom-control-input custom-control-input-danger @error('status') is-invalid @enderror"
-                                                id="customRadio2" name="status" value="unpublish">
-                                            <label class="custom-control-label" for="customRadio2">Unpublish</label>
-                                        </div>
-                                    @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Post Name</td>
+                            <td>{{ $post->title }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Category Name</td>
+                            <td>{{ $post->category->category_name }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Post Tags</td>
+                            <td>
+                                @foreach ($post->tags as $tag)
+                                    <span class="badge badge-info">{{ $tag->tag_name }}</span>
+                                @endforeach
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Status</td>
+                            <td>
+                                @if ($post->status == 'publish')
+                                    <span class="text-success text-bold">Published</span>
+                                @else
+                                    <span class="text-danger text-bold">Unpublished</span>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Author Name</td>
+                            <td>{{ $post->user->name }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Description</td>
+                            <td>{!! $post->description !!}</td>
+                        </tr>
 
 
-                                </div>
-                            </div>
-                            <!-- Status End --->
-                        </div>
-
-                        <!-- Button --->
-                        {{-- <div class="form-group col-sm-4">
-                            <button type="submit" class="btn btn-success w-50">Update Post</button>
-                        </div> --}}
-                        <!-- Button --->
-
-                    </div>
-                    <!-- /.card-body -->
-                </form>
+                    </tbody>
+                </table>
             </div>
-            <!-- /.card -->
+            <div class="card-footer">Footer</div>
         </div>
 
     </div>

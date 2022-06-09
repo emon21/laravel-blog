@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
+use Modules\Tag\Entities\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -20,10 +21,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-       
-        $categoryList = Category::all();
-        $postList = Post::latest()->get();
-        return view('blog::index',compact('categoryList','postList'));
+         $tags = Tag::all();
+         $categoryList = Category::all();
+         $postList = Post::latest()->get();
+         return view('blog::index',compact('tags','categoryList','postList'));
     }
 
     /**
@@ -33,15 +34,8 @@ class BlogController extends Controller
     public function create(Request $request)
     {
 
-   
+   //dd($request->all());
       $user = Auth::user()->id;
-      // $request->validate([
-      //   'title' => "required|unique:posts,title",
-      //   'post_desc' => "required",
-      //   'category_list' => "required",
-      //   'status' => "required",
-      //   'publish_date' => "required",
-      // ]);
        $post = Post::create([
          'title' => $request->title,
          'slug' => Str::slug($request->title),
@@ -52,6 +46,7 @@ class BlogController extends Controller
          'status' => $request->status,
       ]);
 
+      $post->tags()->attach($request->tags);
     
       if($request->has('post_picture')) {
 
@@ -109,9 +104,9 @@ class BlogController extends Controller
     public function edit(Post $post)
     {
      
-       // $post = Post::find($id);
+         $tags = Tag::all();
          $categoryList = Category::all();
-         return view('blog::edit',compact('categoryList','post'));
+         return view('blog::edit',compact('tags','categoryList','post'));
     }
 
     /**
@@ -124,22 +119,29 @@ class BlogController extends Controller
     {
        
       
-      $user_id = Auth::user()->id;
-
+     
       $post->title = $request->title;
       $post->slug = Str::slug($request->title);
       $post->description = $request->post_desc;
       $post->category_id = $request->category_list;
-      $post->user_id = $user_id;
       $post->status = $request->status;
       
-      if($request->has('post_picture')) {
+      $post->tags()->sync($request->tags);
+
+
+      if($request->hasFile('post_picture')) {
          
-         $image = $request->file('post_picture');
-         $filename = $image->getClientOriginalName();
-         // $location = $image->move(public_path('backend/blog'), $filename);
-         $location = $image->move('backend/blog/', $filename);
-         $post->image = $location;
+         $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+         $request->post_picture->move(public_path('backend/blog/'), $filename);
+         $post->image = 'backend/blog/'.$filename;
+        // $post->save();
+
+
+         // $image = $request->file('post_picture');
+         // $filename = $image->getClientOriginalName();
+         // // $location = $image->move(public_path('backend/blog'), $filename);
+         // $location = $image->move('backend/blog/', $filename);
+         // $post->image = $location;
       }
 
       $post->save();
@@ -169,16 +171,8 @@ class BlogController extends Controller
    //       }
    //   }
 
-   //    if(file_exists($post->image)){
-   //       @unlink($post->image);
-   //   }
-
+  
    
-  // return $post->image;
-
-  //  $filename = public_path().'/backend/blog/'.$file;
-   // File::delete($filename);
-  //  @unlink($post->image);
 
 //   $filename = time() . '.' .$post->image->getClientOriginalextension();
 //     ='backend/blog/'.$filename;
@@ -186,19 +180,23 @@ class BlogController extends Controller
    //  return $filename = public_path().'/backend/blog/'.$post->image;
  
 
-    $path = '/backend/blog/'.$post->image;
+   //  $path = '/backend/blog/'.$post->image;
 
-    if(file_exists($path)){
-            @unlink($path);
-        }
+   //  if(file_exists($path)){
+   //          @unlink($path);
+   //      }
 
-      // if($post->image != 'default.jpg'){
-      //    $location = '/backend/blog/'.$post->image;
-      //    @unlink($location);
+    
+      if ($post) {
 
-      // // File::delete($post->image);
-      // }
-     $post->delete();
+         if (file_exists(public_path($post->image))) {
+            unlink(public_path($post->image));
+          }
+        
+         $post->delete();
+      }
+      
+   // $post->delete();
      return back()->with("success", "Image deleted successfully.");
      
    //      $post->delete();
@@ -215,8 +213,8 @@ class BlogController extends Controller
 
     public function view(Post $post)
     {
-      // return $postView = Post::first($post);
+      $tags = Tag::all();
       $categoryList = Category::all();
-        return view('blog::view',compact('post','categoryList'));
+        return view('blog::view',compact('tags','post','categoryList'));
     }
 }
