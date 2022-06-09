@@ -25,14 +25,14 @@ class TagTableSeeder extends Seeder
         // $tag->save();
 
         $tags = [
-            'PHP','Laravel','CSS','Vue jS'
-        ];
-    foreach ($tags as $value) {
+         'Php','Laravel','Html','Css','Vue jS','Java','Python','Apps','Nuxt JS' ,'
+         Asp.Net','C#','React JS'];
 
-        Tag::create([
-            'tag_name' => $value,
-            'slug' => Str::slug($value),
-        ]);
-    }
+         foreach ($tags as $value) {
+            Tag::create([
+                  'tag_name' => $value,
+                  'slug' => Str::slug($value),
+            ]);
+         }
     }
 }

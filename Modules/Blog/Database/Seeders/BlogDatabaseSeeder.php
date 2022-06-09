@@ -16,9 +16,11 @@ class BlogDatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(PostSeederTableSeeder::class);
+      //  $this->call(PostSeederTableSeeder::class);
 
-        Post::factory(20)->create();
+       // Post::factory(20)->create();
        // Category::factory(10)->create();
+      // Post::factory(20)->create();
+       Post::factory()->count(50)->create();
     }
 }

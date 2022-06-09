@@ -121,18 +121,17 @@ class CategorySeederTableSeeder extends Seeder
 
         //     ]);
         // }
-        $permissions = [
-            'PHP','Laravel','CSS','Vue jS'
+        $category = [
+            'Php','Laravel','Html','Css','Vue jS','Java','Python','Apps','Nuxt JS' ,'
+            Asp.Net','C#','React JS'
         ];
-    foreach ($permissions as $value) {
+    foreach ($category as $value) {
 
         Category::create([
             'category_name' => $value,
             'slug' => Str::slug($value),
-            'image' => 'default.jpg'
-
-
-
+            'image' => 'default.jpg',
+            'status' => 0
         ]);
     }
     //    for ($i=0; $i <10 ; $i++) {

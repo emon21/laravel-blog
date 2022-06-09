@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Modules\Category\Database\Seeders\CategorySeederTableSeeder;
 use Modules\tag\Database\Seeders\TagTableSeeder;
 use Modules\Blog\Database\Seeders\PostSeederTableSeeder;
+use Modules\Blog\Entities\Post;
 use App\Models\User;
 class DatabaseSeeder extends Seeder
 {
@@ -23,9 +24,11 @@ class DatabaseSeeder extends Seeder
             //Module Category
            CategorySeederTableSeeder::class,
            TagTableSeeder::class,
-           PostSeederTableSeeder::class
+        //  PostSeederTableSeeder::class
 
         ]);
       //  User::factory(10)->create();
+      Post::factory()->count(20)->create();
+     
     }
 }

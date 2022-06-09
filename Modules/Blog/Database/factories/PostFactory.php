@@ -26,12 +26,13 @@ class PostFactory extends Factory
            return [
                'title' => $post_title,
                'slug' => Str::slug($post_title),
-               'image' => 'blog/default,jpg',
+               'image' => 'backend/blog/default.jpg',
                'description' => $this->faker->text(),
-               'category_id' => $this->faker->randomDigit(),
-               'user_id' => $this->faker->randomDigit(),
+               'category_id' => 1,
+               'user_id' => '1',
                'status' => $this->faker->randomDigit(),
                'published_at' => Now()
            ];
     }
 }
+
