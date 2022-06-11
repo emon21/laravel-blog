@@ -2,18 +2,19 @@
     <div class="sidebar">
 
         <div class="">
-            <img src="{{ asset('frontend') }}/assets/img/blog/blog-author.jpg"
-                class="img-fluid rounded-circle flex-shrink- w-50 justify-content-center d-block mx-auto" alt="">
-            <h4 class="mt-3 text-center">User Profile</h4>
-            <p class="text-center">Hi , @if (Auth::user()->name)
-                    {{ Auth::user()->name }}
-                @else
-                    no
-                @endif
-            </p>
-            <div class="btn btn-outline-dark mt-auto justify-content-center d-block mx-auto">
-                <a href="">Read More</a>
-            </div>
+
+            <h4 class="mt-3 text-center mb-4">User Profile</h4>
+            @if (Auth::check())
+                <img src="{{ asset('frontend') }}/assets/img/blog/blog-author.jpg"
+                    class="img-fluid rounded-circle flex-shrink- w-50 justify-content-center d-block mx-auto" alt="">
+                <p class="text-center mt-2">Hi , {{ Auth::user()->name }}</p>
+                <div class="btn btn-outline-dark mt-auto justify-content-center d-block mx-auto">
+                    <a href="">Read More</a>
+                </div>
+            @else
+                <h6 class="mt-3 text-center mb-4 text-danger">Sorry!! You Are NoT Login</h6>
+            @endif
+
         </div>
         <hr>
 

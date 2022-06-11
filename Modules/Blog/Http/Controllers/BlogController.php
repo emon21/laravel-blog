@@ -189,29 +189,14 @@ class BlogController extends Controller
    //          @unlink($path);
    //      }
 
-    return $post;
+   
 
-        // return $post;
-         if ($post->image) {
-           unlink($post->image);
-          }
-         
-        
-         $post->delete();
-  
-      
-   // $post->delete();
+      // return $post;
+      if ($post->image) {
+         unlink($post->image);
+         }
+      $post->delete();
      return back()->with("success", "Image deleted successfully.");
-     
-   //      $post->delete();
-   //      return back();
-
-      //   $image = Image::find($request->id);
-
-       // unlink("uploads/".$post->image);
-
-       // Image::where("id", $image->id)->delete();
-
 
     }
 

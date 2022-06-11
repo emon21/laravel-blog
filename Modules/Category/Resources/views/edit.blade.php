@@ -33,7 +33,8 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('UpdateCategory', $category->id) }}" method="post">
+                        <form action="{{ route('UpdateCategory', $category->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             @method('Put')
                             {{-- <input type="text" value="{{ $category->id }}"> --}}
@@ -46,6 +47,16 @@
                                     @error('category_name')
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Picture</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                name="post_picture">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-success">Update Category</button>
                             </div>

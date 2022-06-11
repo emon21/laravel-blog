@@ -34,7 +34,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form action="{{ route('CreateCategory') }}" method="post">
+                        <form action="{{ route('CreateCategory') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
@@ -46,6 +46,18 @@
                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputFile">Picture</label>
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                name="post_picture">
+                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <button type="submit" class="btn btn-success">Create Category</button>
                             </div>
                             <!-- /.card-body -->
@@ -69,6 +81,7 @@
                                 <tr>
                                     <th>Sl No</th>
                                     <th>Category Name</th>
+                                    <th>Category Picture</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -78,6 +91,7 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $value->category_name }}</td>
+                                        <td><img src="{{ $value->image_url }}" alt="" width="180" height="120"></td>
                                         <td>
                                             @if ($value->status == 1)
                                                 <span class="text-success"
@@ -125,4 +139,38 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('script')
+    <script src="{{ asset('backend/dropify/dist/js/dropify.js') }}"></script>
+    <script>
+        //dropify image upload
+        $('.dropify').dropify({
+            messages: {
+                'default': 'Add a File Upload',
+                'replace': 'Drag and drop or click to replace',
+                'error': 'Ooops, something wrong happended.'
+
+            }
+        });
+        //summernote editor
+        $(function() {
+            // Summernote
+            //$('#summernote').summernote()
+            $('#summernote').summernote({
+                height: 150, //set editable area's height
+                title: 'Enter Title',
+                codemirror: { // codemirror options
+                    theme: 'monokai'
+                }
+            });
+
+
+        });
+
+        $(".custom-file-input").on("change", function() {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+        });
+    </script>
 @endsection

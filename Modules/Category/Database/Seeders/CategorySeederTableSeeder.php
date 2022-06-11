@@ -129,7 +129,7 @@ class CategorySeederTableSeeder extends Seeder
         Category::create([
             'category_name' => $value,
             'slug' => Str::slug($value),
-            'image' => 'backend/blog/default.jpg',
+            'image' => 'backend/category/default.jpg',
             'status' => 0
         ]);
     }
