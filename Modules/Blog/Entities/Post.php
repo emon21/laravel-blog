@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
 use App\Models\User;
+use Illuminate\Support\Str;
 class Post extends Model
 {
     use HasFactory;
@@ -26,7 +27,8 @@ class Post extends Model
         return \Modules\Blog\Database\factories\PostFactory::new();
     }
 
-    protected $appends = ['logo_image_url', 'value','logo_image2_url', 'favicon_image_url'];
+   //  protected $appends = ['image_url', 'image','logo_image2_url', 'favicon_image_url'];
+    protected $appends = ['image_url','title_slug'];
     
    //  public function getImageUrlAttribute($image)
    //  {
@@ -38,14 +40,24 @@ class Post extends Model
    //  }
 
 
+
   //Accessor 
-   public function getImageAttribute($value) 
+   public function getImageUrlAttribute() 
    {
-       if (is_null($value)) {
-           return asset('backend/blog/default.png');
+       if (is_null($this->image)) {
+           return asset('backend/blog/default.jpg');
        }
 
-       return asset($value);
+       return asset($this->image);
+   }
+
+   public function getTitleSlugAttribute() 
+   {
+     
+
+       return Str::slug($this->title);
+
+   
    }
 
     public function category()

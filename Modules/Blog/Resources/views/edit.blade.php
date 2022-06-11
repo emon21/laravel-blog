@@ -29,7 +29,8 @@
             </div>
         @endif
         <div class="row">
-            <div class="col-md-6 justify-content-center mx-auto d-block">
+            <div class="col-md-8 justify-content-center mx-auto d-block">
+
                 <!-- general form elements -->
                 <div class="card card-primary">
                     <div class="card-header">
@@ -147,14 +148,8 @@
 
             </div>
             <div class="col-sm-4">
-                <div style="
-                                                              height: 209px;
-                                                              width: 308px;
-                                                              margin-left: -138px;
-                                                              margin-top: 4px;
-                                                              box-shadow: 0px 0px 5px 2px #0aa4e1;
-                                                              border-radius: 5px;
-                                                          ">
+                <div
+                    style="height: 209px;width: 308px;margin-left: -138px;margin-top: 4px;box-shadow: 0px 0px 5px 2px #0aa4e1;border-radius: 5px;">
                     <img src="{{ asset($post->image) }}" width="292" height="192" class="mt-2 mb-2 ml-2 border-2">
                 </div>
             </div>

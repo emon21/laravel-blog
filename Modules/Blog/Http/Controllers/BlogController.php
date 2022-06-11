@@ -128,8 +128,11 @@ class BlogController extends Controller
       
       $post->tags()->sync($request->tags);
 
-
       if($request->hasFile('post_picture')) {
+
+         if ($post->image) {
+            unlink($post->image);
+         }
          
          $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
          $request->post_picture->move(public_path('backend/blog/'), $filename);
@@ -186,15 +189,16 @@ class BlogController extends Controller
    //          @unlink($path);
    //      }
 
-    
-      if ($post) {
+    return $post;
 
-         if (file_exists(public_path($post->image))) {
-            unlink(public_path($post->image));
+        // return $post;
+         if ($post->image) {
+           unlink($post->image);
           }
+         
         
          $post->delete();
-      }
+  
       
    // $post->delete();
      return back()->with("success", "Image deleted successfully.");

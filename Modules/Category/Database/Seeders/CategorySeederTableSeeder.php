@@ -122,15 +122,14 @@ class CategorySeederTableSeeder extends Seeder
         //     ]);
         // }
         $category = [
-            'Php','Laravel','Html','Css','Vue jS','Java','Python','Apps','Nuxt JS' ,'
-            Asp.Net','C#','React JS'
+            'Php','Laravel','Html','Css','Vue jS','Java','Python','Apps','Nuxt JS' ,'  Asp.Net','C#','React JS'
         ];
     foreach ($category as $value) {
 
         Category::create([
             'category_name' => $value,
             'slug' => Str::slug($value),
-            'image' => 'default.jpg',
+            'image' => 'backend/blog/default.jpg',
             'status' => 0
         ]);
     }

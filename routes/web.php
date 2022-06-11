@@ -53,8 +53,11 @@ Route::prefix('user')->group(function () {
 
 // =================================== Website Controller Route Start ===================================
 
-//Route::view('/',[WebsiteController::class,'index']);
-Route::view('/','frontend.index');
+Route::get('/',[WebsiteController::class,'index']);
+Route::get('/SingleCategory',[WebsiteController::class,'SingleCategory']);
+Route::get('/singlePost/{post}',[WebsiteController::class,'singlePost']);
+Route::get('/blog',[WebsiteController::class,'BlogList']);
+//Route::view('/','frontend.index');
 
 // =================================== Website Controller Route End   ===================================
 

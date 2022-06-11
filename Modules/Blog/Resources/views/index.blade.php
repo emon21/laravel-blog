@@ -28,7 +28,7 @@
                 {{ session('status') }}
             </div>
         @endif
-        <div class="col-md-6 justify-content-center mx-auto d-block">
+        <div class="col-md-8 justify-content-center mx-auto d-block">
             <!-- general form elements -->
             <div class="card card-primary">
                 <div class="card-header">
@@ -79,7 +79,7 @@
                             </div>
 
                             <!-- Status Start -->
-                            <div class="form-group col-sm-4" style="margin-top:2px">
+                            <div class="form-group col-sm-5" style="margin-top:2px">
                                 <label for="exampleInputFile">Status</label>
                                 <div class="mt-2">
                                     <div class="custom-control custom-radio custom-control-inline">
@@ -117,13 +117,6 @@
                             </div>
 
                         </div>
-
-
-
-
-
-
-
 
                         <!-- Status Start -->
                         {{-- <div class="form-group col-sm-4">
@@ -187,7 +180,7 @@
                                 <td>{{ $post->slug }}</td>
                                 <td class="text-center">
 
-                                    <img src="{{ $post->image }}" width="150" height="150" alt="">
+                                    <img src="{{ $post->image_url }}" width="150" height="150" alt="">
                                 </td>
                                 <td>{{ $post->category->category_name }}</td>
                                 <td>

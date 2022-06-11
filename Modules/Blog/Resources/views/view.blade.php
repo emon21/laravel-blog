@@ -32,7 +32,7 @@
                             <td style="width: 250px;">Image</td>
                             <td>
                                 <div style="max-width:300px;max-height:300px;overflow:hidden">
-                                    <img src="{{ $post->image }}" alt="" class="img-fluid">
+                                    <img src="{{ $post->image_url }}" alt="" class="img-fluid">
                                 </div>
                             </td>
                         </tr>
