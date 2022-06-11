@@ -1,16 +1,26 @@
-<header id="header" class="header fixed-top" data-scrollto-offset="0">
-    <div class="container d-flex align-items-center justify-content-between">
+<header class="site-navbar" role="banner">
+   <div class="container-fluid">
+       <div class="row align-items-center">
 
-        <a href="{{ url('/') }}" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
-            {{-- <!-- Uncomment the line below if you also wish to use an image logo --> --}}
-            <!-- <img src= "{{ asset('frontend') }}/assets/img/logo.png" alt=""> -->
-            <h1>HeroBiz<span>.</span></h1>
-        </a>.
+           <div class="col-12 search-form-wrap js-search-form">
+               <form method="get" action="#">
+                   <input type="text" id="s" class="form-control" placeholder="Search...">
+                   <button class="search-btn" type="submit"><span class="icon-search"></span></button>
+               </form>
+           </div>
 
-                                                        @include('frontend.layouts.pages.navbar')
-        <!-- .navbar -->
+           <div class="col-4 site-logo">
+               <a href="index.html" class="text-black h2 mb-0">Mini Blog</a>
+           </div>
 
-        <a class="btn-getstarted scrollto" href="index.html#about">Get Started</a>
+           <div class="col-8 text-right">
+               <nav class="site-navigation" role="navigation">
+                   @include('frontend.layouts.pages.navbar')
+               </nav>
+               <a href="#" class="site-menu-toggle js-menu-toggle text-black d-inline-block d-lg-none"><span
+                       class="icon-menu h3"></span></a>
+           </div>
+       </div>
 
-    </div>
+   </div>
 </header>

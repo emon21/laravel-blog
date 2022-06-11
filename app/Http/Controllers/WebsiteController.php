@@ -12,9 +12,11 @@ class WebsiteController extends Controller
 
     public function index()
     {
-       $categoryList = Category::where('status',1)->get();
-       $postList = Post::all();
-       return view('frontend.index',compact('categoryList','postList'));
+      // $categoryList = Category::where('status',1)->get();
+       $post = Post::orderBy('created_at','DESC')->take(5)->get();
+       $recentpost = Post::with('category','user')->orderBy('created_at','DESC')->Paginate(9);
+       //$postList = Post::all();
+       return view('frontend.index',compact('post','recentpost'));
     }
 
     //Single Post
@@ -23,12 +25,20 @@ class WebsiteController extends Controller
        return view('frontend.single_category');
     }
     //Single Post
-    public function singlePost(Post $post)
+    public function singlePost(Post $post, $slug)
     {
+
+      $post = Post::with('category','user')->Where('slug',$slug)->first();
+      if($post){
+         return view('frontend.single_post',compact('post'));
+      }
+      else{
+         return view('frontend.index');
+      }
        
-      $tag = Tag::all();
-      $PostList = Post::take(6)->get();
-       return view('frontend.single_post',compact('post','tag','PostList'));
+     // $tag = Tag::all();
+    //  $PostList = Post::take(6)->get();
+       return view('frontend.single_post',compact('post'));
     }
 
     //Blog LIst
@@ -42,4 +52,6 @@ class WebsiteController extends Controller
       //return $postList->count('category');
        return view('frontend.blog',compact('categoryList','postList','tag'));
     }
+
+
 }

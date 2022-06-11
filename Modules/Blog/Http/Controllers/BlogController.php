@@ -83,7 +83,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -117,9 +117,7 @@ class BlogController extends Controller
      */
     public function update(Request $request,Post $post)
     {
-       
-      
-     
+
       $post->title = $request->title;
       $post->slug = Str::slug($request->title);
       $post->description = $request->post_desc;
@@ -130,9 +128,10 @@ class BlogController extends Controller
 
       if($request->hasFile('post_picture')) {
 
-         if ($post->image) {
+       
+         if(file_exists($post->image)){
             unlink($post->image);
-         }
+          }
          
          $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
          $request->post_picture->move(public_path('backend/blog/'), $filename);

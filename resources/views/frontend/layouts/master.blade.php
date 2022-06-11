@@ -2,43 +2,39 @@
 <html lang="en">
 
 <head>
+    <title>@yield('title', 'Mini Blog')</title>
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'HeroBiz - Blog')</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     @include('frontend.layouts.pages.styles')
-    @yield('style')
+    @yield('styles')
 </head>
 
 <body>
 
-    <!-- ======= Header ======= -->
-    @include('frontend.layouts.pages.header')
-    <!-- End Header -->
+    <div class="site-wrap">
 
+        <div class="site-mobile-menu">
+            <div class="site-mobile-menu-header">
+                <div class="site-mobile-menu-close mt-3">
+                    <span class="icon-close2 js-menu-toggle"></span>
+                </div>
+            </div>
+            <div class="site-mobile-menu-body"></div>
+        </div>
 
-    @yield('hero')
-    @yield('featured-services')
-    <main id="main">
+        <!-- Header start -->
+        @include('frontend.layouts.pages.header')
+        <!-- Header End -->
 
 
         @yield('content')
 
-    </main>
-    <!-- End #main -->
+        @include('frontend.layouts.pages.footer')
 
-    <!-- ======= Footer ======= -->
-    @include('frontend.layouts.pages.footer')
-    <!-- End Footer -->
+    </div>
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
-
-    <div id="preloader"></div>
     @include('frontend.layouts.pages.scripts')
-    @yield('scripts')
+    @yield('script')
 
 </body>
-
 </html>

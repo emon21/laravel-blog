@@ -1,83 +1,55 @@
-<footer id="footer" class="footer">
+<div class="site-footer">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-md-4">
+                <h3 class="footer-heading mb-4">About Us</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat reprehenderit magnam
+                    deleniti quasi saepe, consequatur atque sequi delectus dolore veritatis obcaecati quae,
+                    repellat eveniet omnis, voluptatem in. Soluta, eligendi, architecto.</p>
+            </div>
+            <div class="col-md-3 ml-auto">
+                <!-- <h3 class="footer-heading mb-4">Navigation</h3> -->
+                <ul class="list-unstyled float-left mr-5">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Advertise</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Subscribes</a></li>
+                </ul>
+                <ul class="list-unstyled float-left">
+                    <li><a href="#">Travel</a></li>
+                    <li><a href="#">Lifestyle</a></li>
+                    <li><a href="#">Sports</a></li>
+                    <li><a href="#">Nature</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
 
-    <div class="footer-content">
-        <div class="container">
-            <div class="row">
 
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-info">
-                        <h3>HeroBiz</h3>
-                        <p>
-                            A108 Adam Street <br>
-                            NY 535022, USA<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
-                        </p>
-                    </div>
+                <div>
+                    <h3 class="footer-heading mb-4">Connect With Us</h3>
+                    <p>
+                        <a href="#"><span class="icon-facebook pt-2 pr-2 pb-2 pl-0"></span></a>
+                        <a href="#"><span class="icon-twitter p-2"></span></a>
+                        <a href="#"><span class="icon-instagram p-2"></span></a>
+                        <a href="#"><span class="icon-rss p-2"></span></a>
+                        <a href="#"><span class="icon-envelope p-2"></span></a>
+                    </p>
                 </div>
-
-                <div class="col-lg-2 col-md-6 footer-links">
-                    <h4>Useful Links</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">About us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Services</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-4 col-md-6 footer-newsletter">
-                    <h4>Our Newsletter</h4>
-                    <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                    <form action="" method="post">
-                        <input type="email" name="email"><input type="submit" value="Subscribe">
-                    </form>
-
-                </div>
-
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;
+                    <script>
+                        document.write(new Date().getFullYear());
+                    </script> All rights reserved | This template is made with <i
+                        class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com"
+                        target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
             </div>
         </div>
     </div>
-
-    <div class="footer-legal text-center">
-        <div
-            class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-
-            <div class="d-flex flex-column align-items-center align-items-lg-start">
-                <div class="copyright">
-                    &copy; Copyright <strong><span>Hasib</span></strong>. All Rights Reserved @php echo date('Y');@endphp
-                </div>
-
-                <div class="credits">
-                    <!-- All the links in the footer should remain intact. -->
-                    <!-- You can delete the links only if you purchased the pro version. -->
-                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-                    Designed by <a href="https://bootstrapmade.com/">Zakirsoft</a>
-                </div>
-            </div>
-
-            <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-                <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-                <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-
-        </div>
-    </div>
-
-</footer>
+</div>

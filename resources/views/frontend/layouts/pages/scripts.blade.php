@@ -1,10 +1,26 @@
-<!-- Vendor JS Files -->
-<script src="{{ asset('frontend') }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="{{ asset('frontend') }}/assets/vendor/aos/aos.js"></script>
-<script src="{{ asset('frontend') }}/assets/vendor/glightbox/js/glightbox.min.js"></script>
-<script src="{{ asset('frontend') }}/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="{{ asset('frontend') }}/assets/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="{{ asset('frontend') }}/assets/vendor/php-email-form/validate.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery-ui.js"></script>
+<script src="{{ asset('frontend') }}/js/popper.min.js"></script>
+<script src="{{ asset('frontend') }}/js/bootstrap.min.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery-3.3.1.min.js"></script>
+<script src="{{ asset('frontend') }}/js/owl.carousel.min.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery.stellar.min.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery.countdown.min.js"></script>
+<script src="{{ asset('frontend') }}/js/jquery.magnific-popup.min.js"></script>
+<script src="{{ asset('frontend') }}/js/bootstrap-datepicker.min.js"></script>
+<script src="{{ asset('frontend') }}/js/aos.js"></script>
 
-<!-- Template Main JS File -->
-<script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+<script src="{{ asset('frontend') }}/js/main.js"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="../../gtag/js.js?id=UA-23581568-13"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+        dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-23581568-13');
+</script>

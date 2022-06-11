@@ -7793,7 +7793,7 @@
 	 * @param {string} url URL to set.
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'ajax.url()', function ( url ) {
+	_api_register( 'ajax.url('{{ asset('frontend)}}/')', function ( url ) {
 		var ctx = this.context;
 	
 		if ( url === undefined ) {
@@ -7827,14 +7827,14 @@
 	
 	/**
 	 * Load data from the newly set Ajax URL. Note that this method is only
-	 * available when `ajax.url()` is used to set a URL. Additionally, this method
+	 * available when `ajax.url('{{ asset('frontend)}}/')` is used to set a URL. Additionally, this method
 	 * has the same effect as calling `ajax.reload()` but is provided for
 	 * convenience when setting a new URL. Like `ajax.reload()` it will
 	 * automatically redraw the table once the remote data has been loaded.
 	 *
 	 * @returns {DataTables.Api} this
 	 */
-	_api_register( 'ajax.url().load()', function ( callback, resetPaging ) {
+	_api_register( 'ajax.url('{{ asset('frontend)}}/').load()', function ( callback, resetPaging ) {
 		// Same as a reload, but makes sense to present it for easy access after a
 		// url change
 		return this.iterator( 'table', function ( ctx ) {

@@ -149,7 +149,7 @@
             </div>
             <div class="col-sm-4">
                 <div
-                    style="height: 209px;width: 308px;margin-left: -138px;margin-top: 4px;box-shadow: 0px 0px 5px 2px #0aa4e1;border-radius: 5px;">
+                    style="height: 209px;width: 308px;margin-left: 0px;margin-top: 1px;box-shadow: 0px 0px 5px 2px #0aa4e1;border-radius: 5px;">
                     <img src="{{ asset($post->image) }}" width="292" height="192" class="mt-2 mb-2 ml-2 border-2">
                 </div>
             </div>

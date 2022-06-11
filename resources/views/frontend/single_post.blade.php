@@ -1,376 +1,411 @@
 @extends('frontend.layouts.master')
+@section('title', 'View Post')
+
 @section('content')
-    <main id="main">
-
-        <!-- ======= Breadcrumbs ======= -->
-        <div class="breadcrumbs">
-            <div class="container">
-
-                <div class="d-flex justify-content-between align-items-center">
-                    <h2>Blog Details</h2>
-                    <ol>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li>Blog Details</li>
-                    </ol>
+    <div class="site-cover site-cover-sm same-height overlay single-page"
+        style="background-image: url('{{ asset('frontend') }}/images/img_2.jpg');">
+        <div class="container">
+            <div class="row same-height justify-content-center">
+                <div class="col-md-12 col-lg-10">
+                    <div class="post-entry text-center">
+                        <span class="post-category text-white bg-success mb-3">Nature</span>
+                        <h1 class="mb-4"><a href="#">The AI magically removes moving objects from videos.</a></h1>
+                        <div class="post-meta align-items-center text-center">
+                            <figure class="author-figure mb-0 mr-3 d-inline-block"><img
+                                    src="{{ asset('frontend') }}/images/person_1.jpg" alt="Image" class="img-fluid">
+                            </figure>
+                            <span class="d-inline-block mt-1">By Carrol Atkinson</span>
+                            <span>&nbsp;-&nbsp; February 10, 2019</span>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="section-header">
-                    <h2>{{ $post->category->category_name }}</h2>
-                    <p>{{ $post->title }}</p>
-                    <p>{{ $post->created_at->format('d-M-Y') }}</p>
-                </div>
-
             </div>
-        </div><!-- End Breadcrumbs -->
+        </div>
+    </div>
 
-        <!-- ======= Blog Details Section ======= -->
-        <section id="blog" class="blog">
-            <div class="container" data-aos="fade-up">
+    <section class="site-section py-lg">
+        <div class="container">
 
-                <div class="row g-5">
+            <div class="row blog-entries element-animate">
 
-                    <div class="col-lg-8">
+                <div class="col-md-12 col-lg-8 main-content">
 
-                        <article class="blog-details">
-
-                            <div class="post-img">
-                                <img src="{{ asset($post->image) }}" alt="" class="img-fluid w-100">
+                    <div class="post-content-body">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium nam quas inventore, ut iure
+                            iste modi eos adipisci ad ea itaque labore earum autem nobis et numquam, minima eius. Nam eius,
+                            non unde ut aut sunt eveniet rerum repellendus porro.</p>
+                        <p>Sint ab voluptates itaque, ipsum porro qui obcaecati cumque quas sit vel. Voluptatum provident id
+                            quis quo. Eveniet maiores perferendis officia veniam est laborum, expedita fuga doloribus natus
+                            repellendus dolorem ab similique sint eius cupiditate necessitatibus, magni nesciunt ex eos.</p>
+                        <p>Quis eius aspernatur, eaque culpa cumque reiciendis, nobis at earum assumenda similique ut?
+                            Aperiam vel aut, ex exercitationem eos consequuntur eaque culpa totam, deserunt, aspernatur quae
+                            eveniet hic provident ullam tempora error repudiandae sapiente illum rerum itaque voluptatem.
+                            Commodi, sequi.</p>
+                        <div class="row mb-5 mt-5">
+                            <div class="col-md-12 mb-4">
+                                <img src="{{ asset('frontend') }}/images/img_1.jpg" alt="Image placeholder"
+                                    class="img-fluid rounded">
                             </div>
-
-                            <h2 class="title">{{ $post->title }}</h2>
-
-                            <div class="meta-top">
-                                <ul>
-                                    <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                            href="blog-details.html">{{ $post->user->name }}</a></li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                            href="blog-details.html"><time datetime="2020-01-01">Jan 1, 2022</time></a>
-                                    </li>
-                                    <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                            href="blog-details.html">12 Comments</a></li>
-                                </ul>
-                            </div><!-- End meta top -->
-
-                            <div class="content">
-                                <p>
-                                    {{ $post->description }}
-                                </p>
-
-                                <p>
-                                    Sit repellat hic cupiditate hic ut nemo. Quis nihil sunt non reiciendis. Sequi in
-                                    accusamus harum vel aspernatur. Excepturi numquam nihil cumque odio. Et voluptate
-                                    cupiditate.
-                                </p>
-
-                                <blockquote>
-                                    <p>
-                                        Et vero doloremque tempore voluptatem ratione vel aut. Deleniti sunt animi aut.
-                                        Aut
-                                        eos aliquam doloribus minus autem quos.
-                                    </p>
-                                </blockquote>
-
-
-                                <img src="{{ asset('frontend') }}/assets/img/blog/blog-inside-post.jpg"
-                                    class="img-fluid" alt="">
-
-                                <h3>Ut repellat blanditiis est dolore sunt dolorum quae.</h3>
-                                <p>
-                                    Rerum ea est assumenda pariatur quasi et quam. Facilis nam porro amet nostrum. In
-                                    assumenda quia quae a id praesentium. Quos deleniti libero sed occaecati aut porro
-                                    autem. Consectetur sed excepturi sint non placeat quia repellat incidunt labore.
-                                    Autem
-                                    facilis hic dolorum dolores vel.
-                                    Consectetur quasi id et optio praesentium aut asperiores eaque aut. Explicabo omnis
-                                    quibusdam esse. Ex libero illum iusto totam et ut aut blanditiis. Veritatis numquam
-                                    ut
-                                    illum ut a quam vitae.
-                                </p>
-                                <p>
-                                    Alias quia non aliquid. Eos et ea velit. Voluptatem maxime enim omnis ipsa voluptas
-                                    incidunt. Nulla sit eaque mollitia nisi asperiores est veniam.
-                                </p>
-
-                            </div><!-- End post content -->
-
-                            <div class="meta-bottom">
-                                <i class="bi bi-folder"></i>
-                                <ul class="cats">
-                                    <li><a href="#">{{ $post->category->category_name }}</a></li>
-                                </ul>
-                                @if ($post->tags()->count() > 0)
-                                    <i class="bi bi-tags"></i>
-                                    <ul class="tags">
-                                        @foreach ($post->tags as $tagl)
-                                            {{-- <li><a href="#">Creative</a></li>
-                                    <li><a href="#">Tips</a></li> --}}
-                                            <li><a href="#">{{ $tagl->tag_name }}</a></li>
-                                        @endforeach
-
-                                    </ul>
-                                @endif
-
-                            </div><!-- End meta bottom -->
-
-                        </article><!-- End blog post -->
-
-                        <div class="post-author d-flex align-items-center">
-                            <img src="{{ asset('frontend') }}/assets/img/blog/blog-author.jpg"
-                                class="rounded-circle flex-shrink-0" alt="">
-                            <div>
-                                <h4>Jane Smith</h4>
-                                <div class="social-links">
-                                    <a href="https://twitters.com/#"><i class="bi bi-twitter"></i></a>
-                                    <a href="https://facebook.com/#"><i class="bi bi-facebook"></i></a>
-                                    <a href="https://instagram.com/#"><i class="biu bi-instagram"></i></a>
-                                </div>
-                                <p>
-                                    Itaque quidem optio quia voluptatibus dolorem dolor. Modi eum sed possimus
-                                    accusantium.
-                                    Quas repellat voluptatem officia numquam sint aspernatur voluptas. Esse et
-                                    accusantium
-                                    ut unde voluptas.
-                                </p>
+                            <div class="col-md-6 mb-4">
+                                <img src="{{ asset('frontend') }}/images/img_2.jpg" alt="Image placeholder"
+                                    class="img-fluid rounded">
                             </div>
-                        </div><!-- End post author -->
+                            <div class="col-md-6 mb-4">
+                                <img src="{{ asset('frontend') }}/images/img_3.jpg" alt="Image placeholder"
+                                    class="img-fluid rounded">
+                            </div>
+                        </div>
+                        <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel. Placeat tenetur
+                            veritatis tempore quos impedit dicta, error autem, quae sint inventore ipsa quidem. Quo
+                            voluptate quisquam reiciendis, minus, animi minima eum officia doloremque repellat eos, odio
+                            doloribus cum.</p>
+                        <p>Temporibus quo dolore veritatis doloribus delectus dolores perspiciatis recusandae ducimus, nisi
+                            quod, incidunt ut quaerat, magnam cupiditate. Aut, laboriosam magnam, nobis dolore fugiat
+                            impedit necessitatibus nisi cupiditate, quas repellat itaque molestias sit libero voluptas
+                            eveniet omnis illo ullam dolorem minima.</p>
+                        <p>Porro amet accusantium libero fugit totam, deserunt ipsa, dolorem, vero expedita illo similique
+                            saepe nisi deleniti. Cumque, laboriosam, porro! Facilis voluptatem sequi nulla quidem, provident
+                            eius quos pariatur maxime sapiente illo nostrum quibusdam aliquid fugiat! Earum quod fuga id
+                            officia.</p>
+                        <p>Illo magnam at dolore ad enim fugiat ut maxime facilis autem, nulla cumque quis commodi eos nisi
+                            unde soluta, ipsa eius aspernatur sint atque! Nihil, eveniet illo ea, mollitia fuga accusamus
+                            dolor dolorem perspiciatis rerum hic, consectetur error rem aspernatur!</p>
 
-                        <div class="comments">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus magni explicabo id
+                            molestiae, minima quas assumenda consectetur, nobis neque rem, incidunt quam tempore perferendis
+                            provident obcaecati sapiente, animi vel expedita omnis quae ipsa! Obcaecati eligendi sed odio
+                            labore vero reiciendis facere accusamus molestias eaque impedit, consequuntur quae fuga vitae
+                            fugit?</p>
+                    </div>
 
-                            <h4 class="comments-count">8 Comments</h4>
 
-                            <div id="comment-1" class="comment">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img
-                                            src="{{ asset('frontend') }}/assets/img/blog/comments-1.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
-                                        <p>
-                                            Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad
-                                            aut
-                                            sapiente quis molestiae est qui cum soluta.
-                                            Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis
-                                            et.
-                                        </p>
-                                    </div>
+                    <div class="pt-5">
+                        <p>Categories: <a href="#">Food</a>, <a href="#">Travel</a> Tags: <a href="#">#manila</a>, <a
+                                href="#">#asia</a></p>
+                    </div>
+
+
+                    <div class="pt-5">
+                        <h3 class="mb-5">6 Comments</h3>
+                        <ul class="comment-list">
+                            <li class="comment">
+                                <div class="vcard">
+                                    <img src="{{ asset('frontend') }}/images/person_1.jpg" alt="Image placeholder">
                                 </div>
-                            </div><!-- End comment #1 -->
+                                <div class="comment-body">
+                                    <h3>Jean Doe</h3>
+                                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
+                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
+                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                    <p><a href="#" class="reply rounded">Reply</a></p>
+                                </div>
+                            </li>
 
-                            <div id="comment-2" class="comment">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img
-                                            src="{{ asset('frontend') }}/assets/img/blog/comments-2.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
-                                        <p>
-                                            Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet
-                                            saepe.
-                                            Officiis illo ut beatae.
-                                        </p>
-                                    </div>
+                            <li class="comment">
+                                <div class="vcard">
+                                    <img src="{{ asset('frontend') }}/images/person_1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>Jean Doe</h3>
+                                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
+                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
+                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                    <p><a href="#" class="reply rounded">Reply</a></p>
                                 </div>
 
-                                <div id="comment-reply-1" class="comment comment-reply">
-                                    <div class="d-flex">
-                                        <div class="comment-img"><img
-                                                src="{{ asset('frontend') }}/assets/img/blog/comments-3.jpg" alt="">
+                                <ul class="children">
+                                    <li class="comment">
+                                        <div class="vcard">
+                                            <img src="{{ asset('frontend') }}/images/person_1.jpg"
+                                                alt="Image placeholder">
                                         </div>
-                                        <div>
-                                            <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i
-                                                        class="bi bi-reply-fill"></i> Reply</a></h5>
-                                            <time datetime="2020-01-01">01 Jan,2022</time>
-                                            <p>
-                                                Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam
-                                                aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed
-                                                necessitatibus aut est. Eum officiis sed repellat maxime vero nisi
-                                                natus.
-                                                Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-
-                                                Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in
-                                                porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi.
-                                                Pariatur distinctio labore omnis incidunt et illum. Expedita et
-                                                dignissimos
-                                                distinctio laborum minima fugiat.
-
-                                                Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis
-                                                error dolorum non autem quisquam vero rerum neque.
+                                        <div class="comment-body">
+                                            <h3>Jean Doe</h3>
+                                            <div class="meta">January 9, 2018 at 2:21pm</div>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem
+                                                laborum necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe
+                                                enim sapiente iste iure! Quam voluptas earum impedit necessitatibus, nihil?
                                             </p>
-                                        </div>
-                                    </div>
-
-                                    <div id="comment-reply-2" class="comment comment-reply">
-                                        <div class="d-flex">
-                                            <div class="comment-img"><img
-                                                    src="{{ asset('frontend') }}/assets/img/blog/comments-4.jpg" alt="">
-                                            </div>
-                                            <div>
-                                                <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i
-                                                            class="bi bi-reply-fill"></i> Reply</a></h5>
-                                                <time datetime="2020-01-01">01 Jan,2022</time>
-                                                <p>
-                                                    Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia
-                                                    dolores cupiditate et. Ut unde qui eligendi sapiente omnis ullam.
-                                                    Placeat porro est commodi est officiis voluptas repellat quisquam
-                                                    possimus. Perferendis id consectetur necessitatibus.
-                                                </p>
-                                            </div>
+                                            <p><a href="#" class="reply rounded">Reply</a></p>
                                         </div>
 
-                                    </div><!-- End comment reply #2-->
 
-                                </div><!-- End comment reply #1-->
+                                        <ul class="children">
+                                            <li class="comment">
+                                                <div class="vcard">
+                                                    <img src="{{ asset('frontend') }}/images/person_1.jpg"
+                                                        alt="Image placeholder">
+                                                </div>
+                                                <div class="comment-body">
+                                                    <h3>Jean Doe</h3>
+                                                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur
+                                                        quidem laborum necessitatibus, ipsam impedit vitae autem, eum
+                                                        officia, fugiat saepe enim sapiente iste iure! Quam voluptas earum
+                                                        impedit necessitatibus, nihil?</p>
+                                                    <p><a href="#" class="reply rounded">Reply</a></p>
+                                                </div>
 
-                            </div><!-- End comment #2-->
+                                                <ul class="children">
+                                                    <li class="comment">
+                                                        <div class="vcard">
+                                                            <img src="{{ asset('frontend') }}/images/person_1.jpg"
+                                                                alt="Image placeholder">
+                                                        </div>
+                                                        <div class="comment-body">
+                                                            <h3>Jean Doe</h3>
+                                                            <div class="meta">January 9, 2018 at 2:21pm</div>
+                                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                                Pariatur quidem laborum necessitatibus, ipsam impedit vitae
+                                                                autem, eum officia, fugiat saepe enim sapiente iste iure!
+                                                                Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                                            <p><a href="#" class="reply rounded">Reply</a></p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
 
-                            <div id="comment-3" class="comment">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img
-                                            src="{{ asset('frontend') }}/assets/img/blog/comments-5.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Nolan Davidson</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
-                                        <p>
-                                            Distinctio nesciunt rerum reprehenderit sed. Iste omnis eius repellendus
-                                            quia
-                                            nihil ut accusantium tempore. Nesciunt expedita id dolor exercitationem
-                                            aspernatur aut quam ut. Voluptatem est accusamus iste at.
-                                            Non aut et et esse qui sit modi neque. Exercitationem et eos aspernatur. Ea
-                                            est
-                                            consequuntur officia beatae ea aut eos soluta. Non qui dolorum voluptatibus
-                                            et
-                                            optio veniam. Quam officia sit nostrum dolorem.
-                                        </p>
-                                    </div>
+                            <li class="comment">
+                                <div class="vcard">
+                                    <img src="{{ asset('frontend') }}/images/person_1.jpg" alt="Image placeholder">
+                                </div>
+                                <div class="comment-body">
+                                    <h3>Jean Doe</h3>
+                                    <div class="meta">January 9, 2018 at 2:21pm</div>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur quidem laborum
+                                        necessitatibus, ipsam impedit vitae autem, eum officia, fugiat saepe enim sapiente
+                                        iste iure! Quam voluptas earum impedit necessitatibus, nihil?</p>
+                                    <p><a href="#" class="reply rounded">Reply</a></p>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- END comment-list -->
+
+                        <div class="comment-form-wrap pt-5">
+                            <h3 class="mb-5">Leave a comment</h3>
+                            <form action="#" class="p-5 bg-light">
+                                <div class="form-group">
+                                    <label for="name">Name *</label>
+                                    <input type="text" class="form-control" id="name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email *</label>
+                                    <input type="email" class="form-control" id="email">
+                                </div>
+                                <div class="form-group">
+                                    <label for="website">Website</label>
+                                    <input type="url" class="form-control" id="website">
                                 </div>
 
-                            </div><!-- End comment #3 -->
-
-                            <div id="comment-4" class="comment">
-                                <div class="d-flex">
-                                    <div class="comment-img"><img
-                                            src="{{ asset('frontend') }}/assets/img/blog/comments-6.jpg" alt=""></div>
-                                    <div>
-                                        <h5><a href="">Kay Duggan</a> <a href="#" class="reply"><i
-                                                    class="bi bi-reply-fill"></i> Reply</a></h5>
-                                        <time datetime="2020-01-01">01 Jan,2022</time>
-                                        <p>
-                                            Dolorem atque aut. Omnis doloremque blanditiis quia eum porro quis ut velit
-                                            tempore. Cumque sed quia ut maxime. Est ad aut cum. Ut exercitationem non in
-                                            fugiat.
-                                        </p>
-                                    </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea name="" id="message" cols="30" rows="10" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" value="Post Comment" class="btn btn-primary">
                                 </div>
 
-                            </div><!-- End comment #4 -->
-
-                            <div class="reply-form">
-
-                                <h4>Leave a Reply</h4>
-                                <p>Your email address will not be published. Required fields are marked * </p>
-                                <form action="">
-                                    <div class="row">
-                                        <div class="col-md-6 form-group">
-                                            <input name="name" type="text" class="form-control" placeholder="Your Name*">
-                                        </div>
-                                        <div class="col-md-6 form-group">
-                                            <input name="email" type="text" class="form-control"
-                                                placeholder="Your Email*">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <input name="website" type="text" class="form-control"
-                                                placeholder="Your Website">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col form-group">
-                                            <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Post Comment</button>
-
-                                </form>
-
-                            </div>
-
-                        </div><!-- End blog comments -->
-
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="col-lg-4">
-
-                        <div class="sidebar">
-
-                            <div class="sidebar-item search-form">
-                                <h3 class="sidebar-title">Search</h3>
-                                <form action="" class="mt-3">
-                                    <input type="text">
-                                    <button type="submit"><i class="bi bi-search"></i></button>
-                                </form>
-                            </div><!-- End sidebar search formn-->
-
-                            <div class="sidebar-item categories">
-                                <h3 class="sidebar-title">Categories</h3>
-                                <ul class="mt-3">
-                                    <li><a href="#">General <span>(25)</span></a></li>
-                                    <li><a href="#">Lifestyle <span>(12)</span></a></li>
-                                    <li><a href="#">Travel <span>(5)</span></a></li>
-                                    <li><a href="#">Design <span>(22)</span></a></li>
-                                    <li><a href="#">Creative <span>(8)</span></a></li>
-                                    <li><a href="#">Educaion <span>(14)</span></a></li>
-                                </ul>
-                            </div><!-- End sidebar categories-->
-
-                            <div class="sidebar-item recent-posts">
-                                <h3 class="sidebar-title">Recent Posts</h3>
-
-                                <div class="mt-3">
-                                    @foreach ($PostList as $list)
-                                        <div class="post-item mt-3">
-                                            <img src="{{ asset($list->image) }}" alt="" class="flex-shrink-0">
-                                            <div>
-                                                <h4><a href="blog-post.html">{{ $list->title }}</a></h4>
-                                                <time datetime="2020-01-01">Jan 1, 2020</time>
-                                            </div>
-                                        </div><!-- End recent post item-->
-                                    @endforeach
-                                    {{-- <div class="post-item">
-                                        <img src="{{ asset('frontend') }}/assets/img/blog/blog-recent-2.jpg" alt=""
-                                            class="flex-shrink-0">
-                                        <div>
-                                            <h4><a href="blog-post.html">Quidem autem et impedit</a></h4>
-                                            <time datetime="2020-01-01">Jan 1, 2020</time>
-                                        </div>
-                                    </div><!-- End recent post item--> --}}
-
-
-                                </div>
-
-                            </div><!-- End sidebar recent posts-->
-
-                            <div class="sidebar-item tags">
-                                <h3 class="sidebar-title">Tags</h3>
-                                <ul class="mt-3">
-                                    @foreach ($tag as $value)
-                                        <li><a href="#">{{ $value->tag_name }}</a></li>
-                                    @endforeach
-
-                                </ul>
-                            </div><!-- End sidebar tags-->
-
-                        </div><!-- End Blog Sidebar -->
-
-                    </div>
                 </div>
 
-            </div>
-        </section><!-- End Blog Details Section -->
+                <!-- END main-content -->
 
-    </main><!-- End #main -->
+                <div class="col-md-12 col-lg-4 sidebar">
+                    <div class="sidebar-box search-form-wrap">
+                        <form action="#" class="search-form">
+                            <div class="form-group">
+                                <span class="icon fa fa-search"></span>
+                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        <div class="bio text-center">
+                            <img src="{{ asset('frontend') }}/images/person_2.jpg" alt="Image Placeholder"
+                                class="img-fluid mb-5">
+                            <div class="bio-body">
+                                <h2>Craig David</h2>
+                                <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                    Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla
+                                    quo veniam fuga sit molestias minus.</p>
+                                <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a></p>
+                                <p class="social">
+                                    <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
+                                    <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
+                                    <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
+                                    <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END sidebar-box -->
+                    <div class="sidebar-box">
+                        <h3 class="heading">Popular Posts</h3>
+                        <div class="post-entry-sidebar">
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <img src="{{ asset('frontend') }}/images/img_1.jpg" alt="Image placeholder"
+                                            class="mr-4">
+                                        <div class="text">
+                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                            <div class="post-meta">
+                                                <span class="mr-2">March 15, 2018 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="{{ asset('frontend') }}/images/img_2.jpg" alt="Image placeholder"
+                                            class="mr-4">
+                                        <div class="text">
+                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                            <div class="post-meta">
+                                                <span class="mr-2">March 15, 2018 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <img src="{{ asset('frontend') }}/images/img_3.jpg" alt="Image placeholder"
+                                            class="mr-4">
+                                        <div class="text">
+                                            <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
+                                            <div class="post-meta">
+                                                <span class="mr-2">March 15, 2018 </span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        <h3 class="heading">Categories</h3>
+                        <ul class="categories">
+                            <li><a href="#">Food <span>(12)</span></a></li>
+                            <li><a href="#">Travel <span>(22)</span></a></li>
+                            <li><a href="#">Lifestyle <span>(37)</span></a></li>
+                            <li><a href="#">Business <span>(42)</span></a></li>
+                            <li><a href="#">Adventure <span>(14)</span></a></li>
+                        </ul>
+                    </div>
+                    <!-- END sidebar-box -->
+
+                    <div class="sidebar-box">
+                        <h3 class="heading">Tags</h3>
+                        <ul class="tags">
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Adventure</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Freelancing</a></li>
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Adventure</a></li>
+                            <li><a href="#">Food</a></li>
+                            <li><a href="#">Lifestyle</a></li>
+                            <li><a href="#">Business</a></li>
+                            <li><a href="#">Freelancing</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- END sidebar -->
+
+            </div>
+        </div>
+    </section>
+
+    <div class="site-section bg-light">
+        <div class="container">
+
+            <div class="row mb-5">
+                <div class="col-12">
+                    <h2>More Related Posts</h2>
+                </div>
+            </div>
+
+            <div class="row align-items-stretch retro-layout">
+
+                <div class="col-md-5 order-md-2">
+                    <a href="single.html" class="hentry img-1 h-100 gradient"
+                        style="background-image: url('{{ asset('frontend') }}/images/img_4.jpg');">
+                        <span class="post-category text-white bg-danger">Travel</span>
+                        <div class="text">
+                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                            <span>February 12, 2019</span>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-7">
+
+                    <a href="single.html" class="hentry img-2 v-height mb30 gradient"
+                        style="background-image: url('{{ asset('frontend') }}/images/img_1.jpg');">
+                        <span class="post-category text-white bg-success">Nature</span>
+                        <div class="text text-sm">
+                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                            <span>February 12, 2019</span>
+                        </div>
+                    </a>
+
+                    <div class="two-col d-block d-md-flex">
+                        <a href="single.html" class="hentry v-height img-2 gradient"
+                            style="background-image: url('{{ asset('frontend') }}/images/img_2.jpg');">
+                            <span class="post-category text-white bg-primary">Sports</span>
+                            <div class="text text-sm">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                            </div>
+                        </a>
+                        <a href="single.html" class="hentry v-height img-2 ml-auto gradient"
+                            style="background-image: url('{{ asset('frontend') }}/images/img_3.jpg');">
+                            <span class="post-category text-white bg-warning">Lifestyle</span>
+                            <div class="text text-sm">
+                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
+                                <span>February 12, 2019</span>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="site-section bg-lightx">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-5">
+                    <div class="subscribe-1 ">
+                        <h2>Subscribe to our newsletter</h2>
+                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt
+                            error illum a explicabo, ipsam nostrum.</p>
+                        <form action="#" class="d-flex">
+                            <input type="text" class="form-control" placeholder="Enter your email address">
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection

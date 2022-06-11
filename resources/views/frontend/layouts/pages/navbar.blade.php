@@ -1,15 +1,9 @@
-<nav id="navbar" class="navbar float-right">
-    <ul>
-
-        <li><a class="nav-link {{ Route::is('home') ? 'active' : '' }}"
-                href="{{ route('home') }}"><span>Home</span></a>
-        </li>
-        {{-- <li><a class="nav-link scrollto" href="index.html#about">About</a></li>
-        <li><a class="nav-link scrollto" href="index.html#services">Services</a></li>
-        <li><a class="nav-link scrollto" href="index.html#portfolio">Portfolio</a></li>
-        <li><a class="nav-link scrollto" href="index.html#team">Team</a></li> --}}
-        <li><a href="{{ route('blog') }}" class="nav-link {{ Route::is('blog') ? 'active' : '' }}">Blog</a></li>
-        {{-- <li><a class="nav-link scrollto" href="index.html#contact">Contact</a></li> --}}
-    </ul>
-    <i class="bi bi-list mobile-nav-toggle d-none"></i>
-</nav>
+<ul class="site-menu js-clone-nav mr-auto d-none d-lg-block mb-0">
+    <li><a href="{{ route('home') }}" class="{{ Route::is('home') ? 'active' : '' }}">Home</a></li>
+    <li><a href="category.html">Politics</a></li>
+    <li><a href="category.html">Tech</a></li>
+    <li><a href="category.html">Entertainment</a></li>
+    <li><a href="category.html">Travel</a></li>
+    <li><a href="category.html">Sports</a></li>
+    <li class="d-none d-lg-inline-block"><a href="#" class="js-search-toggle"><span class="icon-search"></span></a></li>
+</ul>
