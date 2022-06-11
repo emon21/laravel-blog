@@ -24,18 +24,24 @@ class CategoryController extends Controller
      * Show the form for creating a new resource.
      * @return Renderable
      */
-    public function create(Request $req)
+    public function create(Request $request)
     {
 
-        $req->validate([
+        $request->validate([
             'category_name' => 'required|unique:categories,category_name'
         ]);
-        Category::create([
-            'category_name' => $req->category_name,
-            'slug' => Str::slug($req->category_name),
-            'image' => 'backend/default.jpg'
+        $post = Category::create([
+            'category_name' => $request->category_name,
+            'slug' => Str::slug($request->category_name),
+            'image' => 'backend/category/default.jpg'
         ]);
-        // return view('category::create');
+
+        if($request->has('post_picture')) {
+            $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+            $request->post_picture->move(public_path('backend/category/'), $filename);
+            $post->image = 'backend/category/'.$filename;
+            $post->save();
+         }
         return back();
     }
 
@@ -79,13 +85,36 @@ class CategoryController extends Controller
     {
       // return $request->category_name;
       // dd($request->all());
-      $request->validate([
-        'category_name' => "required|unique:categories,category_name,$category->category_name",
-    ]);
+         $request->validate([
+         'category_name' => "required",
+      ]);
         $category->category_name = $request->category_name;
         $category->slug = Str::slug($request->category_name);
-        $category->save();
-        return redirect()->route('category');
+       // $category->image = 'backend/category/default.jpg';
+
+
+      if($request->hasFile('post_picture')) {
+
+         // if ($category->image) {
+         //    unlink($category->image);
+         // }
+
+         if(file_exists($category->image)){
+            unlink($category->image);
+          }
+         //  else{
+         //  //  dd('File does not exists.');
+           
+         //   // $category->save();
+         //  }
+
+          $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+          $request->post_picture->move(public_path('backend/category/'), $filename);
+          $category->image = 'backend/category/'.$filename;
+
+      }
+      $category->save();
+      return redirect()->route('category');
     }
 
     /**

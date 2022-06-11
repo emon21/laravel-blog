@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Artisan;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // =================================== User Controller Route Start ===================================
 
@@ -53,10 +53,10 @@ Route::prefix('user')->group(function () {
 
 // =================================== Website Controller Route Start ===================================
 
-Route::get('/',[WebsiteController::class,'index']);
+Route::get('/',[WebsiteController::class,'index'])->name('home');
 Route::get('/SingleCategory',[WebsiteController::class,'SingleCategory']);
 Route::get('/singlePost/{post}',[WebsiteController::class,'singlePost']);
-Route::get('/blog',[WebsiteController::class,'BlogList']);
+Route::get('/blog',[WebsiteController::class,'BlogList'])->name('blog');
 //Route::view('/','frontend.index');
 
 // =================================== Website Controller Route End   ===================================

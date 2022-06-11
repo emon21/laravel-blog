@@ -12,7 +12,7 @@ class WebsiteController extends Controller
 
     public function index()
     {
-       $categoryList = Category::all();
+       $categoryList = Category::where('status',1)->get();
        $postList = Post::all();
        return view('frontend.index',compact('categoryList','postList'));
     }

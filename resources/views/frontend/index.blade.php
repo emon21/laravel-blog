@@ -1,4 +1,5 @@
 @extends('frontend.layouts.master')
+@section('title', 'Home page')
 @section('hero')
     {{-- <section id="hero-animated" class="hero-animated d-flex align-items-center">
         <div class="container d-flex flex-column justify-content-center align-items-center text-center position-relative"
@@ -157,140 +158,6 @@
     </section><!-- End Featured Services Section -->
 @endsection
 @section('content')
-    <!-- ======= About Section ======= -->
-    {{-- <section id="about" class="about">
-        <div class="container" data-aos="fade-up">
-
-            <div class="section-header">
-                <h2>About Us</h2>
-                <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam
-                    voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
-            </div>
-
-            <div class="row g-4 g-lg-5" data-aos="fade-up" data-aos-delay="200">
-
-                <div class="col-lg-5">
-                    <div class="about-img">
-                        <img src="{{ asset('frontend') }}/assets/img/about.jpg" class="img-fluid" alt="">
-                    </div>
-                </div>
-
-                <div class="col-lg-7">
-                    <h3 class="pt-0 pt-lg-5">Neque officiis dolore maiores et exercitationem quae est seda lidera
-                        pat claero</h3>
-
-                    <!-- Tabs -->
-                    <ul class="nav nav-pills mb-3">
-                        <li><a class="nav-link active" data-bs-toggle="pill" href="#tab1">Saepe fuga</a></li>
-                        <li><a class="nav-link" data-bs-toggle="pill" href="#tab2">Voluptates</a></li>
-                        <li><a class="nav-link" data-bs-toggle="pill" href="#tab3">Corrupti</a></li>
-                    </ul><!-- End Tabs -->
-
-                    <!-- Tab Content -->
-                    <div class="tab-content">
-
-                        <div class="tab-pane fade show active" id="tab1">
-
-                            <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                                doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo
-                                suscipit voluptatem.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                            </div>
-                            <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                                dolorum non eveniet magni quaerat nemo et.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                            </div>
-                            <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta
-                                tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at.
-                                Dolorem quo tempora. Quia et perferendis.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                            </div>
-                            <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam
-                                officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam
-                                odit enim quaerat. Vero error error voluptatem eum.</p>
-
-                        </div><!-- End Tab 1 Content -->
-
-                        <div class="tab-pane fade show" id="tab2">
-
-                            <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                                doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo
-                                suscipit voluptatem.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                            </div>
-                            <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                                dolorum non eveniet magni quaerat nemo et.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                            </div>
-                            <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta
-                                tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at.
-                                Dolorem quo tempora. Quia et perferendis.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                            </div>
-                            <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam
-                                officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam
-                                odit enim quaerat. Vero error error voluptatem eum.</p>
-
-                        </div><!-- End Tab 2 Content -->
-
-                        <div class="tab-pane fade show" id="tab3">
-
-                            <p class="fst-italic">Consequuntur inventore voluptates consequatur aut vel et. Eos
-                                doloribus expedita. Sapiente atque consequatur minima nihil quae aspernatur quo
-                                suscipit voluptatem.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Repudiandae rerum velit modi et officia quasi facilis</h4>
-                            </div>
-                            <p>Laborum omnis voluptates voluptas qui sit aliquam blanditiis. Sapiente minima commodi
-                                dolorum non eveniet magni quaerat nemo et.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Incidunt non veritatis illum ea ut nisi</h4>
-                            </div>
-                            <p>Non quod totam minus repellendus autem sint velit. Rerum debitis facere soluta
-                                tenetur. Iure molestiae assumenda sunt qui inventore eligendi voluptates nisi at.
-                                Dolorem quo tempora. Quia et perferendis.</p>
-
-                            <div class="d-flex align-items-center mt-4">
-                                <i class="bi bi-check2"></i>
-                                <h4>Omnis ab quia nemo dignissimos rem eum quos..</h4>
-                            </div>
-                            <p>Eius alias aut cupiditate. Dolor voluptates animi ut blanditiis quos nam. Magnam
-                                officia aut ut alias quo explicabo ullam esse. Sunt magnam et dolorem eaque magnam
-                                odit enim quaerat. Vero error error voluptatem eum.</p>
-
-                        </div><!-- End Tab 3 Content -->
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-    </section><!-- End About Section --> --}}
-
     <!-- ======= Category Section ======= -->
     <section id="blog" class="blog">
         <div class="container" data-aos="fade-up">
@@ -301,25 +168,30 @@
             </div>
             <div class="row g-5 posts-list">
 
-                @foreach ($categoryList as $category)
-                    <div class="col-lg-4">
-                        <article class="d-flex flex-column">
+                @if ($categoryList->count() > 0)
+                    @foreach ($categoryList as $category)
+                        <div class="col-lg-4">
+                            <article class="d-flex flex-column">
 
-                            <div class="post-img">
-                                <img src="{{ asset($category->image) }}" alt="{{ $category->category_name }}"
-                                    class="img-fluid">
-                            </div>
+                                <div class="post-img">
+                                    <img src="{{ asset($category->image) }}" alt="{{ $category->category_name }}"
+                                        class="img-fluid">
+                                </div>
 
-                            <h2 class="title text-center">
-                                <a href="{{ url('SingleCategory') }}">{{ $category->category_name }}</a>
-                            </h2>
-                            <div class="read-more mt-2 align-self-center">
-                                <a href="{{ url('SingleCategory') }}">Read More</a>
-                            </div>
+                                <h2 class="title text-center">
+                                    <a href="{{ url('SingleCategory') }}">{{ $category->category_name }}</a>
+                                </h2>
+                                <div class="read-more mt-2 align-self-center">
+                                    <a href="{{ url('SingleCategory') }}">Read More</a>
+                                </div>
 
-                        </article>
-                    </div>
-                @endforeach
+                            </article>
+                        </div>
+                    @endforeach
+                @else
+                    <span class="text-danger text-center alert alert-danger">Sorry No Category Found!</span>
+                @endif
+
 
             </div>
 
@@ -411,26 +283,30 @@
                         <img src="{{ asset('frontend') }}/assets/img/portfolio/app-1.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 1</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-1.jpg" title="App 1" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-1.jpg" title="App 1"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-1.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Product 1</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-1.jpg" title="Product 1" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-1.jpg" title="Product 1"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-1.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Branding 1</h4>
                             <a href="{{ asset('frontend') }}/assets/img/portfolio/branding-1.jpg" title="Branding 1"
@@ -442,11 +318,13 @@
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-1.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-1.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Books 1</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-1.jpg" title="Branding 1" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-1.jpg" title="Branding 1"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
@@ -456,26 +334,30 @@
                         <img src="{{ asset('frontend') }}/assets/img/portfolio/app-2.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 2</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-2.jpg" title="App 2" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-2.jpg" title="App 2"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-2.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Product 2</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-2.jpg" title="Product 2" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-2.jpg" title="Product 2"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-2.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Branding 2</h4>
                             <a href="{{ asset('frontend') }}/assets/img/portfolio/branding-2.jpg" title="Branding 2"
@@ -487,11 +369,13 @@
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-2.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-2.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Books 2</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-2.jpg" title="Branding 2" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-2.jpg" title="Branding 2"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
@@ -501,26 +385,30 @@
                         <img src="{{ asset('frontend') }}/assets/img/portfolio/app-3.jpg" class="img-fluid" alt="">
                         <div class="portfolio-info">
                             <h4>App 3</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-3.jpg" title="App 3" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/app-3.jpg" title="App 3"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-product">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/product-3.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Product 3</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-3.jpg" title="Product 3" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/product-3.jpg" title="Product 3"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-branding">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/branding-3.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Branding 3</h4>
                             <a href="{{ asset('frontend') }}/assets/img/portfolio/branding-3.jpg" title="Branding 2"
@@ -532,11 +420,13 @@
                     </div><!-- End Portfolio Item -->
 
                     <div class="col-xl-3 col-lg-4 col-md-6 portfolio-item filter-books">
-                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-3.jpg" class="img-fluid" alt="">
+                        <img src="{{ asset('frontend') }}/assets/img/portfolio/books-3.jpg" class="img-fluid"
+                            alt="">
                         <div class="portfolio-info">
                             <h4>Books 3</h4>
-                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-3.jpg" title="Branding 3" data-gallery="portfolio-gallery"
-                                class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
+                            <a href="{{ asset('frontend') }}/assets/img/portfolio/books-3.jpg" title="Branding 3"
+                                data-gallery="portfolio-gallery" class="glightbox preview-link"><i
+                                    class="bi bi-zoom-in"></i></a>
                             <a href="portfolio-details.html" title="More Details" class="details-link"><i
                                     class="bi bi-link-45deg"></i></a>
                         </div>

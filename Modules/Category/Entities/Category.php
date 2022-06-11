@@ -18,5 +18,15 @@ class Category extends Model
         return \Modules\Category\Database\factories\CategoryFactory::new();
     }
 
+    protected $appends = ['image_url','title_slug'];
+   //Accessor 
+   public function getImageUrlAttribute() 
+   {
+      if (is_null($this->image)) {
+         return asset('backend/category/default.jpg');
+      }
+      return asset($this->image);
+   }
+
     
 }
