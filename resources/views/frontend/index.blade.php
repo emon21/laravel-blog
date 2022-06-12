@@ -6,55 +6,50 @@
         <div class="container">
             <div class="row align-items-stretch retro-layout-2">
                 <div class="col-md-4">
-                    <a href="single.html" class="h-entry mb-30 v-height gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_1.jpg');">
-
-                        <div class="text">
-                            <h2>The AI magically removes moving objects from videos.</h2>
-                            <span class="date">July 19, 2019</span>
-                        </div>
-                    </a>
-                    <a href="single.html" class="h-entry v-height gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_2.jpg');">
-
-                        <div class="text">
-                            <h2>The AI magically removes moving objects from videos.</h2>
-                            <span class="date">July 19, 2019</span>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-md-4">
-                    <a href="single.html" class="h-entry img-5 h-100 gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_v_1.jpg');">
-
-                        <div class="text">
-                            <div class="post-categories mb-3">
-                                <span class="post-category bg-danger">Travel</span>
-                                <span class="post-category bg-primary">Food</span>
+                    @foreach ($firstpost as $first)
+                        <a href="{{ route('website.post', ['slug' => $first->slug]) }}"
+                            class="h-entry mb-30 v-height gradient"
+                            style="background-image: url('{{ $first->image_url }}');">
+                            <div class="text">
+                                <h2>{{ $first->title }}</h2>
+                                <span class="date">July 19, 2019 {{ $first->created_at->format('M-d-Y') }}</span>
                             </div>
-                            <h2>The AI magically removes moving objects from videos.</h2>
-                            <span class="date">July 19, 2019</span>
-                        </div>
-                    </a>
+                        </a>
+                    @endforeach
                 </div>
+
                 <div class="col-md-4">
-                    <a href="single.html" class="h-entry mb-30 v-height gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_3.jpg');">
+                    @foreach ($middlepost as $middle)
+                        <a href="{{ route('website.post', ['slug' => $middle->slug]) }}"
+                            class="h-entry img-5 h-100 gradient"
+                            style="background-image: url('{{ $middle->image_url }}');">
 
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span class="date">July 19, 2019</span>
-                        </div>
-                    </a>
-                    <a href="single.html" class="h-entry v-height gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_4.jpg');">
-
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span class="date">July 19, 2019</span>
-                        </div>
-                    </a>
+                            <div class="text">
+                                <div class="post-categories mb-3">
+                                    <span class="post-category bg-danger">Travel</span>
+                                    <span class="post-category bg-primary">Food</span>
+                                </div>
+                                <h2>T{{ $middle->title }}</h2>
+                                <span class="date">{{ $middle->created_at->format('M-d-Y') }}</span>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
+
+                <div class="col-md-4">
+                    @foreach ($lastpost as $last)
+                        <a href="{{ route('website.post', ['slug' => $last->slug]) }}"
+                            class="h-entry mb-30 v-height gradient"
+                            style="background-image: url('{{ $last->image_url }}');">
+
+                            <div class="text">
+                                <h2>{{ $last->title }}</h2>
+                                <span class="date">{{ $last->created_at->format('M-d-Y') }}</span>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+
             </div>
         </div>
     </div>
@@ -89,7 +84,7 @@
                                     <span>&nbsp;-&nbsp; July 19, 2019 {{ $recent->created_at->format('M-d-Y') }}</span>
                                 </div>
 
-                                <p>{!! $recent->description !!}</p>
+                                <p>{{ Str::limit($recent->description, 100) }}</p>
                                 <p><a href="{{ route('website.post', ['slug' => $recent->slug]) }}"
                                         class="btn btn-outline-success">Read More</a></p>
                             </div>
@@ -123,46 +118,50 @@
         <div class="container">
 
             <div class="row align-items-stretch retro-layout">
-
-                <div class="col-md-5 order-md-2">
-                    <a href="single.html" class="hentry img-1 h-100 gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_4.jpg');">
-                        <span class="post-category text-white bg-danger">Travel</span>
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($lastfooterpost as $footerpost)
+                    <div class="col-md-5 order-md-2">
+                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                            class="hentry img-1 h-100 gradient"
+                            style="background-image: url('{{ $footerpost->image_url }}');">
+                            <span
+                                class="post-category text-white bg-danger">{{ $footerpost->category->category_name }}</span>
+                            <div class="text">
+                                <h2>{{ $footerpost->title }}</h2>
+                                <span>{{ $footerpost->created_at->format('M-d-Y') }}</span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
 
                 <div class="col-md-7">
 
-                    <a href="single.html" class="hentry img-2 v-height mb30 gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_1.jpg');">
-                        <span class="post-category text-white bg-success">Nature</span>
-                        <div class="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
+                    @foreach ($fristfooterpost as $footerpost)
+                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                            class="hentry img-2 v-height mb30 gradient"
+                            style="background-image: url('{{ $footerpost->image_url }}');">
+                            <span
+                                class="post-category text-white bg-success">{{ $footerpost->category->category_name }}</span>
+                            <div class="text text-sm">
+                                <h2>{{ $footerpost->title }}</h2>
+                                <span>{{ $footerpost->created_at->format('M-d-Y') }}</span>
+                            </div>
+                        </a>
+                    @endforeach
 
-                    <div class="two-col d-block d-md-flex">
-                        <a href="single.html" class="hentry v-height img-2 gradient"
-                            style="background-image: url('{{ asset('frontend') }}/images/img_2.jpg');">
-                            <span class="post-category text-white bg-primary">Sports</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
-                        <a href="single.html" class="hentry v-height img-2 ml-auto gradient"
-                            style="background-image: url('{{ asset('frontend') }}/images/img_3.jpg');">
-                            <span class="post-category text-white bg-warning">Lifestyle</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
+                    <div class="two-col d-block d-md-flex justify-content-between">
+                        @foreach ($middlefooterpost as $footerpost)
+                            <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                                class="hentry v-height img-2 ml-auto gradient"
+                                style="background-image: url('{{ $footerpost->image_url }}');">
+                                <span
+                                    class="post-category text-white bg-warning">{{ $footerpost->category->category_name }}</span>
+                                <div class="text text-sm">
+                                    <h2>{{ $footerpost->title }}</h2>
+                                    <span>{{ $footerpost->created_at->format('M-d-Y') }}</span>
+                                </div>
+                            </a>
+                        @endforeach
+
                     </div>
 
                 </div>
