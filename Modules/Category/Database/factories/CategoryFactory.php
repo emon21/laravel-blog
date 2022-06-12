@@ -22,11 +22,15 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-    // $category_name = $this->faker->name();
+    
+      $category_name = $this->faker->name();
+
+      $id = rand(30, 600);
+      $image = 'https://picsum.photos/id/' . $id . '/700/600';
         return [
-         'category_name' => $this->faker->word(),
+         'category_name' => $category_name,
          'slug' => Str::slug($this->faker->word()),
-         'image' => 'default.jpg',
+         'image' => $image,
          'status' => '0',
         ];
 

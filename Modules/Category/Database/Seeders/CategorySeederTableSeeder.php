@@ -124,15 +124,18 @@ class CategorySeederTableSeeder extends Seeder
         $category = [
             'Php','Laravel','Html','Css','Vue jS','Java','Python','Apps','Nuxt JS' ,'  Asp.Net','C#','React JS'
         ];
-    foreach ($category as $value) {
+        $id = rand(30, 600);
+        $image = 'https://picsum.photos/id/' . $id . '/700/600';
+         foreach ($category as $value) {
 
-        Category::create([
-            'category_name' => $value,
-            'slug' => Str::slug($value),
-            'image' => 'backend/category/default.jpg',
-            'status' => 0
-        ]);
-    }
+            Category::create([
+                  'category_name' => $value,
+                  'slug' => Str::slug($value),
+                  'image' => $image,
+                  'status' => 0
+            ]);
+            
+         }
     //    for ($i=0; $i <10 ; $i++) {
     //     Category::create([
     //         'category_name' => 'Laravel',

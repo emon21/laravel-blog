@@ -41,14 +41,14 @@ Auth::routes();
     // Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin/logout');
     // });
 
-Route::prefix('user')->group(function () {
+      Route::prefix('user')->group(function () {
 
-    Route::get('/',[UserController::class,'index'])->name('user');
+         Route::get('/',[UserController::class,'index'])->name('user');
 
-    Route::get('/user_setting',[UserController::class,'UserSetting'])->name('UserSetting');
+         Route::get('/user_setting',[UserController::class,'UserSetting'])->name('UserSetting');
 
-    Route::get('/login',[UserController::class,'UserLogin']);
-});
+         Route::get('/login',[UserController::class,'UserLogin']);
+      });
 
 // =================================== User Controller Route End    ===================================
 
@@ -56,25 +56,26 @@ Route::prefix('user')->group(function () {
 // =================================== Website Controller Route Start ===================================
 
 Route::get('/',[WebsiteController::class,'index'])->name('home');
-Route::get('/SingleCategory',[WebsiteController::class,'SingleCategory'])->name('website.category');
+Route::get('/category',[WebsiteController::class,'category'])->name('website.category');
+// Route::get('/SingleCategory',[WebsiteController::class,'SingleCategory'])->name('website.category');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
 Route::get('/blog',[WebsiteController::class,'BlogList'])->name('blog')->name('website.blog');
 
-// Route::get('/test',function(){
-//    $posts = Post::all();
-//    $id = 50;
-//    foreach($posts as $post){
+Route::get('/test',function(){
+   $posts = Post::all();
+   $id = 50;
+   foreach($posts as $post){
       
       
-//       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
+      $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
      
-//      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
+     // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
    
-//       $post->save();
-//       $id++;
-//    }
-//    return $posts;
-// });
+      $post->save();
+      $id++;
+   }
+   return $posts;
+});
 //Route::view('/','frontend.index');
 
 // =================================== Website Controller Route End   ===================================

@@ -5,6 +5,7 @@ namespace Modules\Blog\Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Blog\Entities\Post;
+use Modules\Category\Entities\Category;
 class BlogDatabaseSeeder extends Seeder
 {
     /**
@@ -19,7 +20,7 @@ class BlogDatabaseSeeder extends Seeder
       //  $this->call(PostSeederTableSeeder::class);
 
        // Post::factory(20)->create();
-       // Category::factory(10)->create();
+        //Category::factory(10)->create();
       // Post::factory(20)->create();
        Post::factory()->count(50)->create();
     }

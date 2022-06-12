@@ -3,6 +3,10 @@
     Dashboard ~ Admin Page
 @endsection
 @section('header')
+    <i class="fa fa-tags" aria-hidden="true"></i>
+    <i class="fa fa-clipboard" aria-hidden="true"></i>
+
+    <i class="fa fa-th-list" aria-hidden="true"></i>
     {{-- @include('backend.layouts.partials.header') --}}
     <div class="content-header">
         <div class="container-fluid">

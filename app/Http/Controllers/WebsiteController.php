@@ -13,7 +13,7 @@ class WebsiteController extends Controller
     public function index()
     {
       // $categoryList = Category::where('status',1)->get();
-       $post = Post::with('category','user')->orderBy('created_at','DESC')->take(5)->get();
+      $post = Post::with('category','user')->orderBy('created_at','DESC')->take(5)->get();
       $firstpost = $post->splice(0,2);
       $middlepost = $post->splice(0,1);
       $lastpost = $post->splice(0);
@@ -60,6 +60,14 @@ class WebsiteController extends Controller
       $postList = Post::Paginate(8);
       //return $postList->count('category');
        return view('frontend.blog',compact('categoryList','postList','tag'));
+    }
+
+    //category
+    public function category()
+    {
+
+      $categoryList = Category::all();
+      return view('frontend.category',compact('categoryList'));
     }
 
 

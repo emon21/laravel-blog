@@ -21,14 +21,6 @@ class CategoryDatabaseSeeder extends Seeder
 
         // $this->call("OthersTableSeeder");
 
-        $this->call([
-           CategorySeederTableSeeder::class,
-            // UserSeeder::class,
-        ]);
-
-        //User Factory
-      //  $facker = Facker::create();
-       // factory(App\Category::class)->make();
-      // Category::factory(10)->create();
+       Category::factory()->count(10)->create();
     }
 }

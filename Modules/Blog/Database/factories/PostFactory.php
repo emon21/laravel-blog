@@ -25,14 +25,14 @@ class PostFactory extends Factory
         $post_title = $this->faker->name();
         //$category_name = $this->faker->name();
 
-       // $id = rand(30, 600);
-     //   $image = 'https://picsum.photos/id/' . $id . '/700/600';
+       $id = rand(30, 600);
+       $image = 'https://picsum.photos/id/' . $id . '/700/600';
      //   $title = $this->faker->sentence($nbWords = 5, $variableNbWords = true);
            return [
            
                'title' => $post_title,
                'slug' => Str::slug($post_title),
-               'image' => 'backend/blog/default.jpg',
+               'image' => $image,
                'description' => $this->faker->text(),
               // 'category_id' => Category::random()->id(),
                'category_id' => Category::inRandomOrder()->value('id'),
