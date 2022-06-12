@@ -9,7 +9,8 @@
 
             <div class="container">
 
-                <form action="/action_page.php">
+                <form action="{{ route('login') }}" method="post">
+                    @csrf
                     <div class="form-group mb-2">
                         <label for="email">Email:</label>
                         <input type="text" class="form-control mt-1" id="email" placeholder="Enter email" name="email">

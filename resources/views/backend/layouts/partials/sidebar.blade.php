@@ -112,6 +112,13 @@
                         <p class="text">Post</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('user.index') }}"
+                        class="nav-link {{ Route::is('user.index') ? 'active' : '' }}">
+                        <i class="nav-icon far fa-circle text-success"></i>
+                        <p class="text">User</p>
+                    </a>
+                </li>
             </ul>
 
         </nav>
