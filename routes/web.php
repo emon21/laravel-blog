@@ -54,6 +54,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('user', UserController::class);
+Route::get('user.profile', [UserController::class,'userprofile'])->name('userprofile');
 
 
 // =================================== Website Controller Route Start ===================================

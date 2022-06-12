@@ -87,4 +87,11 @@ class UserController extends Controller
    //  {
    //      return view('user.user_login');
    //  }
+
+
+   //user
+   public function userprofile()
+   {
+      return 11;
+   }
 }

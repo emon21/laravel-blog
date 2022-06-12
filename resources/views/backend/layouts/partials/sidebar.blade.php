@@ -93,7 +93,7 @@
 
 
 
-                {{-- <li class="nav-header">LABELS</li> --}}
+
                 <li class="nav-item">
                     <a href="{{ Route('category') }}" class="nav-link {{ Route::is('category') ? 'active' : '' }}">
                         <i class="nav-icon far fa-circle text-warning"></i>
@@ -119,6 +119,15 @@
                         <p class="text">User</p>
                     </a>
                 </li>
+                <li class="nav-header">User Account</li>
+                <li class="nav-item mt-auto">
+                    <a href="{{ route('userprofile') }}"
+                        class="nav-link {{ Route::is('userprofile') ? 'active' : '' }}">
+                        <i class="nav-icon far fa-circle text-success"></i>
+                        <p class="text">User Profile</p>
+                    </a>
+                </li>
+
             </ul>
 
         </nav>
