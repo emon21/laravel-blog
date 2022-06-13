@@ -29,9 +29,21 @@ class WebsiteController extends Controller
     }
 
     //Single Post
-    public function SingleCategory()
+    public function SingleCategory($slug)
     {
-       return view('frontend.single_category');
+      //return $slug;
+      $category = Category::where('slug',$slug)->first();
+      if ($category) {
+        //return $category;
+        $postlist = Post::where('category_id',$category->id)->paginate(2);
+         return view('frontend.single_category',compact('category','postlist'));
+      }
+      else{
+         return redirect()->route('website');
+      }
+
+     // return view('frontend.single_category');
+       
     }
     //Single Post
     public function singlePost($slug)

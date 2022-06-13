@@ -83,13 +83,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request,Category $category)
     {
-      // return $request->category_name;
+      //return $request->desc;
       // dd($request->all());
          $request->validate([
-         'category_name' => "required",
+         'category_name' => "required"
       ]);
         $category->category_name = $request->category_name;
         $category->slug = Str::slug($request->category_name);
+        $category->description = $request->desc;
        // $category->image = 'backend/category/default.jpg';
 
 

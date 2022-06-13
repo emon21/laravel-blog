@@ -82,6 +82,8 @@
                                     <th>Sl No</th>
                                     <th>Category Name</th>
                                     <th>Category Picture</th>
+                                    <th>Slug</th>
+                                    <th>Post Count</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -92,6 +94,8 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $value->category_name }}</td>
                                         <td><img src="{{ $value->image_url }}" alt="" width="180" height="120"></td>
+                                        <td>{{ $value->slug }}</td>
+                                        <td>{{ $value->id }}</td>
                                         <td>
                                             @if ($value->status == 1)
                                                 <span class="text-success"

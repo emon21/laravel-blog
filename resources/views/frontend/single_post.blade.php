@@ -12,7 +12,9 @@
                         <h1 class="mb-4"><a href="javascript:void()">{{ $post->title }}</a></h1>
                         <div class="post-meta align-items-center text-center">
                             <figure class="author-figure mb-0 mr-3 d-inline-block"><img
-                                    src="{{ asset($post->user->image) }}" alt="Image" class="img-fluid">
+                                    src="@if ($post->user->image) {{ asset($post->user->image) }} @else
+                                    {{ asset('backend/user/user.png') }} @endif"
+                                    alt="Image" class="img-fluid">
                             </figure>
                             <span class="d-inline-block mt-1">By {{ $post->user->name }}</span>
                             <span>&nbsp;-&nbsp;{{ $post->created_at->format('M-d-Y') }}</span>
@@ -196,7 +198,9 @@
                     <!-- END sidebar-box -->
                     <div class="sidebar-box">
                         <div class="bio text-center">
-                            <img src="{{ asset($post->user->image) }}" alt="Image Placeholder" class="img-fluid mb-1">
+                            <img src="@if ($post->user->image) {{ asset($post->user->image) }} @else
+                            {{ asset('backend/user/user.png') }} @endif"
+                                alt="Image Placeholder" class="img-fluid mb-1">
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>
                                 <p class="mb-4">{{ $post->user->description }}</p>

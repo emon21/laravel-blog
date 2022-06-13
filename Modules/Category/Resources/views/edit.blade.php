@@ -58,6 +58,12 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" rows="5" name="desc" placeholder="Write your Category description">{{ $category->description }}</textarea>
+                                </div>
+
                                 <button type="submit" class="btn btn-success">Update Category</button>
                             </div>
                             <!-- /.card-body -->
