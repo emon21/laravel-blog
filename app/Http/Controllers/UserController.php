@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
 
@@ -90,8 +91,50 @@ class UserController extends Controller
 
 
    //user
-   public function userprofile()
+   public function userProfile()
    {
-      return 11;
+      // $userprofile = Auth::user()->id;
+      // if (Auth::check()) {
+      //    echo 'yes';
+      // }
+      // else{
+      //    echo 'no';
+      // }
+      $user = Auth()->user();
+      return view('backend.user.profile',compact('user'));
+   }
+
+   //user update
+   public function userUpdate(Request $request)
+   {
+      $user = auth()->user();
+      $this->validate($request,[
+         'name' => 'required',
+         'email' => "required|unique:users,email,$user->id",
+         'password' => 'sometimes|nullable|min:8',
+         'image' => 'sometimes|nullable|image|max:2048',
+      ]);
+
+
+      $user->name = $request->name;
+      $user->email = $request->email;
+     
+      $user->description = $request->desc;
+      if ( $request->has('password') && $request->password !== null) {
+         $user->password = bcrypt($request->password);
+      }
+      //image upload
+      if($request->hasFile('user_picture')) { 
+         // if(file_exists($user->image)){
+         //    unlink($user->image);
+         //    }
+         $filename = time() . '.' .$request->user_picture->getClientOriginalextension();
+         $request->user_picture->move(public_path('backend/user/'), $filename);
+         $user->image = 'backend/user/'.$filename;
+      }
+      
+      $user->save();
+      Session::flash('update','User Profile Update Successfully');
+      return redirect()->back();
    }
 }

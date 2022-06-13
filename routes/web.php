@@ -53,8 +53,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // =================================== User Controller Route End    ===================================
 
 
-Route::resource('user', UserController::class);
-Route::get('user.profile', [UserController::class,'userprofile'])->name('userprofile');
+
 
 
 // =================================== Website Controller Route Start ===================================
@@ -95,6 +94,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     // Route::get('/home', [AdminController::class, 'home'])->name('backend');
     // Route::view('/start','backend.layouts.started');
     // Route::view('/clock', 'backend.clock');
+
+    Route::resource('user', UserController::class);
+    Route::get('profile', [UserController::class,'userProfile'])->name('user/profile');
+    Route::post('profile', [UserController::class,'userUpdate'])->name('user/update');
 });
 
 // Route::prefix('admin')->middleware(['auth'])->group(function(){

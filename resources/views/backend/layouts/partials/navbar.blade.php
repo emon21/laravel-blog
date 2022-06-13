@@ -144,16 +144,16 @@
         </li> --}}
         <li class="nav-item dropdown user-menu">
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                <img src="{{ asset('backend/assets') }}/dist/img/user2-160x160.jpg"
-                    class="user-image img-circle elevation-2" alt="User Image">
+                <img src="{{ asset(Auth::user()->image) }}" class="user-image img-circle elevation-2"
+                    alt="User Image">
                 <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right rounded border-0"
                 style="left: inherit; right: 0px;">
                 <!-- User image -->
                 <li class="user-header bg-dark rounded-top">
-                    <img src="{{ asset('backend/assets') }}/dist/img/user2-160x160.jpg"
-                        class="user-image img-circle elevation-2" alt="User Image">
+                    <img src="{{ asset(Auth::user()->image) }}" class="user-image img-circle elevation-2"
+                        alt="User Image">
                     <p>
                         Hi - {{ Auth::user()->name }}
                         <small>{{ __('member_since') }} {{ date('y-m-d') }}</small>
@@ -162,12 +162,13 @@
 
                 <!-- Menu Footer-->
                 <li class="user-footer border-bottom d-flex">
-                    <a href="" class="btn btn-outline-success"> <i class="fa fa-list"></i>&nbsp;Profile
+                    <a href="{{ route('user/profile') }}" class="btn btn-outline-success"> <i
+                            class="fa fa-list"></i>&nbsp;Profile
                     </a>
                     <!-- Logout -->
                     <a href="javascript:void(0)" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();" class="btn btn-outline-danger ml-auto w-50">
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+                        <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
 
                     </a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

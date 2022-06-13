@@ -121,7 +121,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><img src="{{ $user->image_url }}" alt="" width="180" height="120"></td>
+                                        <td><img src="{{ asset($user->image) }}" alt="" width="180" height="120"></td>
                                         <td>{{ $user->description }}</td>
                                         <td>{{ $user->slug }}</td>
                                         <td>
