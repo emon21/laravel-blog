@@ -59,10 +59,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // =================================== Website Controller Route Start ===================================
 
 Route::get('/',[WebsiteController::class,'index'])->name('website');
+Route::get('/blog',[WebsiteController::class,'BlogList'])->name('website.blog');
 Route::get('/category',[WebsiteController::class,'category'])->name('website.category');
 // Route::get('/SingleCategory',[WebsiteController::class,'SingleCategory'])->name('website.category');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
-Route::get('/blog',[WebsiteController::class,'BlogList'])->name('blog')->name('website.blog');
 
 // Route::get('/test',function(){
 //    $posts = Post::all();

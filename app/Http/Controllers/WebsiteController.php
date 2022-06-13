@@ -38,8 +38,13 @@ class WebsiteController extends Controller
     {
 
       $post = Post::with('category','user')->Where('slug',$slug)->first();
+      $posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
+      $category = Category::all();
+      $tag = Tag::all();
+     // return $posts;
+
       if($post){
-         return view('frontend.single_post',compact('post'));
+         return view('frontend.single_post',compact('post','posts','category','tag'));
       }
       else{
          return view('frontend.index');
@@ -47,7 +52,8 @@ class WebsiteController extends Controller
        
      // $tag = Tag::all();
     //  $PostList = Post::take(6)->get();
-       return view('frontend.single_post',compact('post'));
+   
+      // return view('frontend.single_post',compact(['post','posts']));
     }
 
     //Blog LIst
