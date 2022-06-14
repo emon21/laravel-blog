@@ -272,6 +272,11 @@
                         <p class="text">User</p>
                     </a>
                 </li>
+                <li class="nav-item mt-auto">
+                  <a href="{{ route('setting') }}" class="nav-link">
+                      <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;website Setting
+                  </a>
+              </li>
                 <h4 class="nav-header">User Account</h4>
 
 
@@ -293,6 +298,7 @@
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
                     </a>
                 </li>
+
                
 
             </ul>

@@ -6,6 +6,7 @@ use App\Http\Controllers\WebsiteController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
 
@@ -99,6 +100,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::resource('user', UserController::class);
     Route::get('profile', [UserController::class,'userProfile'])->name('user/profile');
     Route::post('profile', [UserController::class,'userUpdate'])->name('user/update');
+
+    //website Setting
+    Route::get('setting',[SettingController::class,'edit'])->name('setting');
 });
 
 // Route::prefix('admin')->middleware(['auth'])->group(function(){
