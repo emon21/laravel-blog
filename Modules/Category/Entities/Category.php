@@ -4,6 +4,7 @@ namespace Modules\Category\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Modules\Blog\Entities\Post;
 
 class Category extends Model
 {
@@ -28,5 +29,8 @@ class Category extends Model
       return asset($this->image);
    }
 
-    
+    public function posts()
+    {
+      return $this->hasOne(Post::class);
+    }
 }

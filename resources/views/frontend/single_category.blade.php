@@ -25,6 +25,7 @@
                         <div class="col-md-6">
                             <span>Category</span>
                             <h3>{{ $category->category_name }}</h3>
+                            {{-- <span>{{ $category->count() }}</span> --}}
                             @if ($category->description)
                                 <p>{{ $category->description }}</p>
                             @endif
@@ -123,7 +124,7 @@
                     </div>
                     <div class="row text-center pt-5 border-top">
                         <div class="col-md-12">
-                           {{ $postlist->links() }}
+                            {{ $postlist->links() }}
                         </div>
                     </div>
                 </div>

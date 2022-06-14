@@ -275,16 +275,16 @@
                 </div>
             </div>
             <div class="row align-items-stretch retro-layout">
-                @foreach ($lastrelatedpost as $footerpost)
+                @foreach ($lastrelatedpost as $relatedPost)
                     <div class="col-md-5 order-md-2">
-                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                        <a href="{{ route('website.post', ['slug' => $relatedPost->slug]) }}"
                             class="hentry img-1 h-100 gradient"
-                            style="background-image: url('{{ $footerpost->image }}');">
+                            style="background-image: url('{{ $relatedPost->image }}');">
                             <span
-                                class="post-category text-white bg-danger">{{ $footerpost->category->category_name }}</span>
+                                class="post-category text-white bg-danger">{{ $relatedPost->category->category_name }}</span>
                             <div class="text">
-                                <h2>{{ $footerpost->title }}</h2>
-                                <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                                <h2>{{ $relatedPost->title }}</h2>
+                                <span>{{ $relatedPost->created_at->format('M d, Y') }}</span>
                             </div>
                         </a>
                     </div>
@@ -292,29 +292,29 @@
 
                 <div class="col-md-7">
 
-                    @foreach ($firstrelatedpost as $footerpost)
-                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                    @foreach ($firstrelatedpost as $relatedPost)
+                        <a href="{{ route('website.post', ['slug' => $relatedPost->slug]) }}"
                             class="hentry img-2 v-height mb30 gradient"
-                            style="background-image: url('{{ $footerpost->image }}');">
+                            style="background-image: url('{{ $relatedPost->image }}');">
                             <span
-                                class="post-category text-white bg-success">{{ $footerpost->category->category_name }}</span>
+                                class="post-category text-white bg-success">{{ $relatedPost->category->category_name }}</span>
                             <div class="text text-sm">
-                                <h2>{{ $footerpost->title }}</h2>
-                                <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                                <h2>{{ $relatedPost->title }}</h2>
+                                <span>{{ $relatedPost->created_at->format('M d, Y') }}</span>
                             </div>
                         </a>
                     @endforeach
 
                     <div class="two-col d-block d-md-flex justify-content-between">
-                        @foreach ($middlerelatedpost as $footerpost)
-                            <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                        @foreach ($middlerelatedpost as $relatedPost)
+                            <a href="{{ route('website.post', ['slug' => $relatedPost->slug]) }}"
                                 class="hentry v-height img-2 gradient"
-                                style="background-image: url('{{ $footerpost->image }}');">
+                                style="background-image: url('{{ $relatedPost->image }}');">
                                 <span
-                                    class="post-category text-white bg-warning">{{ $footerpost->category->category_name }}</span>
+                                    class="post-category text-white bg-warning">{{ $relatedPost->category->category_name }}</span>
                                 <div class="text text-sm">
-                                    <h2>{{ $footerpost->title }}</h2>
-                                    <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                                    <h2>{{ $relatedPost->title }}</h2>
+                                    <span>{{ $relatedPost->created_at->format('M d, Y') }}</span>
                                 </div>
                             </a>
                         @endforeach

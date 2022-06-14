@@ -11,3 +11,9 @@
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/aos.css">
 
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
+
+<style>
+    .pagination {
+        margin-bottom: 0 !important;
+    }
+</style>

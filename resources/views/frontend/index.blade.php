@@ -1,6 +1,5 @@
 @extends('frontend.layouts.master')
 @section('title', 'Home page')
-
 @section('content')
     <div class="site-section bg-light">
         <div class="container">
@@ -99,12 +98,8 @@
                         </div>
                     </div>
                 @endforeach
-
-
-
-
-
             </div>
+
             <div class="row text-center pt-5 border-top">
                 {{ $recentpost->links() }}
                 {{-- <div class="col-md-12">
