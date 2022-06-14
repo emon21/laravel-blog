@@ -54,9 +54,14 @@ class WebsiteController extends Controller
       $category = Category::all();
       $tag = Tag::all();
      // return $posts;
+     //relate post
+     $relatedpost = Post::orderBy('category_id','desc')->inRandomOrder()->take(4)->get();
+     $firstrelatedpost = $relatedpost->splice(0,1);
+     $middlerelatedpost = $relatedpost->splice(0,2);
+     $lastrelatedpost = $relatedpost->splice(0,1);
 
       if($post){
-         return view('frontend.single_post',compact('post','posts','category','tag'));
+         return view('frontend.single_post',compact('post','posts','category','tag','firstrelatedpost','middlerelatedpost','lastrelatedpost'));
       }
       else{
          return view('frontend.index');

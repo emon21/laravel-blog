@@ -269,54 +269,56 @@
 
     <div class="site-section bg-light">
         <div class="container">
-
             <div class="row mb-5">
                 <div class="col-12">
                     <h2>More Related Posts</h2>
                 </div>
             </div>
-
             <div class="row align-items-stretch retro-layout">
-
-                <div class="col-md-5 order-md-2">
-                    <a href="single.html" class="hentry img-1 h-100 gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_4.jpg');">
-                        <span class="post-category text-white bg-danger">Travel</span>
-                        <div class="text">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
-                </div>
+                @foreach ($lastrelatedpost as $footerpost)
+                    <div class="col-md-5 order-md-2">
+                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                            class="hentry img-1 h-100 gradient"
+                            style="background-image: url('{{ $footerpost->image }}');">
+                            <span
+                                class="post-category text-white bg-danger">{{ $footerpost->category->category_name }}</span>
+                            <div class="text">
+                                <h2>{{ $footerpost->title }}</h2>
+                                <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
 
                 <div class="col-md-7">
 
-                    <a href="single.html" class="hentry img-2 v-height mb30 gradient"
-                        style="background-image: url('{{ asset('frontend') }}/images/img_1.jpg');">
-                        <span class="post-category text-white bg-success">Nature</span>
-                        <div class="text text-sm">
-                            <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                            <span>February 12, 2019</span>
-                        </div>
-                    </a>
+                    @foreach ($firstrelatedpost as $footerpost)
+                        <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                            class="hentry img-2 v-height mb30 gradient"
+                            style="background-image: url('{{ $footerpost->image }}');">
+                            <span
+                                class="post-category text-white bg-success">{{ $footerpost->category->category_name }}</span>
+                            <div class="text text-sm">
+                                <h2>{{ $footerpost->title }}</h2>
+                                <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                            </div>
+                        </a>
+                    @endforeach
 
-                    <div class="two-col d-block d-md-flex">
-                        <a href="single.html" class="hentry v-height img-2 gradient"
-                            style="background-image: url('{{ asset('frontend') }}/images/img_2.jpg');">
-                            <span class="post-category text-white bg-primary">Sports</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
-                        <a href="single.html" class="hentry v-height img-2 ml-auto gradient"
-                            style="background-image: url('{{ asset('frontend') }}/images/img_3.jpg');">
-                            <span class="post-category text-white bg-warning">Lifestyle</span>
-                            <div class="text text-sm">
-                                <h2>The 20 Biggest Fintech Companies In America 2019</h2>
-                                <span>February 12, 2019</span>
-                            </div>
-                        </a>
+                    <div class="two-col d-block d-md-flex justify-content-between">
+                        @foreach ($middlerelatedpost as $footerpost)
+                            <a href="{{ route('website.post', ['slug' => $footerpost->slug]) }}"
+                                class="hentry v-height img-2 gradient"
+                                style="background-image: url('{{ $footerpost->image }}');">
+                                <span
+                                    class="post-category text-white bg-warning">{{ $footerpost->category->category_name }}</span>
+                                <div class="text text-sm">
+                                    <h2>{{ $footerpost->title }}</h2>
+                                    <span>{{ $footerpost->created_at->format('M d, Y') }}</span>
+                                </div>
+                            </a>
+                        @endforeach
+
                     </div>
 
                 </div>
