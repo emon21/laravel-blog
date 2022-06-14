@@ -16,16 +16,29 @@ class SettingController extends Controller
         return view('backend.setting.edit',compact('setting'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request)
     {
-        //
-    }
+    // return dd($request->all());
+    $this->validate($request,[
+       'site_name' => 'required',
+       'copy_right' => 'required',
+      ]);
+      
+      $setting = Setting::first();
+      $setting->update($request->all());
+       
+      //   $setting->update([
+      //    'name' => $request->site_name,
+      //   ]);
+        
+        
+        if($request->hasFile('site_logo')) {
+         $filename = time() . '.' .$request->site_logo->getClientOriginalextension();
+         $request->site_logo->move(public_path('backend/setting/'), $filename);
+         $setting->site_logo = 'backend/setting/'.$filename;
+         $setting->save();
+      }
+      return redirect()->back();
 
+    }
 }

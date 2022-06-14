@@ -29,6 +29,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">Edit Site Setting</h3>
+
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -38,100 +39,138 @@
                             </div>
                         @endif
                         <div class="card-body p-0">
-                            <div class="row">
-                                <div class="col-12 col-lg-9">
-                                    <!-- form start -->
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        @csrf
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">Site Name</label>
-                                                        <input type="text"
-                                                            class="form-control @error('name') is-invalid @enderror"
-                                                            name="name" value="" id="exampleInputEmail1">
-                                                        @error('name')
-                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
 
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">User Email</label>
-                                                        <input type="text"
-                                                            class="form-control @error('email') is-invalid @enderror"
-                                                            name="email" value="" id="exampleInputEmail1"
-                                                            placeholder="Enter Email">
-                                                        @error('email')
-                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
+                            <div class="col-md-8 mt-4 mb-4 justify-content-center d-block mx-auto">
 
-                                                    <div class="form-group">
-                                                        <label for="exampleInputEmail1">User Password <small
-                                                                class="text-danger">( Enter
-                                                                Password if you
-                                                                Changed )</small></label>
-                                                        <input type="text"
-                                                            class="form-control @error('password') is-invalid @enderror"
-                                                            name="password" value="{{ old('password') }}"
-                                                            id="exampleInputEmail1" placeholder="Enter Password ">
-                                                        @error('password')
-                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
+                                <!-- form start -->
+                                {{-- <form action="{{ route('setting.update') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf --}}
+
+                                <form action="{{ route('setting.update') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group">
+                                        <label for="site_name">Site Name</label>
+                                        <input type="text" class="form-control @error('site_name') is-invalid @enderror"
+                                            name="site_name" value="{{ $setting->site_name }}">
+                                        @error('site_name')
+                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email"> Email</label>
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                            name="email" value="{{ $setting->email }}" placeholder="Enter Email">
+                                        @error('email')
+                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label for="site_logo">Site Logo</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                        name="site_logo">
+                                                    <label class="custom-file-label" for="site_logo">Choose
+                                                        file</label>
                                                 </div>
-                                                <div class="col-6">
-                                                    <div class="form-group">
-                                                        <label for="exampleInputFile">Picture</label>
-                                                        <div class="input-group">
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input"
-                                                                    id="exampleInputFile" name="user_picture">
-                                                                <label class="custom-file-label"
-                                                                    for="exampleInputFile">Choose file</label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label>User Description</label>
-                                                        <textarea class="form-control" rows="5" name="desc" placeholder="Write your profile description"></textarea>
-                                                    </div>
-
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div
+                                                    style="max-width:100px;max-height:100px;overflow:hidden;margin-left:auto;">
+                                                    <img src="{{ asset($setting->site_logo) }}" alt=""
+                                                        class="img-fluid">
                                                 </div>
                                             </div>
                                         </div>
 
-
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary">Update Profile</button>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="card">
-                                        <div class="card-body text-center">
-                                            <div style="width:202px;height:202px;overflow:hidden" class="m-auto">
-                                                <img src="" class="img-fluid rounded-circle img-rounded" alt="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Site Description</label>
+                                        <textarea class="form-control" rows="5" name="site_desc" placeholder="Write your Site description">{{ $setting->site_desc }}</textarea>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="facebook">Facebook</label>
+                                                <input type="text"
+                                                    class="form-control @error('facebook') is-invalid @enderror"
+                                                    name="facebook" value="{{ $setting->facebook }}"
+                                                    placeholder="Facebook URL">
+                                                @error('facebook')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
+                                        </div>
 
-                                            <div class="mt-1">
-                                                <h4></h4>
-                                                <p></p>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="twitter">Twitter</label>
+                                                <input type="text"
+                                                    class="form-control @error('twitter') is-invalid @enderror"
+                                                    name="twitter" value="{{ $setting->twitter }}"
+                                                    placeholder="Twitter URL">
+                                                @error('twitter')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="instagram">Instagram</label>
+                                                <input type="text"
+                                                    class="form-control @error('instagram') is-invalid @enderror"
+                                                    name="instagram" value="{{ $setting->facebook }}"
+                                                    placeholder="instagram URL">
+                                                @error('instagram')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="rss">RSS</label>
+                                                <input type="text" class="form-control @error('rss') is-invalid @enderror"
+                                                    name="rss" value="{{ $setting->rss }}" placeholder="rss URL">
+                                                @error('rss')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                    </div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="copy_right">Copy Right</label>
+                                                <input type="text"
+                                                    class="form-control @error('copy_right') is-invalid @enderror"
+                                                    name="copy_right" value="{{ $setting->copy_right }}"
+                                                    placeholder="Enter Copy Right">
+                                                @error('copy_right')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
-
-                                </div>
+                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                </form>
+                                <!-- /.card -->
                             </div>
-                        </div>
-                        <!-- /.card-body -->
 
+                        </div>
 
                     </div>
-                    <!-- /.card -->
+                    <!-- /.card-body -->
                 </div>
+                <!-- /.card -->
             </div>
+        </div>
         </div>
     </section>
 @endsection

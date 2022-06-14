@@ -103,6 +103,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
     //website Setting
     Route::get('setting',[SettingController::class,'edit'])->name('setting');
+    Route::post('setting',[SettingController::class,'update'])->name('setting.update');
 });
 
 // Route::prefix('admin')->middleware(['auth'])->group(function(){

@@ -15,12 +15,12 @@ class SettingSeeder extends Seeder
     public function run()
     {
         $setting = Setting::create([
-         'name' => 'blog',
+         'site_name' => 'blog',
          'site_logo' => 'backend/setting/logo.png',
-         'about_site' => 'about_site',
+         'site_desc' => 'about_site',
          'facebook' => 'facebook',
          'twitter' => 'twitter',
-         'instragrm' => 'instragrm',
+         'instagram' => 'instagram',
          'rss' => 'rss',
          'email' => 'email',
          'copy_right' => 'Copyright © 2022 All rights reserved',
