@@ -58,14 +58,6 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="email"> Email</label>
-                                        <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                            name="email" value="{{ $setting->email }}" placeholder="Enter Email">
-                                        @error('email')
-                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                    <div class="form-group">
                                         <div class="row">
                                             <div class="col-sm-8">
                                                 <label for="site_logo">Site Logo</label>
@@ -86,10 +78,7 @@
                                         </div>
 
                                     </div>
-                                    <div class="form-group">
-                                        <label>Site Description</label>
-                                        <textarea class="form-control" rows="5" name="site_desc" placeholder="Write your Site description">{{ $setting->site_desc }}</textarea>
-                                    </div>
+
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="form-group">
@@ -146,6 +135,16 @@
                                         </div>
                                         <div class="col-sm-6">
                                             <div class="form-group">
+                                                <label for="email"> Email</label>
+                                                <input type="text" class="form-control @error('email') is-invalid @enderror"
+                                                    name="email" value="{{ $setting->email }}" placeholder="Enter Email">
+                                                @error('email')
+                                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
                                                 <label for="copy_right">Copy Right</label>
                                                 <input type="text"
                                                     class="form-control @error('copy_right') is-invalid @enderror"
@@ -158,7 +157,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                                    <div class="form-group">
+                                        <label>Site Description</label>
+                                        <textarea class="form-control" rows="5" name="site_desc" placeholder="Write your Site description">{{ $setting->site_desc }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Setting</button>
                                 </form>
                                 <!-- /.card -->
                             </div>

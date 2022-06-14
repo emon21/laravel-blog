@@ -61,6 +61,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('/',[WebsiteController::class,'index'])->name('website');
 Route::get('/about',[WebsiteController::class,'about'])->name('about');
+Route::get('/contact',[WebsiteController::class,'contact'])->name('contact');
 Route::get('/blog',[WebsiteController::class,'BlogList'])->name('website.blog');
 Route::get('/category',[WebsiteController::class,'category'])->name('website.category');
 Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])->name('singleCategory');

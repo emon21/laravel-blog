@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Setting;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use Modules\Category\Entities\Category;
@@ -26,8 +27,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Paginator::useBootstrap();
+
+        //categories
         $categories = Category::take(15)->get();
         view::share('categories',$categories);
+        //setting
+        $setting = Setting::first();
+        view::share('setting',$setting);
 
     }
 }
