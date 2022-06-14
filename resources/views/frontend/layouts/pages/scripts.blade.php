@@ -10,6 +10,7 @@
 <script src="{{ asset('frontend') }}/js/bootstrap-datepicker.min.js"></script>
 <script src="{{ asset('frontend') }}/js/aos.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{ asset('frontend') }}/js/main.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->

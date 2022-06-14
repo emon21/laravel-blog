@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
-
+use App\Models\User;
 class WebsiteController extends Controller
 {
 
@@ -31,7 +31,8 @@ class WebsiteController extends Controller
     //about
     public function about()
     {
-      return view('frontend.about');
+      $user = User::first();
+      return view('frontend.about',compact('user'));
     }
 
     //Single Post
