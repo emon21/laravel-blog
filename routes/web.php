@@ -9,6 +9,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
+use Modules\Category\Entities\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,22 @@ Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('
 
 Route::get('/test',function(){
    $posts = Post::all();
+   $id = 50;
+   foreach($posts as $post){
+      
+      
+      $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
+     
+     // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
+   
+      $post->save();
+      $id++;
+   }
+   return $posts;
+});
+
+Route::get('/cat',function(){
+   $posts = Category::all();
    $id = 50;
    foreach($posts as $post){
       

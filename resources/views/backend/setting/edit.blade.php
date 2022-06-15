@@ -146,14 +146,21 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="copy_right">Copy Right</label>
-                                                <input type="text"
-                                                    class="form-control @error('copy_right') is-invalid @enderror"
-                                                    name="copy_right" value="{{ $setting->copy_right }}"
-                                                    placeholder="Enter Copy Right">
-                                                @error('copy_right')
-                                                    <div class="alert alert-danger mt-2">{{ $message }}
-                                                    </div>
-                                                @enderror
+                                                <input type="text" class="form-control" name="copy_right"
+                                                    value="{{ $setting->copy_right }}" placeholder="Enter Copy Right">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="phone_no">Phone No</label>
+                                                <input type="text" class="form-control" name="phone_no"
+                                                    value="{{ $setting->phone_no }}" placeholder="Enter Phone No">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label for="address">Location :</label>
+                                                <textarea class="form-control" rows="1" name="address" placeholder="Write your Address">{{ $setting->address }}</textarea>
                                             </div>
                                         </div>
                                     </div>

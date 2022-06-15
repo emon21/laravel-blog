@@ -34,6 +34,12 @@ class WebsiteController extends Controller
       $user = User::first();
       return view('frontend.about',compact('user'));
     }
+    //about
+    public function contact()
+    {
+     // $user = User::first();
+      return view('frontend.contact');
+    }
 
     //Single Post
     public function SingleCategory($slug)

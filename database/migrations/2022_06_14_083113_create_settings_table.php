@@ -24,6 +24,8 @@ class CreateSettingsTable extends Migration
             $table->string('rss')->nullable();
             $table->string('email')->nullable();
             $table->string('copy_right')->nullable();
+            $table->string('phone_no')->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
         });
     }

@@ -3,38 +3,36 @@
 
 @section('content')
 
-    <div class="container">
-        <h2>Toggleable Pills</h2>
-        <br>
-        <!-- Nav pills -->
-        <ul class="nav nav-pills" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="pill" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu1">Menu 1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="pill" href="#menu2">Menu 2</a>
-            </li>
-        </ul>
 
-        <!-- Tab panes -->
-        <div class="tab-content">
-            <div id="home" class="container tab-pane active"><br>
-                <h3>HOME</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                    dolore magna aliqua.</p>
+    <div class="py-5 bg-light">
+        <div class="container">
+
+            <div class="d-flex mt-4 justify-content-between">
+                <div class="col-md-6">
+                    <h4> {{ $user->name }}</h4>
+                    <p class="text-justify"> {{ $user->description }}</p>
+                </div>
+                <div class="col-md-5 m-0">
+                    <img src="@if ($user->image) {{ $user->image }} @else {{ asset('backend/user/user.png') }} @endif"
+                        alt="Image placeholder" class="img-fluid">
+                </div>
             </div>
-            <div id="menu1" class="container tab-pane fade"><br>
-                <h3>Menu 1</h3>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                    consequat.</p>
-            </div>
-            <div id="menu2" class="container tab-pane fade"><br>
-                <h3>Menu 2</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam
-                    rem aperiam.</p>
+        </div>
+    </div>
+    <div class="site-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-md-5">
+                    <div class="subscribe-1 ">
+                        <h2>Subscribe to our newsletter</h2>
+                        <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt
+                            error illum a explicabo, ipsam nostrum.</p>
+                        <form action="#" class="d-flex">
+                            <input type="text" class="form-control" placeholder="Enter your email address">
+                            <input type="submit" class="btn btn-primary" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
