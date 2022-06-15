@@ -24,30 +24,47 @@
 
         <div class="site-section bg-light">
             <div class="container">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
                 <div class="row">
                     <div class="col-md-7 mb-5">
 
+                        {{-- @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif --}}
 
 
-                        <form action="#" class="p-5 bg-white">
 
-
+                        <form action="{{ route('send_message') }}" class="p-5 bg-white" method="post">
+                            @csrf
                             <div class="row form-group">
-                                <div class="col-md-6 mb-3 mb-md-0">
-                                    <label class="text-black" for="fname">First Name</label>
-                                    <input type="text" id="fname" class="form-control">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="text-black" for="lname">Last Name</label>
-                                    <input type="text" id="lname" class="form-control">
+                                <div class="col-md-12 mb-3 mb-md-0">
+                                    <label class="text-black" for="name">Full Name</label>
+                                    <input type="text" name="name" value="{{ old('name') }}"
+                                        class="form-control @error('name') is-invalid @enderror">
+                                    @error('name')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row form-group">
-
                                 <div class="col-md-12">
                                     <label class="text-black" for="email">Email</label>
-                                    <input type="email" id="email" class="form-control">
+                                    <input type="text" name="email" value="{{ old('email') }}"
+                                        class="form-control @error('email') is-invalid @enderror">
+                                    @error('email')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -55,15 +72,22 @@
 
                                 <div class="col-md-12">
                                     <label class="text-black" for="subject">Subject</label>
-                                    <input type="subject" id="subject" class="form-control">
+                                    <input type="subject" name="subject" value="{{ old('subject') }}"
+                                        class="form-control @error('subject') is-invalid @enderror">
+                                    @error('subject')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
                             <div class="row form-group">
                                 <div class="col-md-12">
                                     <label class="text-black" for="message">Message</label>
-                                    <textarea name="message" id="message" cols="30" rows="7" class="form-control"
-                                        placeholder="Write your notes or questions here..."></textarea>
+                                    <textarea name="message" value="{{ old('message') }}" cols="30" rows="7"
+                                        class="form-control @error('message') is-invalid @enderror" placeholder="Write your notes or questions here...">{{ old('message') }}</textarea>
+                                    @error('message')
+                                        <div class="text-danger">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 

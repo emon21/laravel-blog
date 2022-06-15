@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
@@ -34,11 +35,31 @@ class WebsiteController extends Controller
       $user = User::first();
       return view('frontend.about',compact('user'));
     }
-    //about
+    //Contact
     public function contact()
     {
      // $user = User::first();
       return view('frontend.contact');
+    }
+
+    public function sendMessage(Request $request)
+    {
+     // return $request->all();
+     //validation
+     $this->validate($request,[
+      'name' => 'required',
+      'email' => 'required|email|max:200',
+      'subject' => 'required|max:255',
+      'message' => 'required|min:100',
+     ]);
+      $contact = New Contact();
+      $contact->name = $request->name;
+      $contact->email = $request->email;
+      $contact->subject = $request->subject;
+      $contact->message = $request->message;
+      $contact->save();
+      return redirect('contact')->with('status','Message Has Been Send');
+     // return gettype($contact);
     }
 
     //Single Post

@@ -3,6 +3,7 @@
     <li><a href="{{ route('website.blog') }}">Blog</a></li>
     <li><a href="{{ route('website.category') }}">Category</a></li>
     <li><a href="{{ route('about') }}">About US</a></li>
+    <li><a href="{{ route('contact') }}">Contact US</a></li>
     @foreach ($categories as $category)
         <li><a href="{{ route('singleCategory', $category->slug) }}">{{ $category->category_name }}</a>
         </li>

@@ -22,8 +22,10 @@ class SettingSeeder extends Seeder
          'twitter' => 'twitter',
          'instagram' => 'instagram',
          'rss' => 'rss',
-         'email' => 'email',
+         'email' => 'devhasib21@gmail.com',
          'copy_right' => 'Copyright © 2022 All rights reserved',
+         'phone_no' => '+880 1811 2872 56',
+         'address' => '203 Fake St. Mountain View, San Francisco, California, USA',
         ]);
         $setting->save();
     }
