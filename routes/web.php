@@ -72,10 +72,21 @@ Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
 
 Route::get('/test',function(){
-   $posts = Post::all();
+ 
    $id = 50;
+
+   $cat = Category::all();
+   foreach($cat as $value){
+   $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
+   $value->save();
+   $id++;
+   }
+   return $cat;
+
+
+   $posts = Post::all();
    foreach($posts as $post){
-      
+     
       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
      
      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
