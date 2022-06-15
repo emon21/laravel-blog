@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WebsiteController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
@@ -74,7 +75,6 @@ Route::get('/test',function(){
    $id = 50;
    foreach($posts as $post){
       
-      
       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
      
      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
@@ -123,6 +123,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     //website Setting
     Route::get('setting',[SettingController::class,'edit'])->name('setting');
     Route::post('setting',[SettingController::class,'update'])->name('setting.update');
+
+    //contact
+    Route::get('/contact',[ContactController::class,'index'])->name('message');
+    Route::get('/contact/{id}',[ContactController::class,'show'])->name('contact.show');
+    Route::delete('/contact/delete/{id}',[ContactController::class,'destroy'])->name('contact.delete');
 });
 
 // Route::prefix('admin')->middleware(['auth'])->group(function(){
@@ -134,6 +139,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
 
 //     Route::get('/dashboard' ,[AdminController::class,'home'])->name('dashboard');
 // });
+
+
+
+
 
 // =================================== Admin Controller Route End    ===================================
 

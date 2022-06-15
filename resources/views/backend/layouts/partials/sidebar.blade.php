@@ -278,7 +278,7 @@
                     </a>
                 </li>
                 <li class="nav-item mt-auto">
-                    <a href="{{ route('setting') }}" class="nav-link">
+                    <a href="{{ route('message') }}" class="nav-link">
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;Contact
                     </a>
                 </li>
