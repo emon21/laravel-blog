@@ -103,10 +103,10 @@ class WebsiteController extends Controller
 
      //$category = Category::with('post')->get();
      $category = Category::all();
-      $tag = Tag::all();
+      $tags = Tag::all();
 
       if($post){
-         return view('frontend.single_post',compact('post','posts','category','tag','firstrelatedpost','middlerelatedpost','lastrelatedpost'));
+         return view('frontend.single_post',compact('post','posts','category','tags','firstrelatedpost','middlerelatedpost','lastrelatedpost'));
       }
       else{
          return view('frontend.index');
@@ -136,6 +136,22 @@ class WebsiteController extends Controller
 
       $categoryList = Category::all();
       return view('frontend.category',compact('categoryList'));
+    }
+
+    //tag
+    public function tag($slug)
+    {
+      $tag = tag::where('slug',$slug)->first();
+      //return $tag->posts;
+      if ($tag) {
+        //return $category;
+        $posts = $tag->posts()->orderBy('created_at','desc')->paginate(9);
+       // return $posts;
+         return view('frontend.tag',compact('tag','posts'));
+      }
+      else{
+         return redirect()->route('website');
+      }
     }
 
 

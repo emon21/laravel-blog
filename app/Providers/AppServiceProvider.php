@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         //categories
-        $categories = Category::take(15)->get();
+        $categories = Category::orderBy('ID','ASC')->inRandomOrder()->take(5)->get();
         view::share('categories',$categories);
         //setting
         $setting = Setting::first();

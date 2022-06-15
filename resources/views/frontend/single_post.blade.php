@@ -44,7 +44,10 @@
                             @if ($post->tags->count() > 0)
                                 Tags:
                                 @foreach ($post->tags as $tag)
-                                    <a href="#">{{ $tag->tag_name }}</a>
+                                    <span class="badge badge-dark badge-sm badge-pill px-2 py-1 ml-1 ">
+                                        <a href="{{ route('website.tag', ['slug' => $tag->slug]) }}"
+                                            class="text-light">{{ $tag->tag_name }}</a>
+                                    </span>
                                 @endforeach
                             @endif
 
@@ -222,7 +225,7 @@
 
                                 @foreach ($posts as $post)
                                     <li>
-                                        <a href="">
+                                        <a href="{{ route('website.post', ['slug' => $post->slug]) }}">
                                             <img src="{{ asset($post->image_url) }}" alt="Image placeholder"
                                                 class="mr-4">
                                             <div class="text">
@@ -244,7 +247,8 @@
                         <h3 class="heading">Categories</h3>
                         <ul class="categories">
                             @foreach ($category as $catlist)
-                                <li><a href="{{ $catlist->slug }}">{{ $catlist->category_name }} <span>(12)</span></a>
+                                <li><a href="{{ route('singleCategory', $catlist->slug) }}">{{ $catlist->category_name }}
+                                        <span>(12)</span></a>
                                 </li>
                             @endforeach
                         </ul>
@@ -253,10 +257,12 @@
 
                     <div class="sidebar-box">
                         <h3 class="heading">Tags</h3>
+
                         <ul class="tags">
 
-                            @foreach ($tag as $taglist)
-                                <li><a href="#">{{ $taglist->tag_name }}</a></li>
+                            @foreach ($tags as $tag)
+                                <li><a href="{{ route('website.tag', $tag->slug) }}">{{ $tag->tag_name }}</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>

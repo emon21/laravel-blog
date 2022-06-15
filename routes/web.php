@@ -67,6 +67,7 @@ Route::get('/contact',[WebsiteController::class,'contact'])->name('contact');
 Route::post('/contact',[WebsiteController::class,'sendMessage'])->name('send_message');
 Route::get('/blog',[WebsiteController::class,'BlogList'])->name('website.blog');
 Route::get('/category',[WebsiteController::class,'category'])->name('website.category');
+Route::get('/tag/{slug}',[WebsiteController::class,'tag'])->name('website.tag');
 Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])->name('singleCategory');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
 
@@ -89,8 +90,7 @@ Route::get('/cat',function(){
    $posts = Category::all();
    $id = 50;
    foreach($posts as $post){
-      
-      
+
       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
      
      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";

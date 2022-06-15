@@ -16,53 +16,64 @@
             @endif
 
         </div>
-        <hr>
+        {{-- <hr> --}}
 
-        <div class="sidebar-item search-form">
+        {{-- <div class="sidebar-box search-form">
             <h3 class="sidebar-title">Search</h3>
             <form action="" class="mt-3">
                 <input type="text">
-                <button type="submit"><i class="bi bi-search"></i></button>
+                <button type="submit"><i class="fa fa-search"></i></button>
             </form>
-        </div><!-- End sidebar search formn-->
+        </div> --}}
+
+        <!-- End sidebar search formn-->
 
         <div class="sidebar-item categories">
             <h3 class="sidebar-title">Categories</h3>
             <ul class="mt-3">
                 @foreach ($categoryList as $list)
-                    <li><a href="#">{{ $list->category_name }} <span>(25)</span></a></li>
+                    <li><a href="{{ route('singleCategory', $list->slug) }}">{{ $list->category_name }}
+                            <span>(25)</span></a></li>
                 @endforeach
 
             </ul>
         </div><!-- End sidebar categories-->
 
-        <div class="sidebar-item recent-posts">
-            <h3 class="sidebar-title">Recent Posts</h3>
-
-            <div class="mt-3">
-
-                @foreach ($postList as $posts)
-                    <div class="post-item mt-3">
-                        <img src="{{ asset('frontend') }}/assets/img/blog/blog-recent-1.jpg" alt=""
-                            class="flex-shrink-0">
-                        <div>
-                            <h4><a href="{{ url('singlePost', $posts->id) }}">{{ $posts->title }}</a></h4>
-                            <time datetime="2020-01-01">{{ $posts->created_at->format('d-M-Y') }}</time>
-                        </div>
-                    </div><!-- End recent post item-->
-                @endforeach
 
 
+        <div class="sidebar-box">
+            <h3 class="heading">Recent Posts</h3>
+            <div class="post-entry-sidebar">
+                <ul>
+
+                    @foreach ($postList as $post)
+                        <li>
+                            <a href="{{ url('singlePost', $post->slug) }}">
+                                <img src="{{ asset($post->image_url) }}" alt="Image placeholder"
+                                    class="mr-4">
+                                <div class="text">
+                                    <h4>{{ $post->title }}</h4>
+                                    <div class="post-meta">
+                                        <span class="mr-2">
+                                            {{ $post->created_at->format('M d ,Y') }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+                </ul>
             </div>
+        </div>
+        <!-- End sidebar recent posts-->
 
-        </div><!-- End sidebar recent posts-->
+
 
         <div class="sidebar-item tags">
             <h3 class="sidebar-title">Tags</h3>
 
             <ul class="mt-3">
                 @foreach ($tag as $tags)
-                    <li><a href="#">{{ $tags->tag_name }}</a></li>
+                    <li><a href="{{ route('website.tag', $tags->slug) }}">{{ $tags->tag_name }}</a></li>
                 @endforeach
 
             </ul>

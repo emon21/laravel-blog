@@ -19,7 +19,7 @@
             <div class="row align-items-stretch retro-layout">
                 @foreach ($categoryList as $list)
                     <div class="col-md-4 order-md-2">
-                        <a href="{{ route('website.post', ['slug' => $list->slug]) }}" class="hentry img-1"
+                        <a href="{{ route('singleCategory', $list->slug) }}" class="hentry img-1"
                             style="background-image: url('{{ $list->image_url }}');height: 260px;margin-bottom: 20px;text-align: center;">
                             <span class="post-category text-white bg-danger"
                                 style="margin-top: 110px;">{{ $list->category_name }}</span>
