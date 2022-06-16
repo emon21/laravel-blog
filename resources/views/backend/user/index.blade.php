@@ -30,57 +30,79 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">User Profile</h3>
+                                
+                                @if (session('status'))
+                                @include('backend.layouts.success')
+                                @else
+                                @include('backend.layouts.error')
+                                @endif
+
                                 <a href="{{ route('user.create') }}" class="btn btn-primary text-light">Create User</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <table class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Sl No</th>
-                                    <th>User Name</th>
-                                    <th>Email</th>
-                                    <th>User Picture</th>
-                                    <th>Description</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($userlist as $user)
+                        @if ($users->count())
+                            <table class="table table-bordered table-striped">
+                                <thead>
                                     <tr>
-                                        <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->email }}</td>
-                                        <td><img src="@if ($user->image) {{ asset($user->image) }} @else
-                                          {{ asset('backend/user/user.png') }} @endif"
-                                                alt="" width="120" height="120" class="img-fluid"></td>
-                                        <td>{{ Str::limit($user->description, 30) }}</td>
-                                        <td>
-                                            <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <form action="{{ route('user.destroy', $user->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                {{-- <a href="" class="btn btn-danger"
-                                                    onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
-                                                        class="fas fa-trash"></i></a> --}}
-
-                                                <button type="submit" class="btn btn-danger"><i
-                                                        class="fas fa-trash"></i></button>
-                                            </form>
-
-
-
-                                        </td>
-
+                                        <th>Sl No</th>
+                                        <th width="7%">User Picture</th>
+                                        <th>User Name</th>
+                                        <th>Email</th>
+                                        <th width="2%">Action</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($users as $user)
+                                        <tr>
+                                            <td>{{ $loop->index + 1 }}</td>
+                                            <td>
+
+                                                <div style="max-width:70px;max-height:70px;overflow:hidden"
+                                                    class="m-auto">
+                                                    <img src="@if ($user->image) {{ asset($user->image) }} @else
+                                                 {{ asset('backend/user/user.png') }} @endif"
+                                                        class="img-fluid rounded-circle img-rounded" alt="">
+                                                </div>
+                                            </td>
+                                            <td>{{ $user->name }}</td>
+                                            <td>{{ $user->email }}</td>
+
+                                            <td class="text-center">
+
+                                                <div class="d-flex">
+                                                    <a href="{{ route('user/view', $user->id) }}"
+                                                        class="btn btn-warning mr-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <a href="{{ route('user.edit', $user->id) }}"
+                                                        class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
+                                                    <form action="{{ route('user.destroy', $user->id) }}" method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn btn-danger"><i
+                                                                class="fas fa-trash"></i></button>
+                                                    </form>
+                                                </div>
+
+
+
+
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <tr>
+                                <td>
+                                    <span class="text-center text-danger">No User Found</span>
+                                </td>
+                            </tr>
+                        @endif
                     </div>
                     <!-- /.card -->
                     <div class="text-center">
-                        {{ $userlist->links() }}
+                        {{ $users->links() }}
                     </div>
                 </div>
 

@@ -53,7 +53,8 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('backend/assets') }}/dist/img/user1-128x128.jpg" alt="User Avatar"
+                        <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
+                        {{ asset('backend/user/user.png') }} @endif" alt="User Avatar"
                             class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
@@ -70,7 +71,8 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('backend/assets') }}/dist/img/user8-128x128.jpg" alt="User Avatar"
+                        <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
+                        {{ asset('backend/user/user.png') }} @endif" alt="User Avatar"
                             class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
@@ -87,7 +89,7 @@
                 <a href="#" class="dropdown-item">
                     <!-- Message Start -->
                     <div class="media">
-                        <img src="{{ asset('backend/assets') }}/dist/img/user3-128x128.jpg" alt="User Avatar"
+                        <img src="{{ asset('backend/assets') }}/dist/img/user2-160x160.jpg" alt="User Avatar"
                             class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">

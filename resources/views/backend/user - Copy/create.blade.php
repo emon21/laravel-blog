@@ -1,19 +1,18 @@
 {{-- @extends('category::layouts.master') --}}
 @extends('backend.layouts.master')
-@section('title', 'Create User')
+@section('title', 'User List')
 @section('header')
     {{-- @include('backend.layouts.partials.header') --}}
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Create User</h1>
+                    <h1 class="m-0">User</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="#">User List</a></li>
-                        <li class="breadcrumb-item active">Create User</li>
+                        <li class="breadcrumb-item active">User</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,8 +29,8 @@
                     <div class="card card-light">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="card-title">Create User</h3>
-                                <a href="{{ route('user') }}" class="btn btn-primary text-light">Go back User List</a>
+                                <h3 class="card-title">User Profile</h3>
+                                <a href="{{ route('user') }}" class="btn btn-primary text-light">Go back User</a>
                             </div>
                         </div>
                         <!-- /.card-header -->

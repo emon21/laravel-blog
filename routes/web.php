@@ -57,8 +57,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 
-
-
 // =================================== Website Controller Route Start ===================================
 
 Route::get('/',[WebsiteController::class,'index'])->name('website');
@@ -95,20 +93,20 @@ Route::get('/test',function(){
   // return $posts;
 });
 
-Route::get('/cat',function(){
-   $posts = Category::all();
-   $id = 50;
-   foreach($posts as $post){
+// Route::get('/cat',function(){
+//    $posts = Category::all();
+//    $id = 50;
+//    foreach($posts as $post){
 
-      $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
+//       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
      
-     // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
+//      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
    
-      $post->save();
-      $id++;
-   }
-   return $posts;
-});
+//       $post->save();
+//       $id++;
+//    }
+//    return $posts;
+// });
 //Route::view('/','frontend.index');
 
 // =================================== Website Controller Route End   ===================================
@@ -126,8 +124,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     // Route::view('/clock', 'backend.clock');
 
     Route::resource('user', UserController::class);
+    Route::get('user/view/{user}', [UserController::class,'userView'])->name('user/view');
     Route::get('profile', [UserController::class,'userProfile'])->name('user/profile');
-    Route::post('profile', [UserController::class,'userUpdate'])->name('user/update');
+    Route::post('profile', [UserController::class,'userUpdate'])->name('user/profile/update');
 
     //website Setting
     Route::get('setting',[SettingController::class,'edit'])->name('setting');

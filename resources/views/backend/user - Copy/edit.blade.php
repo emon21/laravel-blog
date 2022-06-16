@@ -42,10 +42,10 @@
                             <div class="row">
                                 <div class="col-12 col-lg-9">
                                     <!-- form start -->
-                                    <form action="{{ route('user/profile/update') }}" method="POST"
+                                    <form action="{{ route('user.update', $user->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        <input type="text" name="userID" value="{{ $user->id }}">
+                                        <input type="text" name="" id="" value="{{ $user->id }}">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-6">
