@@ -20,7 +20,7 @@ class UserController extends Controller
     //user create
     public function create()
     {
-        return view('backend.user.index');
+        return view('backend.user.create');
     }
 
     //user store
@@ -65,7 +65,7 @@ class UserController extends Controller
       $user->password = bcrypt($request->password);
       $user->save();
       Session::flash('update','User Update Successfully');
-      return redirect()->back();
+      return redirect()->route('user.index');
     }
 
     //user destroy
@@ -80,14 +80,14 @@ class UserController extends Controller
     }
 
 
-   //  public function UserSetting()
-   //  {
-   //      return view('user.layouts.blank');
-   //  }
-   //  public function UserLogin()
-   //  {
-   //      return view('user.user_login');
-   //  }
+    public function UserSetting()
+    {
+        return view('user.layouts.blank');
+    }
+    public function UserLogin()
+    {
+        return view('user.user_login');
+    }
 
 
    //user

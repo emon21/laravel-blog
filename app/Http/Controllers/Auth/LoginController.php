@@ -35,7 +35,7 @@ class LoginController extends Controller
          }
          else if(Auth::user()->user_type == 0){
 
-            return redirect()->route('home')->with('status' ,'Login In Successfull');
+            return redirect()->route('user')->with('status' ,'Login In Successfull');
             
          }
          else{

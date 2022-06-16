@@ -23,83 +23,15 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
-                <div class="col-md-4 justify-content-center d-block mx-auto">
-
-
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Create User</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form action="{{ route('user.store') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">User Name</label>
-                                    <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="{{ old('name') }}" id="exampleInputEmail1" placeholder="Enter Name">
-                                    @error('name')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">User Email</label>
-                                    <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                        name="email" value="{{ old('email') }}" id="exampleInputEmail1"
-                                        placeholder="Enter Email">
-                                    @error('email')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">User Password</label>
-                                    <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                        name="password" value="{{ old('password') }}" id="exampleInputEmail1"
-                                        placeholder="Enter Password ">
-                                    @error('password')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="comment">Description:</label>
-                                    <textarea class="form-control @error('desc') is-invalid @enderror" rows="5" id="comment" name="desc"></textarea>
-                                    @error('desc')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Picture</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-success">Create User</button>
-                            </div>
-                            <!-- /.card-body -->
-                            {{-- <div class="card-footer">
-
-                            </div> --}}
-                        </form>
-                    </div>
-                    <!-- /.card -->
-                </div>
                 <!-- view data -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- general form elements -->
-                    <div class="card card-success">
+                    <div class="card card-light">
                         <div class="card-header">
-                            <h3 class="card-title">All User</h3>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title">User Profile</h3>
+                                <a href="{{ route('user.create') }}" class="btn btn-primary text-light">Create User</a>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <table class="table table-bordered table-striped">
@@ -110,8 +42,6 @@
                                     <th>Email</th>
                                     <th>User Picture</th>
                                     <th>Description</th>
-                                    <th>Slug</th>
-                                    <th>status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -121,17 +51,10 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td><img src="{{ asset($user->image) }}" alt="" width="180" height="120"></td>
-                                        <td>{{ $user->description }}</td>
-                                        <td>{{ $user->slug }}</td>
-                                        <td>
-                                            @if ($user->status == 1)
-                                                <span class="text-success"
-                                                    style="color:green;font-weight: bold;font-size:20px">Enable</span>
-                                            @else
-                                                <span style="color:red;font-weight: bold;font-size:20px">Disable</span>
-                                            @endif
-                                        </td>
+                                        <td><img src="@if ($user->image) {{ asset($user->image) }} @else
+                                          {{ asset('backend/user/user.png') }} @endif"
+                                                alt="" width="120" height="120" class="img-fluid"></td>
+                                        <td>{{ Str::limit($user->description, 30) }}</td>
                                         <td>
                                             <a href="{{ route('user.edit', $user->id) }}" class="btn btn-info"><i
                                                     class="fas fa-edit"></i></a>
@@ -147,13 +70,6 @@
                                             </form>
 
 
-                                            @if ($user->status == 1)
-                                                <a href="{{ route('status', $user->id) }}" class="btn btn-dark"><i
-                                                        class="fa fa-eye-slash text-danger" aria-hidden="true"></i></a>
-                                            @else
-                                                <a href="{{ route('status', $user->id) }}" class="btn btn-dark"> <i
-                                                        class="fa fa-solid fa-eye text-success"></i></a>
-                                            @endif
 
                                         </td>
 

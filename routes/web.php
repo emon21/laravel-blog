@@ -33,25 +33,25 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // =================================== User Controller Route Start ===================================
 
-    // Route::group(['middleware'=>['auth']],function(){
-    //     // Route::get('/', [AdminController::class, 'index'])->name('admin');
-    //     // Route::get('/home', [AdminController::class, 'home'])->name('backend');
+   //  Route::group(['middleware'=>['auth']],function(){
+   //      // Route::get('/', [AdminController::class, 'index'])->name('admin');
+   //      // Route::get('/home', [AdminController::class, 'home'])->name('backend');
 
-    // Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
+   //  Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
 
-    // Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+   //  Route::get('/admin', [AdminController::class, 'index'])->name('admin');
 
-    // Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin/logout');
-    // });
+   //  Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin/logout');
+   //  });
 
-      // Route::prefix('user')->group(function () {
+      Route::prefix('user')->group(function () {
 
-      //    Route::get('/',[UserController::class,'index'])->name('user');
+         Route::get('/',[UserController::class,'index'])->name('user');
 
-      //    Route::get('/user_setting',[UserController::class,'UserSetting'])->name('UserSetting');
+         Route::get('/user_setting',[UserController::class,'UserSetting'])->name('UserSetting');
 
-      //   Route::get('/login',[UserController::class,'UserLogin']);
-      // });
+        Route::get('/login',[UserController::class,'UserLogin']);
+      });
 
 // =================================== User Controller Route End    ===================================
 
@@ -74,15 +74,13 @@ Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('
 Route::get('/test',function(){
  
    $id = 50;
-
    $cat = Category::all();
    foreach($cat as $value){
    $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
    $value->save();
    $id++;
    }
-   return $cat;
-
+  // return $cat;
 
    $posts = Post::all();
    foreach($posts as $post){
@@ -94,7 +92,7 @@ Route::get('/test',function(){
       $post->save();
       $id++;
    }
-   return $posts;
+  // return $posts;
 });
 
 Route::get('/cat',function(){
