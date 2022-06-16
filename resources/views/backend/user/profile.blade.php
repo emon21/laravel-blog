@@ -45,7 +45,6 @@
                                     <form action="{{ route('user/profile/update') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
-                                        <input type="text" name="userID" value="{{ $user->id }}">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col-6">
@@ -53,7 +52,8 @@
                                                         <label for="exampleInputEmail1">User Name</label>
                                                         <input type="text"
                                                             class="form-control @error('name') is-invalid @enderror"
-                                                            name="name" value="{{ $user->name }}" id="exampleInputEmail1">
+                                                            name="name" value="{{ $user->name }}"
+                                                            id="exampleInputEmail1">
                                                         @error('name')
                                                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                         @enderror
@@ -100,11 +100,9 @@
                                                         <label>User Description</label>
                                                         <textarea class="form-control" rows="5" name="desc" placeholder="Write your profile description">{{ $user->description }}</textarea>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
-
 
                                         <div class="card-footer">
                                             <button type="submit" class="btn btn-primary">Update Profile</button>

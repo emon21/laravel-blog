@@ -3,15 +3,17 @@
     <a href="" class="brand-link">
         <img src="{{ asset('backend/assets') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Dashboard</span>
+        <span class="brand-text font-weight-light">Dashboard cfc</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
+
                 <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
-                {{ asset('backend/user/user.png') }} @endif" class="img-circle elevation-2" alt="User Image">
+                {{ asset('backend/user/user.png') }} @endif"
+                    class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Hi , {{ Auth::user()->name }}</a>
@@ -19,7 +21,8 @@
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 <li class="nav-item menu-open">
                     <a href="{{ route('admin') }}" class="nav-link {{ Route::is('admin') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -107,7 +110,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('postList') }}" class="nav-link {{ Route::is('postList') ? 'active' : '' }}">
+                    <a href="{{ route('postList') }}"
+                        class="nav-link {{ Route::is('postList') ? 'active' : '' }}">
                         <i class="nav-icon far fa-circle text-danger"></i>
                         <p class="text">Post</p>
                     </a>
@@ -171,7 +175,8 @@
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                data-accordion="false">
                 <li class="nav-item menu-open">
                     <a href="{{ route('admin') }}" class="nav-link {{ Route::is('admin') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -283,7 +288,7 @@
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;Contact
                     </a>
                 </li>
-                <h4 class="nav-header">User Account</h4>
+                <h2 class="nav-header">Your Account</h2>
 
 
                 {{-- <li class="nav-item mt-auto">

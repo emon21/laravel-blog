@@ -7,15 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+
 class UserController extends Controller
 {
 
+    /* ========================== User Crud Function =========================== */
+
    public function index()
    {
-
       $users = User::latest()->paginate(10);
       return view('backend.user.index',compact('users'));
-
    }
 
    public function create()
@@ -103,5 +104,54 @@ class UserController extends Controller
         Session::flash('error','User Delete Successfully');
         return redirect()->route('user.index');
     }
+
+    /* ========================== User Profile Function =========================== */
+
+    //User Profile
+   public function userProfile()
+   {
+      $user = Auth::user();
+      return view('backend.user.profile',compact('user'));
+   }
+
+    //User Profile Update
+    public function userUpdate(Request $request)
+    {
+      $user = Auth::user();
+      //validation
+      $this->validate($request,[
+         'name' => 'required',
+         'email' => "sometimes|email|unique:users,email,$user->id",
+         'password' => 'sometimes|nullable|min:8',
+         'image' => 'sometimes|nullable|image|max:2048',
+      ]);
+      
+      //user data save
+      $user->name = $request->name; 
+      $user->email = $request->email; 
+      $user->description = $request->desc; 
+      
+      //Changed User Password
+      if ( $request->has('password') && $request->password !== null) {
+         $user->password = bcrypt($request->password);
+      }
+
+      //User Profile Change
+      if($request->hasFile('user_picture')) { 
+         // if(file_exists($user->image)){
+         //    unlink($user->image);
+         //    }
+         $filename = time() . '.' .$request->user_picture->getClientOriginalextension();
+         $request->user_picture->move(public_path('backend/user/'), $filename);
+         $user->image = 'backend/user/'.$filename;
+      }
+
+      $user->save();
+      Session::flash('status','User Profile Changed Successfully');
+      return redirect()->route('user.index');
+
+    }
+
+
 
 }
