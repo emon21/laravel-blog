@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateCommantsTable extends Migration
 {
@@ -15,6 +16,9 @@ class CreateCommantsTable extends Migration
     {
         Schema::create('commants', function (Blueprint $table) {
             $table->id();
+            $table->integer('user_id')->nullable();
+            $table->string('post_id')->nullable();
+            $table->text('comment')->nullable();
             $table->timestamps();
         });
     }

@@ -8,6 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\CommantController;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
@@ -68,6 +69,9 @@ Route::get('/category',[WebsiteController::class,'category'])->name('website.cat
 Route::get('/tag/{slug}',[WebsiteController::class,'tag'])->name('website.tag');
 Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])->name('singleCategory');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
+
+//Route::get('/comment',[CommantController::class,'comment'])->name('comment');
+Route::post('/comment',[CommantController::class,'UserComment'])->name('userComment');
 
 Route::get('/test',function(){
  

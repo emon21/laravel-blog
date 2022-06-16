@@ -4,82 +4,71 @@ namespace App\Http\Controllers;
 
 use App\Models\Commant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
+use Modules\Blog\Entities\Post;
 
 class CommantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function comment()
+    {
+   
+     // $post = Post::with('category')->Where('slug',$slug)->first();
+      return view('frontend.single_post',compact('comment'));
+
+     
+    }
+
+    public function UserComment(Request $request)
+    {
+ // return $request;
+     $user = Auth::user()->id;
+     
+     //user insert
+     $comment = Commant::create([
+        'user_id' => $user,
+        'post_id' => $request->post_id,
+        'comment' => $request->comment,
+     ]);
+     $comment->save();
+    return redirect()->back();
+
+    }
+
+
     public function index()
     {
-        //
+        
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
-        //
+      
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
-        //
+        
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Commant  $commant
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show(Commant $commant)
     {
-        //
+        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Commant  $commant
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Commant $commant)
     {
-        //
+       
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Commant  $commant
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Commant $commant)
     {
-        //
+       
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Commant  $commant
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy(Commant $commant)
     {
-        //
+        
     }
 }

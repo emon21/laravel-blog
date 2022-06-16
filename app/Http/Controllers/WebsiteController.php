@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Commant;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
 use App\Models\User;
+
 class WebsiteController extends Controller
 {
 
@@ -67,8 +69,8 @@ class WebsiteController extends Controller
     {
       
      // $category = Category::withCount('posts')->where('slug',$slug)->first();
-
-      $category = Category::where('slug',$slug)->first();
+     
+      $category = Category::withCount('posts')->where('slug',$slug)->first();
       if ($category) {
         //return $category;
         $postlist = Post::where('category_id',$category->id)->paginate(10);
@@ -86,10 +88,13 @@ class WebsiteController extends Controller
     {
 
      
-      $post = Post::with('category','user')->Where('slug',$slug)->first();
+      $post = Post::with('category','user', 'comments.user')->Where('slug',$slug)->first();
+      // return $post;
       $posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
       
-      // return $posts;
+      $comment = Commant::with('user')->where('post_id',$post->id)->get();
+
+       //return $comment;
       //Related Posts
       //   $relatedPost = Post::where('category_id', $post->category_id)->take(4)->get();
       //   if (!count($relatedPost)) {
@@ -100,13 +105,12 @@ class WebsiteController extends Controller
       $middlerelatedpost = $relatedPost->splice(0,2);
       $lastrelatedpost = $relatedPost->splice(0,1);
 
-
      //$category = Category::with('post')->get();
      $category = Category::all();
       $tags = Tag::all();
 
       if($post){
-         return view('frontend.single_post',compact('post','posts','category','tags','firstrelatedpost','middlerelatedpost','lastrelatedpost'));
+         return view('frontend.single_post',compact('post','posts','category','tags','firstrelatedpost','middlerelatedpost','lastrelatedpost','comment'));
       }
       else{
          return view('frontend.index');
@@ -134,7 +138,8 @@ class WebsiteController extends Controller
     public function category()
     {
 
-      $categoryList = Category::all();
+      $categoryList = Category::withCount('posts')->get();
+     // return $categoryList;
       return view('frontend.category',compact('categoryList'));
     }
 

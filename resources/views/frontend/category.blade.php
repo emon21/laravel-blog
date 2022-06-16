@@ -22,7 +22,8 @@
                         <a href="{{ route('singleCategory', $list->slug) }}" class="hentry img-1"
                             style="background-image: url('{{ $list->image_url }}');height: 260px;margin-bottom: 20px;text-align: center;">
                             <span class="post-category text-white bg-danger"
-                                style="margin-top: 110px;">{{ $list->category_name }}</span>
+                                style="margin-top: 110px;">{{ $list->category_name }} ( {{ $list->posts_count }}
+                                )</span>
                             <div class="text-center text-white">
                                 <span>{{ $list->created_at->format('M d, Y') }}</span>
                             </div>

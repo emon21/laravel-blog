@@ -54,8 +54,8 @@
                     <!-- Message Start -->
                     <div class="media">
                         <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
-                        {{ asset('backend/user/user.png') }} @endif" alt="User Avatar"
-                            class="img-size-50 mr-3 img-circle">
+                        {{ asset('backend/user/user.png') }} @endif"
+                            alt="User Avatar" class="img-size-50 mr-3 img-circle">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 Brad Diesel
@@ -72,8 +72,8 @@
                     <!-- Message Start -->
                     <div class="media">
                         <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
-                        {{ asset('backend/user/user.png') }} @endif" alt="User Avatar"
-                            class="img-size-50 img-circle mr-3">
+                        {{ asset('backend/user/user.png') }} @endif"
+                            alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
                                 John Pierce
@@ -110,14 +110,16 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge">15</span>
+                <span class="badge badge-danger navbar-badge">{{ $contactCount }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">15 Notifications</span>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i> 4 new messages
-                    <span class="float-right text-muted text-sm">3 mins</span>
+                    <i class="fas fa-envelope mr-2"></i> {{ $contactCount }} new messages
+                    <span class="float-right text-muted text-sm">
+                     {{ $date ? $date->created_at->diffForHumans() : 0 }}
+                    </span>
                 </a>
                 <div class="dropdown-divider"></div>
                 <a href="#" class="dropdown-item">
@@ -168,8 +170,10 @@
                             class="fa fa-list"></i>&nbsp;Profile
                     </a>
                     <!-- Logout -->
-                    <a href="javascript:void(0)" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();" class="btn btn-outline-danger ml-auto w-50">
+                    <a href="javascript:void(0)"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"
+                        class="btn btn-outline-danger ml-auto w-50">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
 
                     </a>

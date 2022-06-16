@@ -5,6 +5,7 @@
 @section('header')
     <i class="fa fa-tags" aria-hidden="true"></i>
     <i class="fa fa-clipboard" aria-hidden="true"></i>
+    dd
 
     <i class="fa fa-th-list" aria-hidden="true"></i>
     {{-- @include('backend.layouts.partials.header') --}}
@@ -138,8 +139,7 @@
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                     <i class="fas fa-minus"></i>
                                 </button>
-                                <button type="button" class="btn btn-tool" title="Contacts"
-                                    data-widget="chat-pane-toggle">
+                                <button type="button" class="btn btn-tool" title="Contacts" data-widget="chat-pane-toggle">
                                     <i class="fas fa-comments"></i>
                                 </button>
                                 <button type="button" class="btn btn-tool" data-card-widget="remove">
@@ -158,7 +158,8 @@
                                         <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                                     </div>
                                     <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg"
+                                        alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
                                         Is this template really for free? That's unbelievable!
@@ -174,7 +175,8 @@
                                         <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                                     </div>
                                     <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg"
+                                        alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
                                         You better believe it!
@@ -190,7 +192,8 @@
                                         <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                                     </div>
                                     <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
+                                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg"
+                                        alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
                                         Working with AdminLTE on a great new app! Wanna join?
@@ -206,7 +209,8 @@
                                         <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
                                     </div>
                                     <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
+                                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg"
+                                        alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
                                         I would love to.

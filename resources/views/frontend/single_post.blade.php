@@ -55,7 +55,141 @@
                     </div>
                     <div id="disqus_thread"></div>
 
+                    <section class="site-section py-lg">
+                        <div class="container">
 
+                            <div class="row blog-entries element-animate">
+
+                                <div class="col-md-12 main-content">
+
+                                    <div class="post-content-body">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium nam quas
+                                            inventore, ut iure iste modi eos adipisci ad ea itaque labore earum autem nobis
+                                            et numquam, minima eius. Nam eius, non unde ut aut sunt eveniet rerum
+                                            repellendus porro.</p>
+
+                                        <div class="row mb-5 mt-5">
+                                            <div class="col-md-12 mb-4">
+                                                <img src="{{ asset('frontend') }}/images/img_1.jpg"
+                                                    alt="Image placeholder" class="img-fluid rounded">
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <img src="{{ asset('frontend') }}/images/img_2.jpg"
+                                                    alt="Image placeholder" class="img-fluid rounded">
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <img src="{{ asset('frontend') }}/images/img_3.jpg"
+                                                    alt="Image placeholder" class="img-fluid rounded">
+                                            </div>
+                                        </div>
+                                        <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel.
+                                            Placeat tenetur veritatis tempore quos impedit dicta, error autem, quae sint
+                                            inventore ipsa quidem. Quo voluptate quisquam reiciendis, minus, animi minima
+                                            eum officia doloremque repellat eos, odio doloribus cum.</p>
+
+                                    </div>
+
+
+                                    <div class="pt-5">
+                                        <p>Categories:
+
+                                            <a href="#">{{ $post->category->category_name }}</a>
+                                            @if ($post->tags->count() > 0)
+                                                Tags:
+                                                @foreach ($post->tags as $tag)
+                                                    <a href="#">{{ $tag->tag_name }}</a>,
+                                                @endforeach
+                                            @endif
+
+                                        </p>
+                                    </div>
+
+
+                                    <div class="pt-5">
+                                        <h3 class="mb-5">6 Comments</h3>
+                                        @if ($post->comments->count() > 0)
+                                            @foreach ($post->comments as $comment)
+                                                <ul class="comment-list">
+                                                    <li class="comment">
+                                                        <div class="vcard">
+
+
+                                                            <img src="@if ($comment->user->image) {{ asset($comment->user->image) }} @else
+                                                            {{ asset('backend/user/user.png') }} @endif"
+                                                                alt="Image placeholder">
+
+                                                        </div>
+                                                        <div class="comment-body">
+                                                            <h3>{{ $comment->user->name }}</h3>
+                                                            <h3>{{ $comment->comment }}</h3>
+                                                            <div class="meta text-dark">
+                                                                {{ $comment->created_at->format('M d ,Y H:i:m A') }}
+                                                            </div>
+
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            @endforeach
+                                        @endif
+                                        @if (Auth::check())
+                                            <ul class="comment-list">
+                                                <li class="comment">
+                                                    <div class="vcard">
+                                                        <img src="@if ($post->user->image) {{ asset($post->user->image) }} @else
+                                                      {{ asset('backend/user/user.png') }} @endif"
+                                                            alt="Image placeholder">
+                                                    </div>
+                                                    <div class="comment-body">
+                                                        <h3>{{ Auth::user()->name }}</h3>
+                                                        <form action="{{ route('userComment') }}" method="post"
+                                                            class="p-2 bg-light">
+                                                            @csrf
+                                                            <input type="hidden" name="post_id"
+                                                                value="{{ $post->id }}">
+                                                            <div class="form-group">
+                                                                {{-- <label for="message">Message</label> --}}
+                                                                <textarea name="comment" id="message" rows="5" class="form-control"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="submit" value="Post Comment"
+                                                                    class="btn btn-primary">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        @else
+                                            <span class="text-danger text-center">Please Login and Comment</span>
+                                        @endif
+
+                                        <!-- END comment-list -->
+
+
+                                    </div>
+
+                                </div>
+
+                                <!-- END main-content -->
+
+                                <div class="col-md-12 col-lg-4 sidebar">
+                                    <div class="sidebar-box search-form-wrap">
+                                        <form action="#" class="search-form">
+                                            <div class="form-group">
+                                                <span class="icon fa fa-search"></span>
+                                                <input type="text" class="form-control" id="s"
+                                                    placeholder="Type a keyword and hit enter">
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <!-- END sidebar-box -->
+
+                                </div>
+                                <!-- END sidebar -->
+
+                            </div>
+                        </div>
+                    </section>
 
                 </div>
 
@@ -66,7 +200,8 @@
                         <form action="#" class="search-form">
                             <div class="form-group">
                                 <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                                <input type="text" class="form-control" id="s"
+                                    placeholder="Type a keyword and hit enter">
                             </div>
                         </form>
                     </div>

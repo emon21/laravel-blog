@@ -24,7 +24,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <span>Category</span>
-                            <h3>{{ $category->category_name }}</h3>
+                            <h3>{{ $category->category_name }} ( {{ $category->posts_count }} )</h3>
                             {{-- <span>{{ $category->count() }}</span> --}}
                             @if ($category->description)
                                 <p>{{ $category->description }}</p>

@@ -2,6 +2,7 @@
 
 namespace Modules\Blog\Entities;
 
+use App\Models\Commant;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Entities\Category;
@@ -72,6 +73,10 @@ class Post extends Model
     public function tags()
     {
        return $this->belongsToMany(Tag::class);
+    }
+
+    public function comments(){
+      return $this->hasMany(Commant::class);
     }
 
    
