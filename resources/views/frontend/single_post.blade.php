@@ -123,7 +123,12 @@
                                                             <h3>{{ $comment->user->name }}</h3>
                                                             <h3>{{ $comment->comment }}</h3>
                                                             <div class="meta text-dark">
-                                                                {{ $comment->created_at->format('M d ,Y H:i:m A') }}
+
+                                                                @if ($comment->created_at)
+                                                                    {{ $comment->created_at->format('M d Y H:i:s A') }}
+                                                                    {{ $comment->created_at->diffForHumans() }}
+                                                                @endif
+                                                                {{-- {{ $comment->created_at->format('M d ,Y') }} --}}
                                                             </div>
 
                                                         </div>
@@ -200,8 +205,7 @@
                         <form action="#" class="search-form">
                             <div class="form-group">
                                 <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" id="s"
-                                    placeholder="Type a keyword and hit enter">
+                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
                             </div>
                         </form>
                     </div>

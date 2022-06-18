@@ -25,26 +25,25 @@
         <!-- Create Post Start -->
         <div class="card">
             <div class="card-header">
-               <div class="d-flex justify-content-between align-items-center">
-                   <h3 class="card-title">User View</h3>
-                   <a href="{{ route('user') }}" class="btn btn-primary text-light">Go back User List</a>
-               </div>
-           </div>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title">User View</h3>
+                    <a href="{{ route('user.index') }}" class="btn btn-primary text-light">Go back User List</a>
+                </div>
+            </div>
             <div class="card-body">
                 <table class="table table-striped table-bordered">
                     <tbody>
                         <tr>
                             <td style="width: 250px;">Image</td>
                             <td>
-                              <div style="width:150px;height:150px;overflow:hidden"
-                              class="mt-2">
-                              <img src="@if ($user->image) {{ asset($user->image) }} @else
+                                <div style="width:150px;height:150px;overflow:hidden" class="mt-2">
+                                    <img src="@if ($user->image) {{ asset($user->image) }} @else
                            {{ asset('backend/user/user.png') }} @endif"
-                                  class="img-rounded" alt="">
-                          </div>
+                                        class="img-rounded" alt="">
+                                </div>
                             </td>
                         </tr>
-                        
+
                         <tr>
                             <td style="width: 250px;">User Name</td>
                             <td>{{ $user->name }}</td>

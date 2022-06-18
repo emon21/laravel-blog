@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Commant;
-use App\Models\Contact;
 use Illuminate\Http\Request;
-use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
+use Modules\Blog\Entities\Post;
 use Modules\Tag\Entities\Tag;
+use App\Models\Comment;
+use App\Models\Contact;
 use App\Models\User;
 
 class WebsiteController extends Controller
@@ -92,7 +92,7 @@ class WebsiteController extends Controller
       // return $post;
       $posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
       
-      $comment = Commant::with('user')->where('post_id',$post->id)->get();
+      $comment = Comment::with('user')->where('post_id',$post->id)->get();
 
        //return $comment;
       //Related Posts

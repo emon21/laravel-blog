@@ -8,7 +8,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\CommantController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
@@ -30,35 +30,17 @@ use Modules\Category\Entities\Category;
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// =================================== User Controller Route Start ===================================
+// ===================== User Controller Route Start ================
+Route::middleware(['auth'])->group(function (){
 
-   //  Route::group(['middleware'=>['auth']],function(){
-   //      // Route::get('/', [AdminController::class, 'index'])->name('admin');
-   //      // Route::get('/home', [AdminController::class, 'home'])->name('backend');
-
-   //  Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin/dashboard');
-
-   //  Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-
-   //  Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin/logout');
-   //  });
-
-      Route::prefix('user')->group(function () {
-
-         Route::get('/',[UserController::class,'index'])->name('user');
-
-         Route::get('/user_setting',[UserController::class,'UserSetting'])->name('UserSetting');
-
-        Route::get('/login',[UserController::class,'UserLogin']);
-      });
-
-// =================================== User Controller Route End    ===================================
+   Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+});
 
 
+// ======================= User Controller Route End  ================
 
-// =================================== Website Controller Route Start ===================================
+// ========================= Website Controller Route Start =====================
 
 Route::get('/',[WebsiteController::class,'index'])->name('website');
 Route::get('/about',[WebsiteController::class,'about'])->name('about');
@@ -71,64 +53,33 @@ Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
 
 //Route::get('/comment',[CommantController::class,'comment'])->name('comment');
-Route::post('/comment',[CommantController::class,'UserComment'])->name('userComment');
+Route::post('/comment',[CommentController::class,'UserComment'])->name('userComment');
 
 Route::get('/test',function(){
- 
-   $id = 50;
-   $cat = Category::all();
-   foreach($cat as $value){
-   $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
-   $value->save();
-   $id++;
-   }
-  // return $cat;
-
-   $posts = Post::all();
-   foreach($posts as $post){
-     
-      $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
-     
-     // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
-   
-      $post->save();
-      $id++;
-   }
-  // return $posts;
 });
-
-// Route::get('/cat',function(){
-//    $posts = Category::all();
-//    $id = 50;
-//    foreach($posts as $post){
-
-//       $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
-     
-//      // $post->image = "https://i.picsum.photos/id/".$id."/997/200/300.jpg";
-   
-//       $post->save();
-//       $id++;
-//    }
-//    return $posts;
-// });
-//Route::view('/','frontend.index');
-
-// =================================== Website Controller Route End   ===================================
-
 
 
 // =================================== Admin Controller Route Start  ===================================
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
-    Route::get('/', [AdminController::class, 'index'])->name('adminlogin');
-    Route::get('/home', [AdminController::class, 'home'])->name('admin');
-    
-    // Route::get('/home', [AdminController::class, 'home'])->name('backend');
-    // Route::view('/start','backend.layouts.started');
-    // Route::view('/clock', 'backend.clock');
+// //custom admin login route start
+// Route::get('/admin', [AdminController::class, 'getLogin'])->name('getLogin');
+// Route::post('/admin', [AdminController::class, 'postLogin'])->name('postLogin');
+// Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+// Route::get('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+// //custom admin login route end
 
+Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
+   
+   //admin
+   
+   Route::get('/', [AdminController::class, 'index'])->name('adminlogin');
+    Route::get('dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
+
+    //user
     Route::resource('user', UserController::class);
     Route::get('user/view/{user}', [UserController::class,'userView'])->name('user/view');
+
+    //profile
     Route::get('profile', [UserController::class,'userProfile'])->name('user/profile');
     Route::post('profile', [UserController::class,'userUpdate'])->name('user/profile/update');
 
@@ -141,29 +92,4 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::get('/contact/{id}',[ContactController::class,'show'])->name('contact.show');
     Route::delete('/contact/delete/{id}',[ContactController::class,'destroy'])->name('contact.delete');
 });
-
-// Route::prefix('admin')->middleware(['auth'])->group(function(){
-
-//    Route::get('/dashboard' ,[DashboardController::class,'index'])->name('dashboard');
-// });
-
-// Route::prefix('admin')->middleware(['auth','admin'])->group(function(){
-
-//     Route::get('/dashboard' ,[AdminController::class,'home'])->name('dashboard');
-// });
-
-
-
-
-
 // =================================== Admin Controller Route End    ===================================
-
-Route::get('clear_cache', function () {
-
-   Artisan::call('cache:clear');
-
-  // dd("Cache is cleared");
-  return back();
-
-});
-

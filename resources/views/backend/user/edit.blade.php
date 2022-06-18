@@ -31,7 +31,8 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">Edit User</h3>
-                                <a href="{{ route('user') }}" class="btn btn-primary text-light">Go back User List</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-primary text-light">Go back User
+                                    List</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -54,8 +55,8 @@
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">User Name</label>
                                                     <input type="text"
-                                                        class="form-control @error('name') is-invalid @enderror"
-                                                        name="name" value="{{ $user->name }}" id="exampleInputEmail1">
+                                                        class="form-control @error('name') is-invalid @enderror" name="name"
+                                                        value="{{ $user->name }}" id="exampleInputEmail1">
                                                     @error('name')
                                                         <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                     @enderror

@@ -31,7 +31,8 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">Create User</h3>
-                                <a href="{{ route('user') }}" class="btn btn-primary text-light">Go back User List</a>
+                                <a href="{{ route('user.index') }}" class="btn btn-primary text-light">Go back User
+                                    List</a>
                             </div>
                         </div>
                         <!-- /.card-header -->

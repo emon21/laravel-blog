@@ -21,11 +21,9 @@ class AdminMiddleware
             return $next($request);
           }
           else{
-
-            return redirect()->route('home')->with('message' ,'Access Denied! as you are not Admin');
+            return redirect()->route('user.dashboard')->with('message' ,'Access Denied! as you are not Admin');
 
           }
-          
       }
 
       else{

@@ -26,17 +26,16 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+   //  protected $redirectTo = RouteServiceProvider::HOME;
 
     public function authenticated()
     {
          if (Auth::user()->user_type == 1) {
-            return redirect()->route('admin')->with('status' ,'wellcome to Admin Dashboard');
+            return redirect()->route('admin.dashboard')->with('status' ,'wellcome to Admin Dashboard');
          }
          else if(Auth::user()->user_type == 0){
 
-            return redirect()->route('user')->with('status' ,'Login In Successfull');
-            
+            return redirect()->route('user.dashboard')->with('status' ,'Login In Successfull');  
          }
          else{
             return redirect('/');

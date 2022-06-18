@@ -7,12 +7,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+use Carbon\Carbon;
 class UserController extends Controller
 {
 
     /* ========================== User Crud Function =========================== */
+    public function dashboard(){
 
+      return view('user.layouts.index');
+   }
+   
    public function index()
    {
       $users = User::latest()->paginate(10);
@@ -76,10 +80,14 @@ class UserController extends Controller
          'password' => 'sometimes|nullable|min:8',
       ]);
 
-      //user insert
+      //user Update
       $user->name = $request->name; 
       $user->email = $request->email; 
-      $user->password = bcrypt($request->password); 
+      //$user->password = bcrypt($request->password);
+      //Changed User Password
+      if ($request->has('password') && $request->password !== null) {
+         $user->password = bcrypt($request->password);
+      }
       $user->save();
 
       Session::flash('status','User Updated Successfully');
@@ -132,8 +140,9 @@ class UserController extends Controller
       $user->description = $request->desc; 
       
       //Changed User Password
-      if ( $request->has('password') && $request->password !== null) {
+      if ($request->has('password') && $request->password !== null) {
          $user->password = bcrypt($request->password);
+         
       }
 
       //User Profile Change

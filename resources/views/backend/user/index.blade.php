@@ -30,11 +30,11 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">User Profile</h3>
-                                
+
                                 @if (session('status'))
-                                @include('backend.layouts.success')
+                                    @include('backend.layouts.success')
                                 @else
-                                @include('backend.layouts.error')
+                                    @include('backend.layouts.error')
                                 @endif
 
                                 <a href="{{ route('user.create') }}" class="btn btn-primary text-light">Create User</a>
@@ -49,6 +49,7 @@
                                         <th width="7%">User Picture</th>
                                         <th>User Name</th>
                                         <th>Email</th>
+                                        <th>Updated_at</th>
                                         <th width="2%">Action</th>
                                     </tr>
                                 </thead>
@@ -67,12 +68,17 @@
                                             </td>
                                             <td>{{ $user->name }}</td>
                                             <td>{{ $user->email }}</td>
-
+                                            <td>
+                                                @if ($user->updated_at)
+                                                    {{ $user->updated_at->format('d-m-Y') }}
+                                                    {{ $user->updated_at->diffForHumans() }}
+                                                @endif
+                                            </td>
                                             <td class="text-center">
-
                                                 <div class="d-flex">
                                                     <a href="{{ route('user/view', $user->id) }}"
-                                                        class="btn btn-warning mr-1"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                        class="btn btn-warning mr-1"><i class="fa fa-eye"
+                                                            aria-hidden="true"></i></a>
                                                     <a href="{{ route('user.edit', $user->id) }}"
                                                         class="btn btn-primary mr-1"><i class="fas fa-edit"></i></a>
                                                     <form action="{{ route('user.destroy', $user->id) }}" method="post">
