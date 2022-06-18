@@ -1,5 +1,6 @@
 <link href="../../css.css?family=Muli:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
-
+<link rel="stylesheet" href="{{ asset('backend/assets') }}/plugins/fontawesome-free/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/fonts/icomoon/style.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/magnific-popup.css">

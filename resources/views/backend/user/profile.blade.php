@@ -29,7 +29,7 @@
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
                                 <h3 class="card-title">User Profile</h3>
-                                <a href="{{ route('user/profile') }}" class="btn btn-primary">Go Back User Profile</a>
+                                <a href="{{ route('admin/profile') }}" class="btn btn-primary">Go Back User Profile</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -42,7 +42,7 @@
                             <div class="row">
                                 <div class="col-12 col-lg-9">
                                     <!-- form start -->
-                                    <form action="{{ route('user/profile/update') }}" method="POST"
+                                    <form action="{{ route('admin/profile/update') }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
                                         <div class="card-body">

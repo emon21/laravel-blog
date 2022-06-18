@@ -68,7 +68,7 @@
                                         {{ $comment->created_at->format('M d Y H:i:s A') }}
                                         {{ $comment->created_at->diffForHumans() }}
                                     @endif
-                                   
+
                                 </p>
                             </div>
                         </div>
@@ -140,12 +140,14 @@
 
                 <!-- Menu Footer-->
                 <li class="user-footer border-bottom d-flex">
-                    <a href="{{ route('user/profile') }}" class="btn btn-outline-success"> <i
+                    <a href="{{ route('admin/profile') }}" class="btn btn-outline-success"> <i
                             class="fa fa-list"></i>&nbsp;Profile
                     </a>
                     <!-- Logout -->
-                    <a href="javascript:void(0)" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();" class="btn btn-outline-danger ml-auto w-50">
+                    <a href="javascript:void(0)"
+                        onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();"
+                        class="btn btn-outline-danger ml-auto w-50">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
 
                     </a>

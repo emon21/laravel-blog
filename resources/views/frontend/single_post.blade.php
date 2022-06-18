@@ -112,25 +112,20 @@
                                                 <ul class="comment-list">
                                                     <li class="comment">
                                                         <div class="vcard">
-
-
                                                             <img src="@if ($comment->user->image) {{ asset($comment->user->image) }} @else
                                                             {{ asset('backend/user/user.png') }} @endif"
                                                                 alt="Image placeholder">
-
                                                         </div>
                                                         <div class="comment-body">
                                                             <h3>{{ $comment->user->name }}</h3>
                                                             <h3>{{ $comment->comment }}</h3>
                                                             <div class="meta text-dark">
-
                                                                 @if ($comment->created_at)
                                                                     {{ $comment->created_at->format('M d Y H:i:s A') }}
                                                                     {{ $comment->created_at->diffForHumans() }}
                                                                 @endif
                                                                 {{-- {{ $comment->created_at->format('M d ,Y') }} --}}
                                                             </div>
-
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -164,7 +159,18 @@
                                                 </li>
                                             </ul>
                                         @else
-                                            <span class="text-danger text-center">Please Login and Comment</span>
+                                            <div class="div d-block col-sm-8 justify-content-center mx-auto">
+                                                <div class="card">
+                                                    <div class="card-header text-danger"><i class="fa fa-sign-in "
+                                                            aria-hidden="true"></i> Login Here</div>
+                                                    <div class="card-body mt-2">
+                                                        <span class="alert alert-danger text-dark">Sorry Do Not Comment
+                                                            This Blog Please Login Here</span>
+                                                        <a href="{{ route('login') }}" class="btn btn-success mt-4"><i
+                                                                class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         @endif
 
                                         <!-- END comment-list -->
@@ -205,7 +211,8 @@
                         <form action="#" class="search-form">
                             <div class="form-group">
                                 <span class="icon fa fa-search"></span>
-                                <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
+                                <input type="text" class="form-control" id="s"
+                                    placeholder="Type a keyword and hit enter">
                             </div>
                         </form>
                     </div>

@@ -31,10 +31,23 @@ use Modules\Category\Entities\Category;
 Auth::routes();
 
 
+
+
 // ===================== User Controller Route Start ================
 Route::middleware(['auth'])->group(function (){
-
+   
    Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
+   //profile
+   Route::get('user/profile', [UserController::class, 'UserProfile'])->name('UserProfile');
+   Route::post('user/profile', [UserController::class,'UserUpdate'])->name('UserUpdate');
+
+   //user Post
+   Route::get('/insertpost', [UserController::class,'insert'])->name('user.post');
+   Route::post('/createpost', [UserController::class,'createpost'])->name('createpost');
+   Route::get('/postlist', [UserController::class,'postlist'])->name('postlist');
+
+  // Route::get('profile', [UserController::class,'adminProfile'])->name('user/profile');
+  // Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 });
 
 
@@ -56,8 +69,24 @@ Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('
 Route::post('/comment',[CommentController::class,'UserComment'])->name('userComment');
 
 Route::get('/test',function(){
-});
 
+   $id = 50;
+   $cat = Category::all();
+   foreach($cat as $value){
+   $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
+   $value->save();
+   $id++;
+   }
+  //return $cat;
+   $posts = Post::all();
+   foreach($posts as $post){
+      $post->image = 'https://picsum.photos/id/' . $id . '/700/600';
+      $post->save();
+      $id++;
+   }
+ // return $posts;
+  return 'Post && Category Dummy Image Insert Successfully Done';
+});
 
 // =================================== Admin Controller Route Start  ===================================
 
@@ -80,8 +109,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::get('user/view/{user}', [UserController::class,'userView'])->name('user/view');
 
     //profile
-    Route::get('profile', [UserController::class,'userProfile'])->name('user/profile');
-    Route::post('profile', [UserController::class,'userUpdate'])->name('user/profile/update');
+    Route::get('profile', [UserController::class,'adminProfile'])->name('admin/profile');
+    Route::post('profile', [UserController::class,'AdminUpdate'])->name('admin/profile/update');
 
     //website Setting
     Route::get('setting',[SettingController::class,'edit'])->name('setting');
@@ -92,4 +121,5 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::get('/contact/{id}',[ContactController::class,'show'])->name('contact.show');
     Route::delete('/contact/delete/{id}',[ContactController::class,'destroy'])->name('contact.delete');
 });
-// =================================== Admin Controller Route End    ===================================
+
+// =================================== Admin Controller Route End    ================================

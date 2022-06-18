@@ -8,13 +8,20 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Modules\Blog\Entities\Post;
+use Modules\Category\Entities\Category;
+use Modules\Tag\Entities\Tag;
+
 class UserController extends Controller
 {
 
     /* ========================== User Crud Function =========================== */
-    public function dashboard(){
 
-      return view('user.layouts.index');
+    public function dashboard()
+    {
+      return view('frontend.user.home');
+
+     // return view('user.layouts.index');
    }
    
    public function index()
@@ -98,6 +105,8 @@ class UserController extends Controller
    public function userView(User $user)
    {
     
+     // $user = Auth::user();
+    // return $user->name;
       return view('backend/user/view',compact('user'));
    }
 
@@ -113,17 +122,121 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
+
+    // User Crud
+
+    public function insert()
+    {
+      $tags = Tag::all();
+      $catgories = Category::all();
+      return view('frontend.user.user_post',compact('tags','catgories'));
+    }
+
+    public function createpost(Request $request)
+    {
+      //return $request->all();
+
+
+      $user = Auth::user()->id;
+      $post = Post::create([
+        'title' => $request->title,
+        'slug' => Str::slug($request->title),
+        'description' => $request->title,
+        'image' => 'backend/blog/default.jpg',
+        'category_id' => $request->category_list,
+        'user_id' => $user,
+        'status' => $request->status,
+     ]);
+
+     $post->tags()->attach($request->tags);
+   
+     if($request->has('post_picture')) {
+
+     //    $imageName = time().'.'.$request->post_picture->extension();  
+    
+     //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
+     //   return $post->imageName;
+
+        $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+      //$request->post_picture->move('backend/blog/', $filename);
+        $request->post_picture->move(public_path('backend/blog/'), $filename);
+        $post->image = 'backend/blog/'.$filename;
+        $post->save();
+     }
+     return back();
+    }
+
+
+    public function postlist()
+    {
+      $userID = Auth::user()->id;
+      $userPosts = Post::with('user')->where('user_id',$userID)->Paginate(10);
+      // $category = Category::withCount('posts')->where('slug',$slug)->first();
+
+    //return $userPosts->count();
+      return view('frontend.user.user_post_list',compact('userPosts'));
+    }
     /* ========================== User Profile Function =========================== */
 
     //User Profile
-   public function userProfile()
+
+    public function UserProfile()
+    {
+      
+      $user = Auth::user();
+      return view('frontend.user.user_profile',compact('user'));
+    }
+
+    public function UserUpdate(Request $request)
+    {
+       $user = Auth::user();
+      //validation
+      $this->validate($request,[
+         'name' => 'required',
+         'email' => "sometimes|email|unique:users,email,$user->id",
+         'password' => 'sometimes|nullable|min:8',
+         'image' => 'sometimes|nullable|image|max:2048',
+      ]);
+      
+      //user data save
+      $user->name = $request->name; 
+      $user->email = $request->email; 
+      $user->description = $request->desc; 
+      
+      //Changed User Password
+      if ($request->has('password') && $request->password !== null) {
+         $user->password = bcrypt($request->password);
+         
+      }
+
+      //User Profile Change
+      if($request->hasFile('user_picture')) { 
+         // if(file_exists($user->image)){
+         //    unlink($user->image);
+         //    }
+         $filename = time() . '.' .$request->user_picture->getClientOriginalextension();
+         $request->user_picture->move(public_path('backend/user/'), $filename);
+         $user->image = 'backend/user/'.$filename;
+      }
+
+      $user->save();
+      Session::flash('update','User Profile Changed Successfully');
+      return redirect()->route('UserProfile');
+    }
+
+
+    /* ========================== Admin Profile Function =========================== */ 
+
+    //Admin Profile
+
+   public function adminProfile()
    {
       $user = Auth::user();
       return view('backend.user.profile',compact('user'));
    }
 
     //User Profile Update
-    public function userUpdate(Request $request)
+    public function AdminUpdate(Request $request)
     {
       $user = Auth::user();
       //validation

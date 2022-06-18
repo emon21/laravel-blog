@@ -25,7 +25,7 @@
         <!-- Header start -->
         @include('frontend.layouts.pages.header')
         <!-- Header End -->
-        @yield('user_menu')
+
 
         @yield('content')
 

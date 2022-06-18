@@ -92,7 +92,7 @@
                                                 class="post-category text-white bg-danger mb-3">{{ $category->category_name }}</span>
 
                                             <h2><a
-                                                    href="{{ route('singleCategory', $post->slug) }}">{{ $post->title }}</a>
+                                                    href="{{ route('website.post', ['slug' => $post->slug]) }}">{{ $post->title }}</a>
                                             </h2>
                                             <div class="post-meta align-items-center text-left clearfix">
                                                 <figure class="author-figure mb-0 mr-3 float-left"><img

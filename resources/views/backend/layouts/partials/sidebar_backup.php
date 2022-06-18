@@ -1,20 +1,19 @@
+
+
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="{{ route('admin.dashboard') }}" class="brand-link">
-        <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
-        {{ asset('backend/user/user.png') }} @endif"
-            alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">Dashboard </span>
+    <a href="index3.html" class="brand-link">
+        <img src="{{ asset('backend/assets') }}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">Admin Dashboard</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="image">
-
-                <img src="@if (Auth::user()->image) {{ asset(Auth::user()->image) }} @else
-                {{ asset('backend/user/user.png') }} @endif"
-                    class="img-circle elevation-2" alt="User Image">
+                <img src="{{ asset(Auth::user()->image) }}" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
                 <a href="#" class="d-block">Hi , {{ Auth::user()->name }}</a>
@@ -31,9 +30,9 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="{{ Route('category') }}" class="nav-link {{ Route::is('category') ? 'active' : '' }}">
+                    <a href="{{ Route('category') }}"
+                        class="nav-link {{ Route::is('category') ? 'active' : '' }}">
                         <i class="nav-icon far fa-circle text-warning"></i>
                         <p>Category</p>
                     </a>
@@ -58,30 +57,34 @@
                         <p class="text">User</p>
                     </a>
                 </li>
-
                 <li class="nav-item mt-auto">
-                    <a href="{{ route('setting') }}" class="nav-link {{ Route::is('setting') ? 'active' : '' }}">
+                    <a href="{{ route('setting') }}" class="nav-link">
                         <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;website Setting
                     </a>
                 </li>
                 <li class="nav-item mt-auto">
-                    <a href="{{ route('message') }}" class="nav-link {{ Route::is('message') ? 'active' : '' }}">
+                    <a href="{{ route('message') }}" class="nav-link">
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;Contact
                     </a>
                 </li>
+                <h2 class="nav-header">Your Account</h2>
 
-                <li class="nav-header">User Account</li>
+
+               
+
                 <li class="nav-item mt-auto">
-                    <a href="{{ route('admin/profile') }}"
-                        class="nav-link {{ Route::is('admin/profile') ? 'active' : '' }}">
-                        <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp; User Profile
+                    <a href="{{ route('admin/profile') }}" class="nav-link">
+                        <i class="fa fa-user-o" aria-hidden="true"></i>&nbsp;&nbsp;User Profile
                     </a>
                 </li>
-                {{-- <li class="nav-item mt-auto">
-                    <a href="#" class="nav-link btn btn-danger">
+                <li class="nav-item mt-auto">
+                    <a href="#" class="nav-link">
                         <i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;Logout
                     </a>
-                </li> --}}
+                </li>
+
+
+
             </ul>
 
         </nav>

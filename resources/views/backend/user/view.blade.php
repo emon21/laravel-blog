@@ -33,6 +33,7 @@
             <div class="card-body">
                 <table class="table table-striped table-bordered">
                     <tbody>
+
                         <tr>
                             <td style="width: 250px;">Image</td>
                             <td>
