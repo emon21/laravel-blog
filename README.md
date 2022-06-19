@@ -43,37 +43,6 @@
 <p align="center">
 <img src= "public/screenshort/127.0.0.1_8000_admin_dashboard.png" alt="Build Status">
 </p>
-<h2>About Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_about.png" alt="Build Status">
-</p>
-<h2>Contact Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_contact.png" alt="Build Status">
-</p>
-<h2>Category Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_category.png" alt="Build Status">
-</p>
-<h2>Single Post Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_singlePost_abe-waters.png" alt="Build Status">
-</p>
-
-<h2>Login Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_login.png" alt="Build Status">
-</p>
-
-<h2>User Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_user_dashboard.png" alt="Build Status">
-</p>
-<h2>Dashboard Page</h2>
-<p align="center">
-<img src= "public/screenshort/127.0.0.1_8000_admin_dashboard.png" alt="Build Status">
-</p>
-
 ## About Project
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
