@@ -1,18 +1,44 @@
+<h2>Home Page</h2>
 <p align="center">
-<img src= "public/screenshort/screenshort/127.0.0.1_8000_home.png" alt="Build Status">
-
-<a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
-
+<img src= "public/screenshort/127.0.0.1_8000_home.png" alt="Build Status">
+</p> 
+<h2>Blog Page</h2>
 <p align="center">
-
+<img src= "public/screenshort/127.0.0.1_8000_blog.png" alt="Build Status">
+</p>
+<h2>About Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_about.png" alt="Build Status">
+</p>
+<h2>Contact Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_contact.png" alt="Build Status">
+</p>
+<h2>Category Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_category.png" alt="Build Status">
+</p>
+<h2>Single Post Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_singlePost_abe-waters.png" alt="Build Status">
+</p>
+<h2>Login Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_login.png" alt="Build Status">
+</p>
+<h2>User Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_user_dashboard.png" alt="Build Status">
+</p>
+<h2>Dashboard Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_admin_dashboard.png" alt="Build Status">
 </p>
 
 ## About Project
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
--   [Simple, fast routing engine] Home Page.
--   [Simple, fast routing engine] User Page.
 -   Frontend Tamplate
 -   User Dashboard
 -   User Profile
@@ -20,13 +46,15 @@ Laravel is a web application framework with expressive, elegant syntax. We belie
 -   Blog Search
 -   Blog view
 -   Blog view -> Details
+-   Post -> Comment into user
 -   Admin Dashboard
 -   User Manage
 -   Blog Manage
 -   Post Manage
 -   Tag Manage
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Categories
+-   Comments
+    Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
 ## Learning Laravel
 
