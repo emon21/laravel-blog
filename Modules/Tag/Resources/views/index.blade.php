@@ -87,6 +87,7 @@
                                         <th>Sl No</th>
                                         <th>Tag Name</th>
                                         <th>Slug</th>
+                                        <th>Post Count</th>
                                         <th>Action</th>
                                         <th class="text-center">
                                             <label class="form-check-label">
@@ -97,8 +98,6 @@
                                 </thead>
                                 <tbody>
                                     @if ($tagList->count() > 0)
-
-
                                         @foreach ($tagList as $value)
                                             <tr>
                                                 {{-- <td>
@@ -111,6 +110,7 @@
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>{{ $value->tag_name }}</td>
                                                 <td>{{ $value->slug }}</td>
+                                                <td class="">{{ $value->posts_count }}</td>
                                                 <td>
                                                     <a href="{{ route('EditTag', $value->id) }}" class="btn btn-info"><i
                                                             class="fas fa-edit"></i></a>
@@ -127,7 +127,8 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="5"><span class="text-danger text-center">No Tag Found</span></td>
+                                            <td colspan="5"><span class="text-danger text-center">No Tag Found</span>
+                                            </td>
 
                                         </tr>
 

@@ -15,7 +15,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::Paginate();
+        $category = Category::withCount('posts')->Paginate();
+       // return $category;
     //    return view('blog::category.index',compact('category'));
         return view('category::index',compact('category'));
     }

@@ -65,6 +65,11 @@
                     </a>
                 </li>
                 <li class="nav-item mt-auto">
+                    <a href="{{ route('comment') }}" class="nav-link {{ Route::is('comment') ? 'active' : '' }}">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;All Comments
+                    </a>
+                </li>
+                <li class="nav-item mt-auto">
                     <a href="{{ route('message') }}" class="nav-link {{ Route::is('message') ? 'active' : '' }}">
                         <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;Contact
                     </a>

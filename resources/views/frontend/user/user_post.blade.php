@@ -4,13 +4,13 @@
 @section('content')
     <div class="container-fluid mb-4">
         <div class="row mt-2 border-top">
-         @include('frontend.user.pages.left_sidebar')
+            @include('frontend.user.pages.left_sidebar')
             <div class="col-sm-10 bg-light">
                 <div class="card">
                     <div class="card-header">
                         <div class="d-flex justify-content-between align-items-center">
                             <h3 class="card-title">User Post</h3>
-                            <a href="{{ route('UserProfile') }}" class="btn btn-primary">Go Back User Profile</a>
+                            <a href="{{ route('postlist') }}" class="btn btn-primary">Go Back User List</a>
                         </div>
                     </div>
                     <!-- /.card-header -->

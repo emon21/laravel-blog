@@ -47,7 +47,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-comments"></i>
-                <span class="badge badge-danger navbar-badge">{{ $commentCount->count() }}</span>
+                <span class="badge badge-danger navbar-badge">{{ $usercommentCount }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 @foreach ($commentCount as $comment)
@@ -77,7 +77,8 @@
                 @endforeach
 
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
+                <a href="{{ route('comment') }}" class="dropdown-item dropdown-footer text-danger">See All
+                    Messages</a>
             </div>
         </li>
         <!-- Notifications Dropdown Menu -->
@@ -106,20 +107,10 @@
                     <span class="float-right text-muted text-sm">2 days</span>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                <a href="{{ route('message') }}" class="dropdown-item dropdown-footer text-danger">See All
+                    Notifications</a>
             </div>
         </li>
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                <i class="fas fa-expand-arrows-alt"></i>
-            </a>
-        </li> --}}
-        {{-- <li class="nav-item">
-            <a class="nav-link" data-widget="control-sidebar" data-controlsidebar-slide="true" href="#"
-                role="button">
-                <i class="fas fa-th-large"></i>
-            </a>
-        </li> --}}
         <li class="nav-item dropdown user-menu">
             <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 <img src="{{ asset(Auth::user()->image) }}" class="user-image img-circle elevation-2"

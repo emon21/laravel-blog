@@ -88,7 +88,10 @@ class AppServiceProvider extends ServiceProvider
 
             //Post Comment
          // $commentCount = Comment::with('user')->where('post_id',$post->id)->get();
-            $commentCount = Comment::with('user','post')->orderBy('id','desc')->get();
+            $usercommentCount = Comment::count();
+            view::share('usercommentCount',$usercommentCount);
+
+            $commentCount = Comment::with('user','post')->orderBy('id','desc')->limit(3)->get();
             view::share('commentCount',$commentCount);
 
         }

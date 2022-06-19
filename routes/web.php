@@ -30,9 +30,6 @@ use Modules\Category\Entities\Category;
 
 Auth::routes();
 
-
-
-
 // ===================== User Controller Route Start ================
 Route::middleware(['auth'])->group(function (){
    
@@ -71,12 +68,12 @@ Route::post('/comment',[CommentController::class,'UserComment'])->name('userComm
 Route::get('/test',function(){
 
    $id = 50;
-   $cat = Category::all();
-   foreach($cat as $value){
-   $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
-   $value->save();
-   $id++;
-   }
+   // $cat = Category::all();
+   // foreach($cat as $value){
+   // $value->image = 'https://picsum.photos/id/' . $id . '/700/600';
+   // $value->save();
+   // $id++;
+   // }
   //return $cat;
    $posts = Post::all();
    foreach($posts as $post){
@@ -84,8 +81,8 @@ Route::get('/test',function(){
       $post->save();
       $id++;
    }
- // return $posts;
-  return 'Post && Category Dummy Image Insert Successfully Done';
+  return $posts;
+ // return 'Post && Category Dummy Image Insert Successfully Done';
 });
 
 // =================================== Admin Controller Route Start  ===================================
@@ -100,7 +97,6 @@ Route::get('/test',function(){
 Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
    
    //admin
-   
    Route::get('/', [AdminController::class, 'index'])->name('adminlogin');
     Route::get('dashboard', [DashboardController::class,'index'])->name('admin.dashboard');
 
@@ -120,6 +116,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     Route::get('/contact',[ContactController::class,'index'])->name('message');
     Route::get('/contact/{id}',[ContactController::class,'show'])->name('contact.show');
     Route::delete('/contact/delete/{id}',[ContactController::class,'destroy'])->name('contact.delete');
+
+    //comment
+   Route::get('/comment',[CommentController::class,'index'])->name('comment');
+   Route::get('/comment/{singlecomment}',[CommentController::class,'commentView'])->name('comment.view');
+
 });
 
 // =================================== Admin Controller Route End    ================================

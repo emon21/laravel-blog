@@ -12,6 +12,7 @@
                             <th>Sl No</th>
                             <th>Image</th>
                             <th>Post Name</th>
+                            <th>Post Description</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -19,7 +20,7 @@
                             @foreach ($userPosts as $post)
                                 <tr>
                                     <td>{{ $loop->index + 1 }}</td>
-                                    <td><img src="@if ($post->image) {{ asset($post->image) }} @else {{ asset('frontend/images/default.png') }} @endif"
+                                    <td><img src="@if ($post->image) {{ asset($post->image) }} @else {{ asset('backend/blog/default.png') }} @endif"
                                             class="img-fluid img-rounded" width="85" height="85" alt=""></td>
                                     <td>{{ $post->title }}</td>
                                     <td>{{ $post->description }}</td>

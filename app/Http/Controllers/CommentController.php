@@ -39,9 +39,17 @@ class CommentController extends Controller
 
    public function index()
    {
-       
+      $comments = Comment::with('user','post')->orderBy('id','desc')->get();
+      return view('backend.comment.index',compact('comments'));
    }
    
+   public function commentView($singlecomment)
+   {
+     //return $singlecomment;
+     $singlecomment = Comment::with('user','post')->where('id',$singlecomment)->first();
+
+      return view('backend.comment.view',compact('singlecomment'));
+   }
    public function create()
    {
      

@@ -19,7 +19,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tagList = Tag::SimplePaginate(8);
+        $tagList = Tag::withCount('posts')->SimplePaginate(8);
+       // $category = Category::withCount('posts')->Paginate();
+         //return $tagList;
         return view('tag::index',compact('tagList'));
     }
 

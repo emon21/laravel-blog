@@ -88,13 +88,13 @@ class WebsiteController extends Controller
     {
 
      
-      $post = Post::with('category','user', 'comments.user')->Where('slug',$slug)->first();
-      // return $post;
+      $post = Post::withCount('category','user', 'comments')->Where('slug',$slug)->first();
+     // return $post;
       $posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
       
-      $comment = Comment::with('user')->where('post_id',$post->id)->get();
+      $comment = Comment::withCount('user','post')->where('post_id',$post->id)->get();
 
-       //return $comment;
+     //  return $comment;
       //Related Posts
       //   $relatedPost = Post::where('category_id', $post->category_id)->take(4)->get();
       //   if (!count($relatedPost)) {

@@ -122,7 +122,6 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-
     // User Crud
 
     public function insert()
@@ -135,14 +134,13 @@ class UserController extends Controller
     public function createpost(Request $request)
     {
       //return $request->all();
-
-
+      
       $user = Auth::user()->id;
       $post = Post::create([
         'title' => $request->title,
         'slug' => Str::slug($request->title),
-        'description' => $request->title,
-        'image' => 'backend/blog/default.jpg',
+        'description' => $request->desc,
+        'image' => 'backend/blog/default.png',
         'category_id' => $request->category_list,
         'user_id' => $user,
         'status' => $request->status,
@@ -153,7 +151,6 @@ class UserController extends Controller
      if($request->has('post_picture')) {
 
      //    $imageName = time().'.'.$request->post_picture->extension();  
-    
      //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
      //   return $post->imageName;
 

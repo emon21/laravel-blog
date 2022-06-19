@@ -16,7 +16,7 @@ class DashboardController extends Controller
     
    public function index()
    {
-      $posts = Post::orderBy('created_at','desc')->take(10)->get();
+      $posts = Post::orderBy('created_at','desc')->take(6)->get();
       $postCount = Post::all()->count();
       $userCount = User::all()->count();
       $categoryCount = Category::all()->count();

@@ -93,9 +93,10 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $value->category_name }}</td>
-                                        <td><img src="{{ $value->image_url }}" alt="" width="180" height="120"></td>
+                                        <td><img src="{{ $value->image_url }}" alt="" width="180"
+                                                height="120"></td>
                                         <td>{{ $value->slug }}</td>
-                                        <td>{{ $value->id }}</td>
+                                        <td class="text-center">{{ $value->posts_count }}</td>
                                         <td>
                                             @if ($value->status == 1)
                                                 <span class="text-success"

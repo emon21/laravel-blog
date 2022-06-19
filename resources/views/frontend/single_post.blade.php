@@ -35,12 +35,11 @@
                     <div class="post-content-body">
                         {!! $post->description !!}
                     </div>
-
-
-                    <div class="pt-5">
+                    <div class="pt-2">
                         <p>Categories:
                             <span class="badge badge-success p-2 ">
-                                <a href="#" class="text-white">{{ $post->category->category_name }}</a></span>
+                                <a href="{{ route('singleCategory', $post->category->slug) }}"
+                                    class="text-white">{{ $post->category->category_name }}</a></span>
                             @if ($post->tags->count() > 0)
                                 Tags:
                                 @foreach ($post->tags as $tag)
@@ -50,10 +49,8 @@
                                     </span>
                                 @endforeach
                             @endif
-
                         </p>
                     </div>
-                    <div id="disqus_thread"></div>
 
                     <section class="site-section py-lg">
                         <div class="container">
@@ -63,50 +60,57 @@
                                 <div class="col-md-12 main-content">
 
                                     <div class="post-content-body">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium nam quas
-                                            inventore, ut iure iste modi eos adipisci ad ea itaque labore earum autem nobis
-                                            et numquam, minima eius. Nam eius, non unde ut aut sunt eveniet rerum
-                                            repellendus porro.</p>
+                                        {!! $post->description !!}
 
                                         <div class="row mb-5 mt-5">
                                             <div class="col-md-12 mb-4">
-                                                <img src="{{ asset('frontend') }}/images/img_1.jpg"
+                                                <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
+                                                {{ asset('backend/blog/default.png') }} @endif"
+                                                    alt="Image placeholder" class="img-fluid rounded w-100">
+                                            </div>
+                                            <div class="col-md-6 mb-4">
+                                                <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
+                                                {{ asset('backend/blog/default.png') }} @endif"
                                                     alt="Image placeholder" class="img-fluid rounded">
                                             </div>
                                             <div class="col-md-6 mb-4">
-                                                <img src="{{ asset('frontend') }}/images/img_2.jpg"
-                                                    alt="Image placeholder" class="img-fluid rounded">
-                                            </div>
-                                            <div class="col-md-6 mb-4">
-                                                <img src="{{ asset('frontend') }}/images/img_3.jpg"
+                                                <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
+                                                {{ asset('backend/blog/default.png') }} @endif"
                                                     alt="Image placeholder" class="img-fluid rounded">
                                             </div>
                                         </div>
-                                        <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel.
-                                            Placeat tenetur veritatis tempore quos impedit dicta, error autem, quae sint
-                                            inventore ipsa quidem. Quo voluptate quisquam reiciendis, minus, animi minima
-                                            eum officia doloremque repellat eos, odio doloribus cum.</p>
+                                        {!! $post->description !!}
 
                                     </div>
 
 
-                                    <div class="pt-5">
+                                    <div class="pt-2">
                                         <p>Categories:
 
-                                            <a href="#">{{ $post->category->category_name }}</a>
+                                            <a
+                                                href="{{ route('singleCategory', $post->category->slug) }}">{{ $post->category->category_name }}</a>
                                             @if ($post->tags->count() > 0)
                                                 Tags:
                                                 @foreach ($post->tags as $tag)
-                                                    <a href="#">{{ $tag->tag_name }}</a>,
+                                                    <a
+                                                        href="{{ route('website.tag', ['slug' => $tag->slug]) }}">{{ $tag->tag_name }}</a>,
                                                 @endforeach
                                             @endif
 
                                         </p>
                                     </div>
 
+                                    <div id="disqus_thread"></div>
 
-                                    <div class="pt-5">
-                                        <h3 class="mb-5">6 Comments</h3>
+                                    <hr
+                                        style="height:2px; width:50%; border-width:0; color:red; background-color:red;    margin-top: 40px;">
+                                    <h2 class="text-center text-warning">OR</h2>
+
+                                    <div class="pt-2">
+                                        <div class="d-flex justify-content-between">
+                                            <h3 class="mb-5">{{ $post->comments_count }} Comments</h3>
+                                            <h3 class="mb-5">{{ $post->comments_count }} share</h3>
+                                        </div>
                                         @if ($post->comments->count() > 0)
                                             @foreach ($post->comments as $comment)
                                                 <ul class="comment-list">

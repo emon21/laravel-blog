@@ -3,14 +3,9 @@
     {{-- {{ $currentUser->name }} --}}
 
     @if (Auth::check())
-        @if ($currentUser->user_type == 1)
+        @if ($currentUser->user_type == 0)
             <img src="@if ($currentUser->image) {{ asset($currentUser->image) }} @else {{ asset('backend/user/user.png') }} @endif"
                 class="img-fluid rounded-circle img-rounded" alt="" style="width:45px;height:45px;overflow:hidden">
-            <li><a href="{{ route('admin.dashboard') }}" class="">Admin Dashboard</a></li>
-        @else
-            <img src="@if ($currentUser->image) {{ asset($currentUser->image) }} @else {{ asset('backend/user/user.png') }} @endif"
-                class="img-fluid rounded-circle img-rounded" alt=""
-                style="width:45px;height:45px;overflow:hidden">
             <li><a href="{{ route('user.dashboard') }}" class="">User Dashboard</a></li>
         @endif
     @else
