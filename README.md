@@ -1,3 +1,8 @@
+<h2>Database Schema Design Page</h2>
+<p align="center">
+<img src= "public/screenshort/blog_db_schema.png" alt="Build Status">
+<a href="https://drawsql.app/smart-bd-soft/diagrams/blog-project" target="_blank">DB Schema</a>
+</p> 
 <h2>Home Page</h2>
 <p align="center">
 <img src= "public/screenshort/127.0.0.1_8000_home.png" alt="Build Status">
@@ -18,6 +23,10 @@
 <p align="center">
 <img src= "public/screenshort/127.0.0.1_8000_category.png" alt="Build Status">
 </p>
+<h2>Single Category Page</h2>
+<p align="center">
+<img src= "public/screenshort/127.0.0.1_8000_SingleCategory_apps.png" alt="Build Status">
+</p>
 <h2>Single Post Page</h2>
 <p align="center">
 <img src= "public/screenshort/127.0.0.1_8000_singlePost_abe-waters.png" alt="Build Status">
@@ -65,10 +74,10 @@
 <img src= "public/screenshort/127.0.0.1_8000_admin_dashboard.png" alt="Build Status">
 </p>
 
-
 ## About Project
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+
 -   Frontend Tamplate
 -   User Dashboard
 -   User Profile
