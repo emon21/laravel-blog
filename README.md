@@ -1,18 +1,30 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+<p align="center">
+<img src= "public/screenshort/screenshort/127.0.0.1_8000_home.png" alt="Build Status">
+
+<a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
-<img src="{{ asset('screenshort/127.0.0.1_8000_home.png') }}" alt="Build Status">
 
 </p>
 
-## About Laravel
+## About Project
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
 -   [Simple, fast routing engine] Home Page.
 -   [Simple, fast routing engine] User Page.
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+-   Frontend Tamplate
+-   User Dashboard
+-   User Profile
+-   User Post
+-   Blog Search
+-   Blog view
+-   Blog view -> Details
+-   Admin Dashboard
+-   User Manage
+-   Blog Manage
+-   Post Manage
+-   Tag Manage
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
@@ -26,6 +38,17 @@ If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Lar
 
 We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+### Project Feature
 
--   **[Vehikl](https://vehikl.com/)**
+-   **[Frontend Tamplate]**
+-   **[User Dashboard]**
+-   **[User Profile]**
+-   **[User Post]**
+-   **[Blog Search]**
+-   **[Blog view]**
+-   **[Blog view -> Details]**
+-   **[Admin Dashboard]**
+-   **[User Manage]**
+-   **[Blog Manage]**
+-   **[Post Manage]**
+-   **[Tag Manage]**
