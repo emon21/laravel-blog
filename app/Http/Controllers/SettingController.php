@@ -31,13 +31,22 @@ class SettingController extends Controller
       //    'name' => $request->site_name,
       //   ]);
         
-        
+        //site Logo
         if($request->hasFile('site_logo')) {
          $filename = time() . '.' .$request->site_logo->getClientOriginalextension();
          $request->site_logo->move(public_path('backend/setting/'), $filename);
          $setting->site_logo = 'backend/setting/'.$filename;
-         $setting->save();
+        
       }
+
+      //site Favicon
+      if($request->hasFile('site_favicon')) {
+         $filename = time() . '.' .$request->site_favicon->getClientOriginalextension();
+         $request->site_favicon->move(public_path('backend/setting/'), $filename);
+         $setting->site_favicon = 'backend/setting/'.$filename;
+         
+      }
+      $setting->save();
       return redirect()->back();
 
     }

@@ -8,6 +8,7 @@ use Modules\Blog\Entities\Post;
 use Modules\Tag\Entities\Tag;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\Team;
 use App\Models\User;
 
 class WebsiteController extends Controller
@@ -35,7 +36,8 @@ class WebsiteController extends Controller
     public function about()
     {
       $user = User::first();
-      return view('frontend.about',compact('user'));
+      $teams = Team::all();
+      return view('frontend.about',compact('user','teams'));
     }
     //Contact
     public function contact()
@@ -158,6 +160,8 @@ class WebsiteController extends Controller
          return redirect()->route('website');
       }
     }
+
+
 
 
 }

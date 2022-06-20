@@ -17,6 +17,7 @@ class CreateSettingsTable extends Migration
             $table->id();
             $table->string('site_name');
             $table->string('site_logo')->nullable();
+            $table->string('site_favicon')->nullable();
             $table->text('site_desc')->nullable();
             $table->string('facebook')->nullable();
             $table->string('twitter')->nullable();

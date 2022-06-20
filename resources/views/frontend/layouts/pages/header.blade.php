@@ -10,7 +10,21 @@
             </div>
 
             <div class="col-4 site-logo">
-                <a href="{{ route('website') }}" class="text-black h2 mb-0">Mini Blog</a>
+
+                <div class="flex">
+                    <a class="navbar-brand" href="{{ route('website') }}">
+                        <img src="{{ asset($setting->site_logo) }}" alt="" class="img-fluid rounded-circle"
+                            style="width: 50px;
+                            height: 50px;
+                            margin-left: 12px;
+                            margin-top: -18px;">
+                        <h6 class="text-uppercase font-weight-bold pl-2"
+                            style="margin-left: 60px;
+                        margin-top: -36px;">
+                            {{ $setting->site_name }}</h6>
+                    </a>
+
+                </div>
             </div>
 
             <div class="col-8 text-right">

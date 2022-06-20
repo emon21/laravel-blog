@@ -76,6 +76,27 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label for="site_favicon">Site Favicon</label>
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="exampleInputFile"
+                                                        name="site_favicon">
+                                                    <label class="custom-file-label" for="site_favicon">Choose
+                                                        file</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div
+                                                    style="max-width:100px;max-height:100px;overflow:hidden;margin-left:auto;">
+                                                    <img src="{{ asset($setting->site_favicon) }}" alt=""
+                                                        class="img-fluid">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </div>
 
@@ -125,8 +146,9 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="rss">RSS</label>
-                                                <input type="text" class="form-control @error('rss') is-invalid @enderror"
-                                                    name="rss" value="{{ $setting->rss }}" placeholder="rss URL">
+                                                <input type="text"
+                                                    class="form-control @error('rss') is-invalid @enderror" name="rss"
+                                                    value="{{ $setting->rss }}" placeholder="rss URL">
                                                 @error('rss')
                                                     <div class="alert alert-danger mt-2">{{ $message }}
                                                     </div>
@@ -136,8 +158,10 @@
                                         <div class="col-sm-6">
                                             <div class="form-group">
                                                 <label for="email"> Email</label>
-                                                <input type="text" class="form-control @error('email') is-invalid @enderror"
-                                                    name="email" value="{{ $setting->email }}" placeholder="Enter Email">
+                                                <input type="text"
+                                                    class="form-control @error('email') is-invalid @enderror"
+                                                    name="email" value="{{ $setting->email }}"
+                                                    placeholder="Enter Email">
                                                 @error('email')
                                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                 @enderror

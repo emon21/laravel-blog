@@ -37,22 +37,38 @@
                         <tr>
                             <td style="width: 250px;">Image</td>
                             <td>
-                                <div style="width:150px;height:150px;overflow:hidden" class="mt-2">
-                                    <img src="@if ($team->image) {{ asset($team->image) }} @else
-                           {{ asset('backend/user/user.png') }} @endif"
-                                        class="img-rounded" alt="">
+                                <div style="max-width:130px;max-height:170px;overflow:hidden" class="">
+                                    <img src="@if ($team->team_img) {{ asset($team->team_img) }} @else
+                              {{ asset('backend/user/user.png') }} @endif"
+                                        class="img-fluid img-rounded" alt="">
                                 </div>
                             </td>
                         </tr>
 
                         <tr>
-                            <td style="width: 250px;">User Name</td>
+                            <td style="width: 250px;">Team Name</td>
                             <td>{{ $team->team_name }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Team Designation</td>
+                            <td>{{ $team->designation }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Team Description</td>
+                            <td>{{ $team->team_desc }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Social Link Facebook</td>
+                            <td>{{ $team->team_facebook_link }}</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 250px;">Social Link Twitter</td>
+                            <td>{{ $team->team_twitter_link }}</td>
                         </tr>
 
                         <tr>
-                            <td style="width: 250px;">Description</td>
-                            <td>{!! $team->team_desc !!}</td>
+                            <td style="width: 250px;">Social Link Linkdn</td>
+                            <td>{{ $team->team_linkdin_link }}</td>
                         </tr>
 
 

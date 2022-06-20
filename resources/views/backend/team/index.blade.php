@@ -48,6 +48,7 @@
                                         <th>Sl No</th>
                                         <th width="7%">image</th>
                                         <th>Team Name</th>
+                                        <th>Team Designation</th>
                                         <th>Team Description</th>
                                         <th>Updated_at</th>
                                         <th width="2%">Action</th>
@@ -58,15 +59,16 @@
                                         <tr>
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td>
-
-                                                <div style="max-width:70px;max-height:70px;overflow:hidden" class="m-auto">
-                                                    <img src="@if ($team->image) {{ asset($team->image) }} @else
+                                                <div style="max-width:130px;max-height:170px;overflow:hidden"
+                                                    class="m-auto">
+                                                    <img src="@if ($team->team_img) {{ asset($team->team_img) }} @else
                                                  {{ asset('backend/user/user.png') }} @endif"
-                                                        class="img-fluid rounded-circle img-rounded" alt="">
+                                                        class="img-fluid img-rounded" alt="">
                                                 </div>
                                             </td>
                                             <td>{{ $team->team_name }}</td>
-                                            <td>{{ $team->team_desc }}</td>
+                                            <td>{{ $team->designation }}</td>
+                                            <td>{{ substr($team->team_desc, 0, 30) }}</td>
                                             <td>
                                                 @if ($team->updated_at)
                                                     {{ $team->updated_at->format('d-m-Y') }}
@@ -83,16 +85,12 @@
                                                     <form action="{{ route('team.destroy', $team->id) }}" method="post">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button type="submit" class="btn btn-danger"><i
+                                                        <button type="submit" class="btn btn-danger"
+                                                            onclick="return confirm('Are You Sure Delete This Items ?')"><i
                                                                 class="fas fa-trash"></i></button>
                                                     </form>
                                                 </div>
-
-
-
-
                                             </td>
-
                                         </tr>
                                     @endforeach
                                 </tbody>
@@ -110,7 +108,6 @@
 
                     </div>
                 </div>
-
                 <!-- /.row -->
             </div>
         </div>

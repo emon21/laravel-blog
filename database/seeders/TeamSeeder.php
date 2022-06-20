@@ -14,25 +14,26 @@ class TeamSeeder extends Seeder
      */
     public function run()
     {
-      $categories = [
+      $teams = [
          'Hasib','Alex','Jone','Mark','Raj','Ear'
      ];
 
      $id = rand(30, 600);
      $image = 'https://picsum.photos/id/' . $id . '/700/600';
 
-     foreach ($categories as $category) {
+     foreach ($teams as $team) {
 
-      $category = Team::create([
-         'team_name' => $category,
+      $team = Team::create([
+         'team_name' => $team,
+         'designation' => 'Laravel Developer',
          'team_img' => $image,
-         'team_desc' => 'about_site',
+         'team_desc' => 'Good proramming skills',
          'team_facebook_link' => 'facebook',
          'team_twitter_link' => 'twitter',
          'team_linkdin_link' => 'instagram',
         ]);
       
-        $category->save();
+        $team->save();
    }
     
     }

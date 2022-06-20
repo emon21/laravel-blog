@@ -42,79 +42,103 @@
                             <div class="row">
                                 <div class="col-12 col-lg-9">
                                     <!-- form start -->
-                                    <form action="{{ route('admin/profile/update') }}" method="POST"
+                                    <form action="{{ route('team.update', $team->id) }}" method="post"
                                         enctype="multipart/form-data">
                                         @csrf
+                                        @method('PUT')
                                         <div class="card-body">
-                                            <div class="row">
+                                            <div class="d-flex justify-content-between">
+                                                <div class="form-group col-sm-6">
+                                                    <label for="team_name">Team Name</label>
+                                                    <input type="text"
+                                                        class="form-control @error('team_name') is-invalid @enderror"
+                                                        name="team_name" value="{{ $team->team_name }}" id="team_name"
+                                                        placeholder="Enter Team Name">
+                                                    @error('team_name')
+                                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                                <div class="form-group col-sm-6">
+                                                    <label for="designation">Team Designation</label>
+                                                    <input type="text"
+                                                        class="form-control @error('designation') is-invalid @enderror"
+                                                        name="designation" value="{{ $team->designation }}"
+                                                        id="designation" placeholder="Enter Team Designation">
+                                                    @error('designation')
+                                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label for="comment">Description:</label>
+                                                    <textarea class="form-control @error('team_description') is-invalid @enderror" rows="5" id="comment"
+                                                        name="team_description" placeholder="Enter Team Description">{{ $team->team_desc }}</textarea>
+                                                    @error('team_description')
+                                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                            <div class="d-flex">
                                                 <div class="col-6">
                                                     <div class="form-group">
-                                                        <label for="team_name">Team Name</label>
+                                                        <label for="team_facebook">Social Link Facebook</label>
                                                         <input type="text"
-                                                            class="form-control @error('team_name') is-invalid @enderror"
-                                                            name="team_name" value="{{ $team->team_name }}"
-                                                            id="team_name">
-                                                        @error('team_name')
-                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="facebook">facebook</label>
-                                                        <input type="text"
-                                                            class="form-control @error('facebook') is-invalid @enderror"
-                                                            name="text" value="{{ $team->email }}" id="facebook"
-                                                            placeholder="Enter facebook">
-                                                        @error('facebook')
-                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="twitter">Twitter</label>
-                                                        <input type="text"
-                                                            class="form-control @error('twitter') is-invalid @enderror"
-                                                            name="text" value="{{ old('twitter') }}" id="twitter"
-                                                            placeholder="Enter Twitter ">
-                                                        @error('twitter')
+                                                            class="form-control @error('team_facebook') is-invalid @enderror"
+                                                            name="team_facebook" value="{{ $team->team_facebook_link }}"
+                                                            id="team_facebook"
+                                                            placeholder="Enter Team Social Link Facebook">
+                                                        @error('team_facebook')
                                                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="linkdin">Linkdin</label>
+                                                        <label for="team_twitter">Social Link Twitter</label>
                                                         <input type="text"
-                                                            class="form-control @error('linkdin') is-invalid @enderror"
-                                                            name="text" value="{{ old('password') }}" id="linkdin"
-                                                            placeholder="Enter linkdin ">
-                                                        @error('linkdin')
+                                                            class="form-control @error('team_twitter') is-invalid @enderror"
+                                                            name="team_twitter" value="{{ $team->team_twitter_link }}"
+                                                            id="team_twitter" placeholder="Enter Team Social Link Twitter">
+                                                        @error('team_twitter')
                                                             <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                         @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="team_linkdin">Social Link Linkedin</label>
+                                                        <input type="text"
+                                                            class="form-control @error('team_linkdin') is-invalid @enderror"
+                                                            name="team_linkdin" value="{{ $team->team_linkdin_link }}"
+                                                            id="team_linkdin" placeholder="Enter Team Social Link Linkedin">
+                                                        @error('team_linkdin')
+                                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                                        @enderror
+                                                    </div>
                                                     <div class="form-group">
                                                         <label for="exampleInputFile">Picture</label>
                                                         <div class="input-group">
                                                             <div class="custom-file">
-                                                                <input type="file" class="custom-file-input"
-                                                                    id="exampleInputFile" name="user_picture">
+                                                                <input type="file"
+                                                                    class="custom-file-input @error('team_picture') is-invalid @enderror"
+                                                                    id="exampleInputFile" name="team_picture">
+                                                                @error('team_picture')
+                                                                    <div class="alert alert-danger mt-2">{{ $message }}
+                                                                    </div>
+                                                                @enderror
                                                                 <label class="custom-file-label"
-                                                                    for="exampleInputFile">Choose file</label>
+                                                                    for="exampleInputFile">Choose
+                                                                    file</label>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <label for="teamDescription">Team Description</label>
-                                                        <textarea class="form-control" rows="5" name="desc" placeholder="Write your profile description"
-                                                            id="teamDescription">{{ $team->team_desc }}</textarea>
-                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                            <div class="col-4 d-flex mx-auto justify-content-center mt-2">
+                                                <button type="submit" class="btn btn-success">Update Team</button>
+                                            </div>
 
-                                        <div class="card-footer">
-                                            <button type="submit" class="btn btn-primary">Update Team</button>
                                         </div>
+                                        <!-- /.card-body -->
                                     </form>
                                 </div>
                                 <div class="col-lg-3">

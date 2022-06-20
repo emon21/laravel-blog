@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TeamController;
+use App\Models\Team;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
@@ -65,6 +66,8 @@ Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('
 
 //Route::get('/comment',[CommantController::class,'comment'])->name('comment');
 Route::post('/comment',[CommentController::class,'UserComment'])->name('userComment');
+//Team
+//Route::get('team', [WebsiteController::class,'team'])->name('team');
 
 Route::get('/test',function(){
 
@@ -125,6 +128,16 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
    //Team
   // Route::get('/team',[TeamController::class,'index'])->name('team');
    Route::resource('team', TeamController::class);
+   // Route::get('/test',function(){
+   //    $id = 50;
+   //    $teams = Team::all();
+   //    foreach($teams as $team){
+   //       $team->team_img = 'https://picsum.photos/id/' . $id . '/700/600';
+   //       $team->save();
+   //       $id++;
+   //    }
+   //   return $teams;
+   // });
 
 });
 

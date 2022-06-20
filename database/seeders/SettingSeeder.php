@@ -17,6 +17,7 @@ class SettingSeeder extends Seeder
         $setting = Setting::create([
          'site_name' => 'blog',
          'site_logo' => 'backend/setting/logo.png',
+         'site_favicon' => 'backend/setting/logo.png',
          'site_desc' => 'about_site',
          'facebook' => 'facebook',
          'twitter' => 'twitter',
