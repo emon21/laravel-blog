@@ -75,6 +75,13 @@
                     </a>
                 </li>
 
+                <li class="nav-item mt-auto">
+                    <a href="{{ route('team.index') }}"
+                        class="nav-link {{ Route::is('team.index') ? 'active' : '' }}">
+                        <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Team List
+                    </a>
+                </li>
+
                 <li class="nav-header">User Account</li>
                 <li class="nav-item mt-auto">
                     <a href="{{ route('admin/profile') }}"

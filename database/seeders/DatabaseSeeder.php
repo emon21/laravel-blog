@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
           CategorySeederTableSeeder::class,
            TagTableSeeder::class,
         //  PostSeederTableSeeder::class
-        SettingSeeder::class
+        SettingSeeder::class,
+        TeamSeeder::class,
 
         ]);
       //  User::factory(10)->create();

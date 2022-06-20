@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
@@ -120,6 +121,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     //comment
    Route::get('/comment',[CommentController::class,'index'])->name('comment');
    Route::get('/comment/{singlecomment}',[CommentController::class,'commentView'])->name('comment.view');
+
+   //Team
+  // Route::get('/team',[TeamController::class,'index'])->name('team');
+   Route::resource('team', TeamController::class);
 
 });
 
