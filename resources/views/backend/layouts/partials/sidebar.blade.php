@@ -81,6 +81,12 @@
                         <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;Team List
                     </a>
                 </li>
+                <li class="nav-item mt-auto">
+                    <a href="{{ route('admin.subscribe') }}"
+                        class="nav-link {{ Route::is('admin.subscribe') ? 'active' : '' }}">
+                        <i class="fa fa-life-ring" aria-hidden="true"></i>&nbsp;&nbsp;Subscribe List
+                    </a>
+                </li>
 
                 <li class="nav-header">User Account</li>
                 <li class="nav-item mt-auto">

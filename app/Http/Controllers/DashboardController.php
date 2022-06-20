@@ -9,6 +9,7 @@ use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
 use App\Models\Contact;
+use App\Models\Subscribe;
 use Carbon\Carbon;
 
 class DashboardController extends Controller
@@ -29,5 +30,11 @@ class DashboardController extends Controller
    
       return view('backend.index',compact('posts','postCount','userCount','categoryCount','tagCount','comments'));
 
+   }
+
+   public function subscribe()
+   {
+      $subscribe = Subscribe::all();
+      return view('backend.subscribe.index',compact('subscribe'));
    }
 }

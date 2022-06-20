@@ -20,14 +20,16 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         $this->call([
-           UserSeeder::class,
-            AdminSeeder::class,
-            //Module Category
-          CategorySeederTableSeeder::class,
+           //Module Category 
+           CategorySeederTableSeeder::class,
            TagTableSeeder::class,
-        //  PostSeederTableSeeder::class
-        SettingSeeder::class,
-        TeamSeeder::class,
+           //PostSeederTableSeeder::class,
+           //user
+            UserSeeder::class,
+            AdminSeeder::class,
+            SettingSeeder::class,
+            TeamSeeder::class,
+            SubscribeSeeder::class
 
         ]);
       //  User::factory(10)->create();

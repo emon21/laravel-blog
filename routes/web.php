@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TeamController;
 use App\Models\Team;
 use Illuminate\Support\Facades\Artisan;
@@ -69,6 +70,10 @@ Route::post('/comment',[CommentController::class,'UserComment'])->name('userComm
 //Team
 //Route::get('team', [WebsiteController::class,'team'])->name('team');
 
+//Email Subscribe
+Route::resource('subscribe', SubscribeController::class);
+
+
 Route::get('/test',function(){
 
    $id = 50;
@@ -124,6 +129,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
     //comment
    Route::get('/comment',[CommentController::class,'index'])->name('comment');
    Route::get('/comment/{singlecomment}',[CommentController::class,'commentView'])->name('comment.view');
+
+   //subscribe
+   Route::get('subscribe', [DashboardController::class,'subscribe'])->name('admin.subscribe');
 
    //Team
   // Route::get('/team',[TeamController::class,'index'])->name('team');

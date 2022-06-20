@@ -1,3 +1,26 @@
+<div class="site-section bg-lightx">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-md-5">
+                <div class="subscribe-1 ">
+                    <h2>Subscribe to our newsletter</h2>
+                    <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit nesciunt
+                        error illum a explicabo, ipsam nostrum.</p>
+                    <form action="{{ route('subscribe.store') }}" class="d-flex" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" class="form-control @error('email_subscribe') is-invalid @enderror"
+                            name="email_subscribe" placeholder="Enter your email address">
+                        <input type="submit" class="btn btn-primary" value="Subscribe">
+                        {{-- @error('email_subscribe')
+                           <div class="alert alert-danger mt-2">{{ $message }}</div>
+                       @enderror --}}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <footer class="site-footer page-footer font-small unique-color-dark">
 
     {{-- <div class="container">
