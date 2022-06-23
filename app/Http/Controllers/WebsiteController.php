@@ -11,6 +11,7 @@ use App\Models\Contact;
 use App\Models\Team;
 use App\Models\User;
 
+
 class WebsiteController extends Controller
 {
 
@@ -89,19 +90,55 @@ class WebsiteController extends Controller
     public function singlePost($slug)
     {
 
-     
+      //$contents =Share::page(null, 'Share title')->facebook();
+      
+    
       $post = Post::withCount('category','user', 'comments')->Where('slug',$slug)->first();
-     // return $post;
+      //return $post;
       $posts = Post::with('category','user')->inRandomOrder()->limit(4)->get();
       
       $comment = Comment::withCount('user','post')->where('post_id',$post->id)->get();
 
-     //  return $comment;
-      //Related Posts
+     // return $post->slug;
+   //  return $posts;
       //   $relatedPost = Post::where('category_id', $post->category_id)->take(4)->get();
       //   if (!count($relatedPost)) {
       // $relatedPost = Post::where('category_id', $post->category_id)->orderBy('category_id','DESC')->inRandomOrder()->take(4)->get();
-      // }
+      //
+
+      // $shareComponent = \Share::CurrentPage(null,$post->description)
+      // $shareComponent = \Share::page(null,$post->description)
+      // ->facebook()
+      // ->twitter();
+      // https://www.facebook.com/sharer/sharer.php?u=blog
+
+     // https://www.facebook.com/sharer/sharer.php?u=.'url()->current()'.'
+
+     //'.phpcode.'
+    
+
+      $shareComponent = \Share::page('http://127.0.0.1:8080/singlePost/mr-barney-okeefe','testy')
+      ->facebook()
+      ->twitter()
+      ->linkedin();
+
+  // return $shareComponen->url()->current();
+
+    // Share button 1
+//     $shareButtons1 = \Share::page($post->slug,$post->title)
+// ->facebook()
+// ->twitter()
+// ->linkedin();
+
+    // Load index view
+   // return view('frontend.single_post')->with('shareButtons1',$shareButtons1);
+
+      
+//      $socialShares = \Share::page('http://127.0.0.1:8000/singlePost/vida-mckenzie',$post->title,
+//   )->facebook()
+//   ->twitter();
+
+
       $relatedPost =Post::orderBy('category_id','desc')->inRandomOrder()->take(4)->get();
       $firstrelatedpost = $relatedPost->splice(0,1);
       $middlerelatedpost = $relatedPost->splice(0,2);
@@ -112,7 +149,7 @@ class WebsiteController extends Controller
       $tags = Tag::all();
 
       if($post){
-         return view('frontend.single_post',compact('post','posts','category','tags','firstrelatedpost','middlerelatedpost','lastrelatedpost','comment'));
+         return view('frontend.single_post',compact('post','posts','category','tags','firstrelatedpost','middlerelatedpost','lastrelatedpost','comment','shareComponent'));
       }
       else{
          return view('frontend.index');
@@ -140,12 +177,23 @@ class WebsiteController extends Controller
     public function category()
     {
 
+      "select * from post wher date";
+
       $categoryList = Category::withCount('posts')->get();
-     // return $categoryList;
-      return view('frontend.category',compact('categoryList'));
+      $posts = Post::where('created_at','!=',null)->get();
+   //return $posts->count();
+  // where('created_at','2022-06-23 09:59:33') return $categoryList;
+      return view('frontend.category',compact('categoryList','posts'));
     }
 
     //tag
+    public function taglist()
+    {
+      // 'website.taglist'
+      $taglist = tag::withCount('posts')->get();
+      return view('frontend.taglist',compact('taglist'));
+
+    }
     public function tag($slug)
     {
       $tag = tag::where('slug',$slug)->first();
@@ -160,8 +208,6 @@ class WebsiteController extends Controller
          return redirect()->route('website');
       }
     }
-
-
 
 
 }

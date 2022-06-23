@@ -6,25 +6,12 @@
     <section id="recent-blog-posts" class="recent-blog-posts mt-4">
 
         <div class="container" data-aos="fade-up">
-
-            {{-- <div class="section-header">
-                <h2>Blog</h2>
-                <p>Recent posts form our Blog</p>
-            </div> --}}
-
-            {{-- <div class="section-header">
-                <h2>Category Of Post List : {{ $slug }}</h2>
-                <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam
-                    voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
-            </div> --}}
-
-
             <div class="py-5 bg-light">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <span>Tag</span>
-                            <h3>{{ $tag->tag_name }}</h3>
+                            <span>Tags</span>
+                            <h3> Post List : {{ $tag->tag_name }} ( {{ $posts->count() }} )</h3>
                             {{-- <span>{{ $category->count() }}</span> --}}
                             @if ($tag->description)
                                 <p>{{ $tag->description }}</p>

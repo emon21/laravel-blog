@@ -23,57 +23,26 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <!-- left column -->
-                <div class="col-md-4 justify-content-center d-block mx-auto">
 
-
-                    <!-- general form elements -->
-                    <div class="card card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Create Category</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <!-- form start -->
-                        <form action="{{ route('CreateCategory') }}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div class="card-body">
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Category Name</label>
-                                    <input type="text" class="form-control @error('category_name') is-invalid @enderror"
-                                        name="category_name" value="{{ old('category_name') }}" id="exampleInputEmail1"
-                                        placeholder="Enter Category Name">
-                                    @error('category_name')
-                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="exampleInputFile">Picture</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile"
-                                                name="post_picture">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-success">Create Category</button>
-                            </div>
-                            <!-- /.card-body -->
-                            {{-- <div class="card-footer">
-
-                            </div> --}}
-                        </form>
-                    </div>
-                    <!-- /.card -->
-                </div>
                 <!-- view data -->
-                <div class="col-md-8">
+                <div class="col-md-12">
                     <!-- general form elements -->
-                    <div class="card card-success">
+                    <div class="card card-light">
                         <div class="card-header">
-                            <h3 class="card-title">All Data</h3>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <h3 class="card-title">Category List</h3>
+
+                                @if (session('success'))
+                                    @include('backend.layouts.success')
+                                @elseif(session('status'))
+                                    @include('backend.layouts.success')
+                                @else
+                                    @include('backend.layouts.error')
+                                @endif
+
+                                <a href="{{ route('CreateCategory') }}" class="btn btn-primary text-light">Create
+                                    Category</a>
+                            </div>
                         </div>
                         <!-- /.card-header -->
                         <table class="table table-bordered table-striped">
@@ -93,8 +62,15 @@
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>{{ $value->category_name }}</td>
-                                        <td><img src="{{ $value->image_url }}" alt="" width="180"
-                                                height="120"></td>
+                                        <td>
+                                            <div style="max-width:70px;max-height:70px;overflow:hidden" class="m-auto">
+                                                <img src="@if ($value->image_url) {{ $value->image_url }} @else
+                                          {{ asset('backend/category/default_image.png') }} @endif"
+                                                    class="img-fluid img-rounded" alt="">
+                                            </div>
+                                            {{-- <img src="{{ $value->image_url }}" alt="" width="75"
+                                                height="65"> --}}
+                                        </td>
                                         <td>{{ $value->slug }}</td>
                                         <td class="text-center">{{ $value->posts_count }}</td>
                                         <td>
@@ -106,22 +82,24 @@
                                             @endif
                                         </td>
                                         <td>
+
+                                            @if ($value->status == 1)
+                                                <a href="{{ route('status', $value->id) }}" class="btn btn-danger">
+                                                    <i class="fa fa-eye-slash text-light" aria-hidden="true"></i>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('status', $value->id) }}" class="btn btn-success">
+                                                    <i class="fa fa-solid fa-eye text-light"></i>
+                                                </a>
+                                            @endif
                                             <a href="{{ route('EditCategory', $value->id) }}" class="btn btn-info"><i
                                                     class="fas fa-edit"></i></a>
                                             <a href="{{ route('DeleteCategory', $value->id) }}" class="btn btn-danger"
                                                 onclick="return confirm('Are You Sure You Want To Delete This Item Y/N')"><i
                                                     class="fas fa-trash"></i></a>
                                             {{-- <a href="{{ route('status', $value->id) }}" class="btn btn-warning"><i
-                                                    class="fa fa-solid fa-eye"></i></a> --}}
-
-                                            @if ($value->status == 1)
-                                                <a href="{{ route('status', $value->id) }}" class="btn btn-dark"><i
-                                                        class="fa fa-eye-slash text-danger" aria-hidden="true"></i></a>
-                                            @else
-                                                <a href="{{ route('status', $value->id) }}" class="btn btn-dark"> <i
-                                                        class="fa fa-solid fa-eye text-success"></i></a>
-                                            @endif
-                                            {{-- <div class="custom-control custom-switch">
+                                                    class="fa fa-solid fa-eye"></i></a>
+                                            <div class="custom-control custom-switch">
                                                 <input type="checkbox" class="custom-control-input" id="switch1">
                                                 <label class="custom-control-label" for="switch1">Toggle me</label>
                                             </div> --}}

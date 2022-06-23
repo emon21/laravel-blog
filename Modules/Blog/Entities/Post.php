@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
 use App\Models\User;
+use Attribute;
 use Illuminate\Support\Str;
+use League\CommonMark\Extension\Attributes\Node\Attributes;
+
 class Post extends Model
 {
     use HasFactory;
@@ -29,7 +32,7 @@ class Post extends Model
     }
 
    //  protected $appends = ['image_url', 'image','logo_image2_url', 'favicon_image_url'];
-    protected $appends = ['image_url','title_slug'];
+   // protected $appends = ['image_url','title_slug'];
     
    //  public function getImageUrlAttribute($image)
    //  {
@@ -40,16 +43,25 @@ class Post extends Model
    //      return asset($this->image);
    //  }
 
+   protected $appends = ['image_url'];
 
 
   //Accessor 
+   // public function getImageUrlAttribute() 
+   // {
+   //     if (is_null($this->image)) {
+   //         return asset('backend/blog/default.jpg');
+   //     }
+
+   //     return asset($this->image);
+   // }
+
    public function getImageUrlAttribute() 
    {
-       if (is_null($this->image)) {
-           return asset('backend/blog/default.jpg');
-       }
-
-       return asset($this->image);
+      if (is_null($this->image)) {
+         return asset('backend/blog/default_image.png');
+      }
+      return asset($this->image);
    }
 
    public function getTitleSlugAttribute() 
@@ -59,6 +71,13 @@ class Post extends Model
        return Str::slug($this->title);
 
    
+   }
+
+
+   //Mutator
+   public function setSlugAttribute($value)
+   {
+     $this->attributes['slug'] = Str::slug($value);
    }
 
     public function category()

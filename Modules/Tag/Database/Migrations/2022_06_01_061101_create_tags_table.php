@@ -20,6 +20,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        //post and tag table
         Schema::create('post_tag', function (Blueprint $table) {
          $table->integer('post_id');
          $table->integer('tag_id');

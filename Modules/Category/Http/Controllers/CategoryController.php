@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Category\Entities\Category;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Session;
 class CategoryController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $category = Category::withCount('posts')->Paginate();
+        $category = Category::withCount('posts')->orderBy('id','desc')->Paginate(10);
        // return $category;
     //    return view('blog::category.index',compact('category'));
         return view('category::index',compact('category'));
@@ -28,22 +29,8 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
 
-        $request->validate([
-            'category_name' => 'required|unique:categories,category_name'
-        ]);
-        $post = Category::create([
-            'category_name' => $request->category_name,
-            'slug' => Str::slug($request->category_name),
-            'image' => 'backend/category/default.jpg'
-        ]);
-
-        if($request->has('post_picture')) {
-            $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
-            $request->post_picture->move(public_path('backend/category/'), $filename);
-            $post->image = 'backend/category/'.$filename;
-            $post->save();
-         }
-        return back();
+      return view('category::create');
+       
     }
 
     /**
@@ -53,7 +40,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //validation
+      $request->validate([
+         'category_name' => 'required|unique:categories,category_name'
+     ]);
+
+     //insert data
+     $post = Category::create([
+         'category_name' => $request->category_name,
+         'slug' => Str::slug($request->category_name),
+         // 'image' => 'backend/category/default.jpg'
+     ]);
+
+     //image upload
+     if($request->has('post_picture')) {
+         $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+         $request->post_picture->move(public_path('backend/category/'), $filename);
+         $post->image = 'backend/category/'.$filename;
+         $post->save();
+      }
+      Session::flash('success','Category Created Successfully');
+      return redirect()->route('category');
     }
 
     /**
@@ -116,6 +123,7 @@ class CategoryController extends Controller
 
       }
       $category->save();
+      Session::flash('success','Category Updated Successfully');
       return redirect()->route('category');
     }
 
@@ -128,7 +136,8 @@ class CategoryController extends Controller
     {
         //
         $category->delete();
-        return back();
+        Session::flash('error','Category Delete Successfully');
+        return redirect()->route('category');
     }
 
     //Status
@@ -139,9 +148,11 @@ class CategoryController extends Controller
         $status = $category->status;
         if ($status == 1) {
             $status = 0;
-        }
-        else{
+            Session::flash('error','Category Status Disable Successfully');
+         }
+         else{
             $status = 1;
+            Session::flash('status','Category Status Enable Successfully');
         }
         $category->status = $status;
 

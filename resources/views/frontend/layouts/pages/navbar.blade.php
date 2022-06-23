@@ -19,6 +19,7 @@
     <li><a href="{{ route('website') }}" class=" active {{ Route::is('website') ? 'active' : '' }}">Home</a></li>
     <li><a href="{{ route('website.blog') }}">Blog</a></li>
     <li><a href="{{ route('website.category') }}">Category</a></li>
+    <li><a href="{{ route('website.taglist') }}">Tag</a></li>
     <li><a href="{{ route('about') }}">About US</a></li>
     <li><a href="{{ route('contact') }}">Contact US</a></li>
     @foreach ($categories as $category)

@@ -22,139 +22,25 @@
 @endsection
 @section('admin-content')
     <div class="container-fluid">
-        <!-- Create Post Start -->
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
-        <div class="col-md-8 justify-content-center mx-auto d-block">
-            <!-- general form elements -->
-            <div class="card card-primary">
-                <div class="card-header">
-                    <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Create Post</h3>
-                </div>
-                <!-- /.card-header -->
-                <!-- form start -->
-                <form action="{{ route('addPost') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Post Name</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                                value="{{ old('title') }}" id="exampleInputEmail1" placeholder="Enter Your Title">
-                            @error('title')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group col-sm-12">
-                            <label for="comment">Description:</label>
-                            <textarea id="summernote" name="post_desc" class=" @error('post_desc') is-invalid @enderror"></textarea>
-
-                        </div>
-
-                        <div class="row">
-
-                            <div class="form-group col-sm-12">
-                                <label for="exampleInputFile">Picture</label>
-                                <input type="file" class="dropify" data-height="200" id="id_member_photo"
-                                    name="post_picture" />
-
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="form-group col-sm-4">
-                                <label for="sel1">Category List:</label>
-                                <select class="form-control  @error('category_list') is-invalid @enderror" id="sel1"
-                                    name="category_list">
-                                    <option style="display: none" selected
-                                        class="@error('category_list') is-invalid @enderror"> Select Category </option>
-                                    @foreach ($categoryList as $category)
-                                        <option class="mt-4" value="{{ $category->id }}">
-                                            {{ $category->category_name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <!-- Status Start -->
-                            <div class="form-group col-sm-5" style="margin-top:2px">
-                                <label for="exampleInputFile">Status</label>
-                                <div class="mt-2">
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                            class="custom-control-input @error('status') is-invalid @enderror"
-                                            id="customRadio" name="status" value="publish">
-                                        <label class="custom-control-label" for="customRadio">Publish</label>
-                                    </div>
-                                    <div class="custom-control custom-radio custom-control-inline">
-                                        <input type="radio"
-                                            class="custom-control-input custom-control-input-danger @error('status') is-invalid @enderror"
-                                            id="customRadio2" name="status" value="unpublish">
-                                        <label class="custom-control-label" for="customRadio2">Unpublish</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Status End --->
-
-                        </div>
-
-                        <!-- checkbox -->
-                        <div class="form-group col-sm-12 ">
-                            <label for="sel1">Choose Tag List:</label>
-                            <div class="d-flex flex-wrap">
-                                @foreach ($tags as $tag)
-                                    <div class="custom-control custom-checkbox mr-2">
-                                        <input
-                                            class="custom-control-input custom-control-input-danger custom-control-input-outline"
-                                            type="checkbox" name="tags[]" id="tag{{ $tag->id }}"
-                                            value="{{ $tag->id }}">
-                                        <label for="tag{{ $tag->id }}"
-                                            class="custom-control-label">{{ $tag->tag_name }}</label>
-                                    </div>
-                                @endforeach
-                            </div>
-
-                        </div>
-
-                        <!-- Status Start -->
-                        {{-- <div class="form-group col-sm-4">
-                            <label for="exampleInputFile">Status</label>
-                            <div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input @error('status') is-invalid @enderror"
-                                        id="customRadio" name="status" value="publish">
-                                    <label class="custom-control-label" for="customRadio">Publish</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio"
-                                        class="custom-control-input custom-control-input-danger @error('status') is-invalid @enderror"
-                                        id="customRadio2" name="status" value="unpublish">
-                                    <label class="custom-control-label" for="customRadio2">Unpublish</label>
-                                </div>
-                            </div>
-                        </div> --}}
-                        <!-- Status End --->
-
-
-
-                        <div class="form-group col-sm-4">
-                            <button type="submit" class="btn btn-success w-50">Create Post</button>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </form>
-            </div>
-            <!-- /.card -->
-        </div>
-
-        <!-- Create Post End -->
-
         <!-- Show Post Start -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-list"></i> &nbsp; Post All</h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="card-title"><i class="fas fa-list"></i> &nbsp; Post All</h3>
+
+                    @if (session('success'))
+                        @include('backend.layouts.success')
+                    @elseif(session('status'))
+                        @include('backend.layouts.success')
+                    @else
+                        @include('backend.layouts.error')
+                    @endif
+
+                    <a href="{{ route('addPost') }}" class="btn btn-primary text-light"><i class="fas fa-plus"></i>
+                        &nbsp;Create
+                        Post</a>
+                </div>
+
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -180,7 +66,19 @@
                                 <td>{{ $post->slug }}</td>
                                 <td class="text-center">
 
-                                    <img src="{{ $post->image_url }}" width="150" height="150" alt="">
+                                    {{-- <img src="{{ asset('backend/blog/default.png') }}" class="img-fluid img-rounded"
+                                        alt=""> --}}
+
+                                    {{-- <img src="@if ($post->image_url) {{ $post->image_url }}
+                                    @else
+                                    {{ asset('backend/blog/default.png') }} @endif"
+                                        alt=""> --}}
+
+                                    <div style="max-width:70px;max-height:70px;overflow:hidden" class="m-auto">
+                                        <img src="@if ($post->image_url) {{ $post->image_url }} @else
+                                    {{ asset('backend/blog/default_image.png') }} @endif"
+                                            class="img-fluid img-rounded" alt="">
+                                    </div>
                                 </td>
                                 <td>{{ $post->category->category_name }}</td>
                                 <td>

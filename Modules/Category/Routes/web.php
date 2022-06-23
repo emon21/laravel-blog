@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin/category')->middleware(['auth','admin'])->group(function() {
     Route::get('/', 'CategoryController@index')->name('category');
-    Route::post('/create', 'CategoryController@create')->name('CreateCategory');
+    Route::get('/create', 'CategoryController@create')->name('CreateCategory');
+    Route::post('/insert', 'CategoryController@store')->name('CreateInsert');
     Route::get('/edit/{category}', 'CategoryController@edit')->name('EditCategory');
     Route::put('/update/{category}', 'CategoryController@update')->name('UpdateCategory');
     Route::get('/delete/{category}', 'CategoryController@destroy')->name('DeleteCategory');

@@ -11,6 +11,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\SocialShareButtonsController;
 use App\Models\Team;
 use Illuminate\Support\Facades\Artisan;
 use Modules\Blog\Entities\Post;
@@ -50,10 +51,14 @@ Route::middleware(['auth'])->group(function (){
   // Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
 });
 
-
 // ======================= User Controller Route End  ================
 
+//share in social route
+Route::get('/social-media-share', [SocialShareButtonsController::class,'ShareWidget']);
+
 // ========================= Website Controller Route Start =====================
+
+//same text seletc ctrl + f2 >> then replace your paragraph
 
 Route::get('/',[WebsiteController::class,'index'])->name('website');
 Route::get('/about',[WebsiteController::class,'about'])->name('about');
@@ -61,6 +66,7 @@ Route::get('/contact',[WebsiteController::class,'contact'])->name('contact');
 Route::post('/contact',[WebsiteController::class,'sendMessage'])->name('send_message');
 Route::get('/blog',[WebsiteController::class,'BlogList'])->name('website.blog');
 Route::get('/category',[WebsiteController::class,'category'])->name('website.category');
+Route::get('/tag',[WebsiteController::class,'taglist'])->name('website.taglist');
 Route::get('/tag/{slug}',[WebsiteController::class,'tag'])->name('website.tag');
 Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])->name('singleCategory');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
@@ -145,6 +151,10 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->group(function (){
    //       $id++;
    //    }
    //   return $teams;
+   // });
+
+   // Route::get('refresh',function(){
+   //    php artisan down --refresh=60
    // });
 
 });

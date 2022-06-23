@@ -1,18 +1,18 @@
 {{-- @extends('category::layouts.master') --}}
 @extends('backend.layouts.master')
-@section('title', 'Tag Edit')
+@section('title', 'Category Create')
 @section('header')
     {{-- @include('backend.layouts.partials.header') --}}
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Tag Edit</h1>
+                    <h1 class="m-0">Category Create</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Tag Edit</li>
+                        <li class="breadcrumb-item active">Category Create</li>
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -30,8 +30,8 @@
                     <div class="card card-light">
                         <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h3 class="card-title">Tag Edit</h3>
-                                <a href="{{ route('taglist') }}" class="btn btn-primary text-light">Go Back Tag List
+                                <h3 class="card-title">Category Create</h3>
+                                <a href="{{ route('category') }}" class="btn btn-primary text-light">Go Back Category List
                                 </a>
                             </div>
                         </div>
@@ -44,32 +44,43 @@
                                 <!-- general form elements -->
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title"><i class="fa fa-pencil-square-o"
-                                                aria-hidden="true"></i>&nbsp;Edit Tag</h3>
+                                        <h3 class="card-title"><i class="fas fa-plus"></i>&nbsp;Create Category</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
-                                    <form action="{{ route('UpdateTag', $tag->id) }}" method="post">
+                                    <form action="{{ route('CreateInsert') }}" method="post"
+                                        enctype="multipart/form-data">
                                         @csrf
-                                        @method('PUT')
                                         <div class="card-body">
-                                            {{-- <input type="text" name="tagid" value="{{ $tag->id }}"> --}}
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1">Tag Name</label>
+                                                <label for="exampleInputEmail1">Category Name</label>
                                                 <input type="text"
-                                                    class="form-control @error('tag_name') is-invalid @enderror"
-                                                    name="tag_name" value="{{ $tag->tag_name }}" id="exampleInputEmail1"
-                                                    placeholder="Enter Tag Name">
-                                                @error('tag_name')
+                                                    class="form-control @error('category_name') is-invalid @enderror"
+                                                    name="category_name" value="{{ old('category_name') }}"
+                                                    id="exampleInputEmail1" placeholder="Enter Category Name">
+                                                @error('category_name')
                                                     <div class="alert alert-danger mt-2">{{ $message }}</div>
                                                 @enderror
                                             </div>
-                                            <button type="submit" class="btn btn-success">Update Tag</button>
+
+                                            <div class="form-group">
+                                                <label for="exampleInputFile">Picture</label>
+                                                <div class="input-group">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input"
+                                                            id="exampleInputFile" name="post_picture">
+                                                        <label class="custom-file-label" for="exampleInputFile">Choose
+                                                            file</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-success">Create Category</button>
                                         </div>
                                         <!-- /.card-body -->
                                         {{-- <div class="card-footer">
-           
-                                       </div> --}}
+
+                            </div> --}}
                                     </form>
                                 </div>
                                 <!-- /.card -->

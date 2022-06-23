@@ -15,10 +15,7 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+    
     public function index()
     {
          $tags = Tag::all();
@@ -27,80 +24,76 @@ class BlogController extends Controller
          return view('blog::index',compact('tags','categoryList','postList'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
     public function create(Request $request)
     {
-
-   //dd($request->all());
-      $user = Auth::user()->id;
-       $post = Post::create([
-         'title' => $request->title,
-         'slug' => Str::slug($request->title),
-         'description' => $request->title,
-         'image' => 'backend/blog/default.jpg',
-         'category_id' => $request->category_list,
-         'user_id' => $user,
-         'status' => $request->status,
-      ]);
-
-      $post->tags()->attach($request->tags);
-    
-      if($request->has('post_picture')) {
-
-      //    $imageName = time().'.'.$request->post_picture->extension();  
-     
-      //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
-      //   return $post->imageName;
-
-         $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
-       //$request->post_picture->move('backend/blog/', $filename);
-         $request->post_picture->move(public_path('backend/blog/'), $filename);
-         $post->image = 'backend/blog/'.$filename;
-         $post->save();
-      }
-
-         //zakir vhi code
-         //      if($request->has('post_picture')) {
-         //       $image = $request->post_picture;
-         //       $filename = time() . '.' .$image->getClientOriginalName();
-         //       $image->move('backend/blog', $filename);
-         //       $post->image = 'backend/blog'.$filename;
-         //       $post->image = $filename;
-         //       $post->save();
-         //   }
-
-        return redirect('admin/post')->with('status','Post Inserted Successfully');
+      $tags = Tag::all();
+      $categoryList = Category::all();
+      return view('blog::create',compact('tags','categoryList'));
+  
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
     public function store(Request $request)
     {
-        
+      
+         // $this->validate($request,[
+         //    'title' => 'required',
+         // ]);
+
+         //validation
+         $request->validate([
+            'title' => 'required',
+            'post_desc' => 'required',
+         ]);
+    
+
+
+      $user = Auth::user()->id;
+      $post = Post::create([
+        'title' => $request->title,
+        'slug' => Str::slug($request->title),
+        'description' => $request->title,
+        //'image' => 'backend/blog/default.jpg',
+        'category_id' => $request->category_list,
+        'user_id' => $user,
+        'status' => $request->status,
+     ]);
+
+     $post->tags()->attach($request->tags);
+   
+     if($request->has('post_picture')) {
+
+     //    $imageName = time().'.'.$request->post_picture->extension();  
+    
+     //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
+     //   return $post->imageName;
+
+        $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+      //$request->post_picture->move('backend/blog/', $filename);
+        $request->post_picture->move(public_path('backend/blog/'), $filename);
+        $post->image = 'backend/blog/'.$filename;
+        $post->save();
+     }
+
+        //zakir vhi code
+        //      if($request->has('post_picture')) {
+        //       $image = $request->post_picture;
+        //       $filename = time() . '.' .$image->getClientOriginalName();
+        //       $image->move('backend/blog', $filename);
+        //       $post->image = 'backend/blog'.$filename;
+        //       $post->image = $filename;
+        //       $post->save();
+        //   }
+
+       return redirect('admin/post')->with('status','Post Inserted Successfully');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+   
     public function show($id)
     {
         return view('blog::show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
     public function edit(Post $post)
     {
      
@@ -109,12 +102,6 @@ class BlogController extends Controller
          return view('blog::edit',compact('tags','categoryList','post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
     public function update(Request $request,Post $post)
     {
 
@@ -152,11 +139,7 @@ class BlogController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
+    
     public function destroy(Post $post)
     {
        
@@ -194,8 +177,15 @@ class BlogController extends Controller
       if ($post->image) {
          unlink($post->image);
          }
-      $post->delete();
-     return back()->with("success", "Image deleted successfully.");
+         else{
+            $post->delete();
+            //return back()->with("success", "Image deleted successfully.");
+         } 
+       return redirect('postList')->with('error','Post Deleted Successfully');
+         
+         
+   //    $post->delete();
+   //   return back()->with("success", "Image deleted successfully.");
 
     }
 

@@ -137,6 +137,7 @@
                 <li><a href="{{ route('website') }}">Home</a></li>
                 <li><a href="{{ route('website.blog') }}">Blog</a></li>
                 <li><a href="{{ route('website.category') }}">Category</a></li>
+                <li><a href="{{ route('website.taglist') }}">Tag</a></li>
                 <li><a href="{{ route('about') }}">About Us</a></li>
                 <li><a href="{{ route('contact') }}">Contact Us</a></li>
                 {{-- <p>

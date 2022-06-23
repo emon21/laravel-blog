@@ -59,8 +59,7 @@
                                             <td>{{ $loop->index + 1 }}</td>
                                             <td>
 
-                                                <div style="max-width:70px;max-height:70px;overflow:hidden"
-                                                    class="m-auto">
+                                                <div style="max-width:70px;max-height:70px;overflow:hidden" class="m-auto">
                                                     <img src="@if ($user->image) {{ asset($user->image) }} @else
                                                  {{ asset('backend/user/user.png') }} @endif"
                                                         class="img-fluid rounded-circle img-rounded" alt="">
@@ -88,9 +87,6 @@
                                                                 class="fas fa-trash"></i></button>
                                                     </form>
                                                 </div>
-
-
-
 
                                             </td>
 

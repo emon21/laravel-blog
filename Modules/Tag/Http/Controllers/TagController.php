@@ -32,20 +32,8 @@ class TagController extends Controller
     public function create(Request $req)
     {
 
-        $req->validate([
-            'tag_name' => 'required|unique:tags,tag_name'
-        ]);
-        Tag::create([
-            'tag_name' => $req->tag_name,
-            'slug' => Str::slug($req->tag_name),
-        ]);
+      return view('tag::create');
 
-       Toastr::success('Create Tag Successfully', 'Tag', ["positionClass" => "toast-top-right","progressBar" => true,]);
-      // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-     // Session::flash('success', 'Tag Create Successfully !!');
-        // return view('category::create');
-        return back();
-        // return view('tag::create');
     }
 
     /**
@@ -55,7 +43,25 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //validation
+      $request->validate([
+         'tag_name' => 'required|unique:tags,tag_name'
+     ]);
+
+     //Tag Create
+     Tag::create([
+         'tag_name' => $request->tag_name,
+         'slug' => Str::slug($request->tag_name),
+     ]);
+
+    Toastr::success('Create Tag Successfully', 'Tag', ["positionClass" => "toast-top-right","progressBar" => true,]);
+   // toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+  // Session::flash('success', 'Tag Create Successfully !!');
+     // return view('category::create');
+    // return back();
+    // Session::flash('error','Category Delete Successfully');
+     return redirect()->route('taglist');
+     // return view('tag::create');
     }
 
     /**
@@ -94,9 +100,10 @@ class TagController extends Controller
     //        'tag_name' => $request->tag_name,
     //    ])->where('id',$tag)->get();
       // $tag = New Tag();
+      
       $request->validate([
-        'tag_name' => "required|unique:tags,tag_name,$tag->tag_name",
-    ]);
+        'tag_name' => "required",
+         ]);
        $tag->tag_name = $request->tag_name;
        $tag->slug = Str::slug($request->tag_name);
        $tag->save();

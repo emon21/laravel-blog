@@ -1,6 +1,49 @@
 @extends('frontend.layouts.master')
 @section('title', 'Single Post')
+@section('styles')
+    <style>
+        #social-links ul {
+            padding-left: 0;
+        }
 
+        #social-links ul li {
+            display: inline-block;
+        }
+
+        #social-links ul li a {
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin: 1px;
+            font-size: 25px;
+        }
+
+        #social-links .fa-facebook {
+            color: #0d6efd;
+        }
+
+        #social-links .fa-twitter {
+            color: deepskyblue;
+        }
+
+        #social-links .fa-linkedin {
+            color: #0e76a8;
+        }
+
+        #social-links .fa-whatsapp {
+            color: #25D366
+        }
+
+        #social-links .fa-reddit {
+            color: #FF4500;
+            ;
+        }
+
+        #social-links .fa-telegram {
+            color: #0088cc;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="site-cover site-cover-sm same-height overlay single-page"
         style="background-image: url('{{ $post->image_url }}');">
@@ -35,6 +78,21 @@
                     <div class="post-content-body">
                         {!! $post->description !!}
                     </div>
+                    <span>Post Share : {!! $shareComponent !!}</span>
+
+                    {{-- {{ url()->current() }} --}}
+                    {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}">Share
+                        on Facebook</a>
+
+                    <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}">Share on Twitter</a> --}}
+
+
+
+                    <div class="col-lg-6 single-b-wrap col-md-12 mt-3">
+                        <button class="btn btn-primary" id="shareBtn" style="display: none"><i
+                                class="fa fa fa-share text-white" aria-hidden="true"></i> Share</button>
+                    </div>
+
                     <div class="pt-2">
                         <p>Categories:
                             <span class="badge badge-success p-2 ">
@@ -51,6 +109,7 @@
                             @endif
                         </p>
                     </div>
+
 
                     <section class="site-section py-lg">
                         <div class="container">
@@ -171,7 +230,7 @@
                                                         <span class="alert alert-danger text-dark">Sorry Do Not Comment
                                                             This Blog Please Login Here</span>
                                                         <a href="{{ route('login') }}" class="btn btn-success mt-4"><i
-                                                                class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                                                                class="fa fa-sign-in" aria-hidden="true"></> Login</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -229,7 +288,8 @@
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>
                                 <p class="mb-4">{{ $post->user->description }}</p>
-                                <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a></p>
+                                <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a>
+                                </p>
                                 <p class="social">
                                     <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
                                     <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
@@ -351,15 +411,13 @@
 
                 </div>
             </div>
-
         </div>
     </div>
-
-
-    
-
-
 @endsection
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+<script src="{{ asset('js/share.js') }}"></script>
 @section('script')
     <script>
         /**
@@ -379,4 +437,41 @@
             (d.head || d.body).appendChild(s);
         })();
     </script>
+
+    {{-- <script>
+        // Social Share links.
+        const gmailBtn = document.getElementById('gmail-btn');
+        const facebookBtn = document.getElementById('facebook-btn');
+        const gplusBtn = document.getElementById('gplus-btn');
+        const linkedinBtn = document.getElementById('linkedin-btn');
+        const twitterBtn = document.getElementById('twitter-btn');
+        const whatsappBtn = document.getElementById('whatsapp-btn');
+        const socialLinks = document.getElementById('social-links');
+        // posturl posttitle  post-img
+        let postUrl = encodeURI(document.location.href);
+        let postTitle = encodeURI('{{ $post->title }}');
+        facebookBtn.setAttribute("href", `https://www.facebook.com/sharer.php?u=${postUrl}`);
+        twitterBtn.setAttribute("href", `https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+        linkedinBtn.setAttribute("href", `https://www.linkedin.com/shareArticle?url=${postUrl}&title=${postTitle}`);
+        whatsappBtn.setAttribute("href", `https://wa.me/?text=${postTitle} ${postUrl}`);
+        gmailBtn.setAttribute("href", `https://mail.google.com/mail/?view=cm&su=${postTitle}&body=${postUrl}`);
+        gplusBtn.setAttribute("href", `https://plus.google.com/share?url=${postUrl}`);
+
+        // Button
+        const shareBtn = document.getElementById('shareBtn');
+        if (!navigator.share) {
+            shareBtn.style.display = 'block';
+            socialLinks.style.display = 'none';
+            shareBtn.addEventListener('click', () => {
+                navigator.share({
+                    title: postTitle,
+                    url: postUrl
+                }).then((result) => {
+                    alert('Thank You for Sharing.')
+                }).catch((err) => {
+                    console.log(err);
+                });;
+            });
+        } else {}
+    </script> --}}
 @endsection
