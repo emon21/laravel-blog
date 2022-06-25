@@ -35,20 +35,20 @@
                 <li class="nav-item">
                     <a href="{{ Route('category') }}" class="nav-link {{ Route::is('category') ? 'active' : '' }}">
                         <i class="fa fa-tags" aria-hidden="true"></i>
-                        <p>Categories</p>
+                        <p>Categories ( {{ $categoryList->count() }} )</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ Route('taglist') }}" class="nav-link {{ Route::is('taglist') ? 'active' : '' }}">
                         <i class="fa fa-tag" aria-hidden="true"></i>
-                        <p>Tags</p>
+                        <p>Tags ( {{ $taglist->count() }} )</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('postList') }}"
                         class="nav-link {{ Route::is('postList') ? 'active' : '' }}">
                         <i class="fa fa-edit" aria-hidden="true"></i>
-                        <p class="text">Post</p>
+                        <p class="text">Post ( {{ $postlist->count() }} )</p>
                     </a>
                 </li>
 

@@ -13,6 +13,7 @@ use App\Models\Comment;
 use Modules\Blog\Entities\Post;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Modules\Tag\Entities\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -50,6 +51,20 @@ class AppServiceProvider extends ServiceProvider
           //categories
           $categories = Category::orderBy('id','desc')->inRandomOrder()->take(5)->get();
           view::share('categories',$categories);
+
+          //categories
+          $categoryList = Category::all();
+          view::share('categoryList',$categoryList);
+
+          //Tag
+          $taglist = Tag::all();
+          view::share('taglist',$taglist);
+
+          //Post
+          $postlist = Post::all();
+          view::share('postlist',$postlist);
+
+         // $categoryList = Category::withCount('posts')->get();
           //setting
           $setting = Setting::first();
           view::share('setting',$setting);
@@ -71,6 +86,13 @@ class AppServiceProvider extends ServiceProvider
 
           $commentCount = Comment::with('user','post')->orderBy('id','desc')->limit(3)->get();
           view::share('commentCount',$commentCount);
+
+          //user Post
+          // $userID = Auth::check()->user()->id;
+         // $userpost = Post::WithCount('user')->get();
+          $userpost = Post::withCount('user')->where('user_id',1)->get();
+
+          view::share('userpost',$userpost);
 
      }
    }

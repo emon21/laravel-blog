@@ -3,39 +3,33 @@
 
 @section('content')
     <div class="container-fluid mb-4">
-        <div class="row mt-2 border-top">
+        <div class="d-flex mt-2 border-top">
             @include('frontend.user.pages.left_sidebar')
             <div class="col-sm-10 bg-light">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Sl No</th>
-                            <th>Image</th>
-                            <th>Post Name</th>
-                            <th>Post Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if ($userPosts->count() > 0)
-                            @foreach ($userPosts as $post)
-                                <tr>
-                                    <td>{{ $loop->index + 1 }}</td>
-                                    <td><img src="@if ($post->image) {{ asset($post->image) }} @else {{ asset('backend/blog/default.png') }} @endif"
-                                            class="img-fluid img-rounded" width="85" height="85" alt=""></td>
-                                    <td>{{ $post->title }}</td>
-                                    <td>{{ $post->description }}</td>
-                                </tr>
-                            @endforeach
-                        @else
-                            <td colspan="3" class="text-center text-danger" style="font-size: 22px;">
-                                <span>Sorry This User No Post Here</span>
-                            </td>
-                        @endif
-                    </tbody>
-                </table>
-                {{ $userPosts->links() }}
+                <div class="card-columns">
+                    @if ($userPosts->count() > 0)
+                        @foreach ($userPosts as $post)
+                            <div class="card bg-light">
+                                <div class="card-body text-center">
+                                    <img src="@if ($post->image) {{ asset($post->image) }} @else {{ asset('backend/blog/default.png') }} @endif"
+                                        class="img-fluid centerimg-rounded" width="320" height="180" alt="">
+                                    <h4 class="card-title">{{ $post->title }}</h4>
+                                    <p class="card-text text-justify">{{ $post->description }}</p>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <td colspan="3" class="text-center text-danger" style="font-size: 22px;">
+                            <span>Sorry This User No Post Here</span>
+                        </td>
+                    @endif
+
+                </div>
+
             </div>
         </div>
+
+
     </div>
 
     <div class="site-section bg-light">

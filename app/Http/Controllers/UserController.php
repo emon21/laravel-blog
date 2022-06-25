@@ -136,6 +136,7 @@ class UserController extends Controller
       //return $request->all();
       
       $user = Auth::user()->id;
+      
       $post = Post::create([
         'title' => $request->title,
         'slug' => Str::slug($request->title),
