@@ -34,27 +34,40 @@
 
                 <li class="nav-item">
                     <a href="{{ Route('category') }}" class="nav-link {{ Route::is('category') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle text-warning"></i>
-                        <p>Category</p>
+                        <i class="fa fa-tags" aria-hidden="true"></i>
+                        <p>Categories</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ Route('taglist') }}" class="nav-link {{ Route::is('taglist') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle text-info"></i>
-                        <p>Tag</p>
+                        <i class="fa fa-tag" aria-hidden="true"></i>
+                        <p>Tags</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('postList') }}"
                         class="nav-link {{ Route::is('postList') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle text-danger"></i>
+                        <i class="fa fa-edit" aria-hidden="true"></i>
                         <p class="text">Post</p>
                     </a>
                 </li>
+
+                <li class="nav-item mt-auto">
+                    <a href="{{ route('message') }}" class="nav-link {{ Route::is('message') ? 'active' : '' }}">
+                        <i class="fa fa-envelope-open-o" aria-hidden="true"></i>&nbsp;&nbsp;Messages
+                    </a>
+                </li>
+
+                <li class="nav-item mt-auto">
+                    <a href="{{ route('comment') }}" class="nav-link {{ Route::is('comment') ? 'active' : '' }}">
+                        <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;All Comments
+                    </a>
+                </li>
+
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"
                         class="nav-link {{ Route::is('user.index') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle text-success"></i>
+                        <i class="fa fa-user-o" aria-hidden="true"></i>
                         <p class="text">User</p>
                     </a>
                 </li>
@@ -64,16 +77,8 @@
                         <i class="fa fa-cog" aria-hidden="true"></i>&nbsp;&nbsp;website Setting
                     </a>
                 </li>
-                <li class="nav-item mt-auto">
-                    <a href="{{ route('comment') }}" class="nav-link {{ Route::is('comment') ? 'active' : '' }}">
-                        <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;&nbsp;All Comments
-                    </a>
-                </li>
-                <li class="nav-item mt-auto">
-                    <a href="{{ route('message') }}" class="nav-link {{ Route::is('message') ? 'active' : '' }}">
-                        <i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp;&nbsp;Contact
-                    </a>
-                </li>
+
+
 
                 <li class="nav-item mt-auto">
                     <a href="{{ route('team.index') }}"

@@ -208,9 +208,11 @@ class UserController extends Controller
 
       //User Profile Change
       if($request->hasFile('user_picture')) { 
-         // if(file_exists($user->image)){
-         //    unlink($user->image);
-         //    }
+         //delete File
+         if(file_exists($user->image)){
+            unlink($user->image);
+            }
+         //file upload
          $filename = time() . '.' .$request->user_picture->getClientOriginalextension();
          $request->user_picture->move(public_path('backend/user/'), $filename);
          $user->image = 'backend/user/'.$filename;

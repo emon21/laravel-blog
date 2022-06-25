@@ -1,4 +1,18 @@
 @extends('frontend.layouts.master')
+@section('meta')
+    <meta property="og:url"
+        content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="When Great Minds Don’t Think Alike" />
+    <meta property="og:description" content="How much does culture influence creative thinking?" />
+    <meta property="og:image" content="{{ $post->image_url }}" />
+    {{-- <meta property="og:title" content="{{ $post->title }}">
+    <meta property="og:url" content="{{ asset(Request::path()) }}">
+    <meta property="og:image" content="{{ asset($post->image_url) }}">
+    <meta property="og:image:alt" content="{{ $post->title }}">
+    <meta property="og:description"
+        content="{{ htmlspecialchars(trim(strip_tags(str_replace('&nbsp;', '', $post->description)))) }}"> --}}
+@endsection
 @section('title', 'Single Post')
 @section('styles')
     <style>
@@ -78,6 +92,7 @@
                     <div class="post-content-body">
                         {!! $post->description !!}
                     </div>
+                    <span class="btn btn-primary btn-md m-4" onclick="fb()">Facebook</span>
                     <span>Post Share : {!! $shareComponent !!}</span>
 
                     {{-- {{ url()->current() }} --}}
@@ -419,6 +434,14 @@
     integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
 <script src="{{ asset('js/share.js') }}"></script>
 @section('script')
+    <script>
+        function fb() {
+            var url = document.location.href;
+            var fbpopup = window.open("https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url), "pop",
+                "width=600, height=400, scrollbars=no");
+            return false;
+        }
+    </script>
     <script>
         /**
          *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

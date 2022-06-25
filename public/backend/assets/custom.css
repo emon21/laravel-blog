@@ -7,3 +7,8 @@ ul.dropdown-menu.dropdown-menu-lg.dropdown-menu-right.rounded.border-0.show {
     margin-top: 10px;
     margin-right: -7px;
 }
+
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active, .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
+   background-color: #28a745;
+   color: #fff;
+}

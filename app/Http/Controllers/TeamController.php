@@ -9,34 +9,19 @@ use Illuminate\Support\Facades\Session;
 
 class TeamController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
       $teams = Team::all();
         return view('backend.team.index',compact('teams'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
       return view('backend.team.create');
         
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
          //Team Validation
@@ -76,37 +61,18 @@ class TeamController extends Controller
       return redirect()->route('team.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
     public function show(Team $team)
     {
       return view('backend.team.show',compact('team'));
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Team $team)
     {
       return view('backend.team.edit',compact('team'));
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Team $team)
     {
      
@@ -128,36 +94,51 @@ class TeamController extends Controller
       $team->team_linkdin_link = $request->team_linkdin; 
 
        //Team Picture Change
-         if($request->has('team_picture')) {
+      if($request->has('team_picture')) {
 
-         //    $imageName = time().'.'.$request->post_picture->extension();  
-         //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
-         //   return $post->imageName;
+      //    $imageName = time().'.'.$request->post_picture->extension();  
+      //    $request->post_picture->move(public_path('backend/blog/'), $imageName);
+      //   return $post->imageName;
 
-            $filename = time() . '.' .$request->team_picture->getClientOriginalextension();
-            //$request->post_picture->move('backend/blog/', $filename);
-            $request->team_picture->move(public_path('backend/team/'), $filename);
-            $team->team_img = 'backend/team/'.$filename;
-            // $team->save();
-         }
+         //IF file exites then delete file
+         if(file_exists($team->team_img)){
+         unlink($team->team_img);
+            }
+         //upload file
+         $filename = time() . '.' .$request->team_picture->getClientOriginalextension();
+         //$request->post_picture->move('backend/blog/', $filename);
+         $request->team_picture->move(public_path('backend/team/'), $filename);
+         $team->team_img = 'backend/team/'.$filename;
+      }
 
       $team->save();
       Session::flash('status','Team Information Changed Successfully');
       return redirect()->route('team.index');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Team  $team
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy(Team $team)
     {
-       
+
+      
+     
         //Team Delete
+//return $team;
+      //   if(file_exists($team->team_img)){
+      //    unlink($team->team_img);
+      //     }
+
+      //   if ($team->team_img) {
+      //    unlink($team->team_img);
+      //    }
+      //    else{
+      //       $team->delete();
+      //    }
+
         if($team){
+         if ($team->team_img) {
+            unlink($team->team_img);
+            }
          $team->delete();
         }
         else{

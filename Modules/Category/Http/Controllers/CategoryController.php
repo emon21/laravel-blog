@@ -10,10 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Session;
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     * @return Renderable
-     */
+   //Category Show
     public function index()
     {
         $category = Category::withCount('posts')->orderBy('id','desc')->Paginate(10);
@@ -22,10 +19,7 @@ class CategoryController extends Controller
         return view('category::index',compact('category'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     * @return Renderable
-     */
+   //Category Create
     public function create(Request $request)
     {
 
@@ -33,11 +27,7 @@ class CategoryController extends Controller
        
     }
 
-    /**
-     * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
-     */
+      //Category Store
     public function store(Request $request)
     {
       //validation
@@ -63,32 +53,19 @@ class CategoryController extends Controller
       return redirect()->route('category');
     }
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    //Category View
     public function show($id)
     {
         return view('category::show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
+    //Category Edit
     public function edit(Category $category)
     {
         return view('category::edit',compact('category'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
-     */
+   //Category Update
     public function update(Request $request,Category $category)
     {
       //return $request->desc;
@@ -108,6 +85,7 @@ class CategoryController extends Controller
          //    unlink($category->image);
          // }
 
+         //delete File
          if(file_exists($category->image)){
             unlink($category->image);
           }
@@ -116,7 +94,7 @@ class CategoryController extends Controller
            
          //   // $category->save();
          //  }
-
+            //file upload
           $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
           $request->post_picture->move(public_path('backend/category/'), $filename);
           $category->image = 'backend/category/'.$filename;
@@ -127,20 +105,20 @@ class CategoryController extends Controller
       return redirect()->route('category');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
-     */
+    //Category Delete
     public function destroy(Category $category)
     {
         //
+        //delete File
+         if(file_exists($category->image)){
+            unlink($category->image);
+          }
         $category->delete();
         Session::flash('error','Category Delete Successfully');
         return redirect()->route('category');
     }
 
-    //Status
+    //Category Status
     public function status(Request $request,Category $category)
     {
 

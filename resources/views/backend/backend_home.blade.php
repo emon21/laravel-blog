@@ -158,7 +158,7 @@
                                         alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text">
-                                        Is this template really for free? That's unbelievable!
+                                        Is this template really for free? Thats unbelievable!
                                     </div>
                                     <!-- /.direct-chat-text -->
                                 </div>
