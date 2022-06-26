@@ -182,7 +182,9 @@
 
                                     <div class="pt-2">
                                         <div class="d-flex justify-content-between">
-                                            <h3 class="mb-5">{{ $post->comments_count }} Comments</h3>
+
+                                            <h3 class="mb-5"><i class="fa fa-comments" aria-hidden="true"></i> Comments
+                                                ( {{ $post->comments_count }} )</h3>
                                             <h3 class="mb-5">{{ $post->comments_count }} share</h3>
                                         </div>
                                         @if ($post->comments->count() > 0)

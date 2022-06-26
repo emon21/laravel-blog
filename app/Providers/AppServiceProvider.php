@@ -88,11 +88,16 @@ class AppServiceProvider extends ServiceProvider
           view::share('commentCount',$commentCount);
 
           //user Post
+
+         // $user = Auth::check();
+          //return $user->id;
+         // $userpost = Auth::user()->post()->latest()->get();
+        //  $userpost = Post::with('user')->where('user_id', $user)->get();
           // $userID = Auth::check()->user()->id;
          // $userpost = Post::WithCount('user')->get();
-          $userpost = Post::withCount('user')->where('user_id',1)->get();
+         // $userpost = Post::withCount('user')->where('user_id',1)->get();
 
-          view::share('userpost',$userpost);
+       //  view::share('userpost',$userpost);
 
      }
    }

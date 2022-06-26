@@ -73,13 +73,13 @@ class Post extends Model
    
    }
 
-
    //Mutator
    public function setSlugAttribute($value)
    {
      $this->attributes['slug'] = Str::slug($value);
    }
 
+   
     public function category()
     {
        return $this->belongsTo(Category::class);

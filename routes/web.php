@@ -42,10 +42,14 @@ Route::middleware(['auth'])->group(function (){
    Route::get('user/profile', [UserController::class, 'UserProfile'])->name('UserProfile');
    Route::post('user/profile', [UserController::class,'UserUpdate'])->name('UserUpdate');
 
-   //user Post
+   //user Post CRUD
    Route::get('/insertpost', [UserController::class,'insert'])->name('user.post');
    Route::post('/createpost', [UserController::class,'createpost'])->name('createpost');
    Route::get('/postlist', [UserController::class,'postlist'])->name('postlist');
+   Route::get('/postView/{post}', [UserController::class,'postView'])->name('postView');
+   Route::get('/postEdit/{post}', [UserController::class,'postEdit'])->name('postEdit');
+   Route::post('/postUpdate/{post}', [UserController::class,'postUpdate'])->name('postUpdate');
+   Route::delete('/postDelete/{post}', [UserController::class,'postDelete'])->name('postDelete');
 
   // Route::get('profile', [UserController::class,'adminProfile'])->name('user/profile');
   // Route::get('/user/dashboard', [UserController::class, 'dashboard'])->name('user.dashboard');
@@ -70,6 +74,7 @@ Route::get('/tag',[WebsiteController::class,'taglist'])->name('website.taglist')
 Route::get('/tag/{slug}',[WebsiteController::class,'tag'])->name('website.tag');
 Route::get('/SingleCategory/{slug}',[WebsiteController::class,'SingleCategory'])->name('singleCategory');
 Route::get('/singlePost/{slug}',[WebsiteController::class,'singlePost'])->name('website.post');
+Route::post('/search',[WebsiteController::class,'search'])->name('search');
 
 //Route::get('/comment',[CommantController::class,'comment'])->name('comment');
 Route::post('/comment',[CommentController::class,'UserComment'])->name('userComment');

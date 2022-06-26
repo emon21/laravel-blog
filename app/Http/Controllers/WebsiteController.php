@@ -164,7 +164,8 @@ class WebsiteController extends Controller
     //Blog LIst
     public function BlogList()
     {
-      $categoryList = Category::all();
+    //  $categoryList = Category::all();
+      $categoryList = Category::withCount('posts')->get();
       $tag = Tag::all();
 
      // return $categoryList;
@@ -207,6 +208,35 @@ class WebsiteController extends Controller
       else{
          return redirect()->route('website');
       }
+    }
+
+    //post Searching
+    public function search(Request $request)
+    {
+     
+      // $this->validate($request,[
+      //    'title' => 'required'
+      //   ]);
+      $search = $request->search;
+      
+      if($search != ""){
+
+         $posts = Post::where('title','LIKE','%'.$search.'%')->get();
+      }
+
+      else{
+         $posts = Post::all();
+      }
+
+    // $products=DB::table('products')->where('title','LIKE','%'.$request->search."%")->get();
+
+      //return $posts;
+
+      // foreach ($posts as $key => $value) {
+      //    $value->title;
+      //    }
+
+      return view('frontend.search',compact('posts'));
     }
 
 

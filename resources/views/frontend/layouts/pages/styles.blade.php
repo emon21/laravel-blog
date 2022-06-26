@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="{{ asset('frontend') }}/fonts/flaticon/font/flaticon.css">
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/aos.css">
 
+<link rel="stylesheet" href="{{ asset('frontend') }}/css/custom.css">
+<!-- Custom Css -->
 <link rel="stylesheet" href="{{ asset('frontend') }}/css/style.css">
 
 <style>

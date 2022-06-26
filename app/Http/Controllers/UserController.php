@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\File;
 use Modules\Blog\Entities\Post;
 use Modules\Category\Entities\Category;
 use Modules\Tag\Entities\Tag;
@@ -19,6 +20,7 @@ class UserController extends Controller
 
     public function dashboard()
     {
+      
       return view('frontend.user.home');
 
      // return view('user.layouts.index');
@@ -164,16 +166,94 @@ class UserController extends Controller
      return back();
     }
 
-
+  
     public function postlist()
     {
-      $userID = Auth::user()->id;
-      $userPosts = Post::with('user')->where('user_id',$userID)->Paginate(10);
-      // $category = Category::withCount('posts')->where('slug',$slug)->first();
+      $user = Auth::user();
+      //return $user->id;
+     // $userpost = Auth::user()->post()->latest()->get();
+      $userpost = Post::with('user')->where('user_id', $user->id)->latest()->get();
+      $postList = Post::with('user')->where('user_id', $user->id)->latest()->Paginate(10);
+     //return $userpost->count();
+     // $userPosts = Post::with('user')->where('user_id', $user->id)->Paginate(10);
+      //$category = Category::withCount('posts')->where('slug',$slug)->first();
 
     //return $userPosts->count();
-      return view('frontend.user.user_post_list',compact('userPosts'));
+      return view('frontend.user.user_post_list',compact('userpost','postList'));
     }
+
+    public function postView(Post $post)
+    {
+     // return $post;
+     $tags = Tag::all();
+     $categories = Category::all();
+     return view('frontend.user.post_view',compact('post','tags','categories'));
+
+    }
+
+    public function postEdit(Post $post)
+    {
+      //return $post;
+      $tags = Tag::all();
+      $categories = Category::all();
+      return view('frontend.user.post_edit',compact('post','tags','categories'));
+
+    }
+    public function postUpdate(Request $request,Post $post)
+    {
+    //  return $request->has('post_picture');
+
+      $post->update([
+         'title' => $request->title,
+         'slug' => Str::slug($request->title),
+         'description' => $request->post_desc,
+         'status' => $request->status,
+         'category_id' => $request->category_list,
+
+      ]);
+
+      $post->tags()->sync($request->tags);
+
+      if($request->hasFile('post_picture')) { 
+         //delete File
+         if(file_exists($post->image)){
+            unlink($post->image);
+            }
+         //file upload
+         $filename = time() . '.' .$request->post_picture->getClientOriginalextension();
+         $request->post_picture->move(public_path('backend/blog/'), $filename);
+         $post->image = 'backend/blog/'.$filename;
+      }
+
+      $post->save();
+      Session::flash('status','User Post Updated Successfully !!');
+      return redirect()->route('postlist');
+
+    }
+
+    public function postDelete(Post $post)
+    {
+      // $post->delete();
+
+      if($post){
+         // if(File::exists($post->image)) {
+         //       File::delete($post->image);
+         //    }
+         if (File::exists($post->image)) {
+            unlink($post->image);
+         }
+   
+        }
+        else{
+         abort(404);
+        }
+        $post->delete();
+       Session::flash('status','User Post Deleted Successfully Done !!');
+       return redirect()->route('postlist');
+
+    }
+
+
     /* ========================== User Profile Function =========================== */
 
     //User Profile

@@ -35,7 +35,7 @@
     <a href="{{ route('postlist') }}"
         class="list-group-item list-group-item-action {{ Route::is('postlist') ? 'active' : '' }}"><i
             class="fa fa-history" aria-hidden="true"></i>
-        &nbsp;User Post ( {{ $userpost->count() }} )</a>
+        &nbsp;User Post</a>
 
     <a href="javascript:void(0)" onclick="event.preventDefault();
    document.getElementById('logout-form').submit();"
