@@ -11,41 +11,49 @@
                 </div>
             </div>
             <div class="row">
+
+
                 @if ($posts->count() > 0)
                     @foreach ($posts as $recent)
                         <div class="col-lg-4 mb-4">
-                            <div class="entry2">
+                            <div class="card">
+                                {{-- @if ($recent->image)
+                              <img src="{{ $recent->image }}" alt="feature" class="img-fluid rounded">
+                          @else
+                              <img src="{{ $recent->image_url }}" alt="default" class="img-fluid rounded">
+                          @endif --}}
                                 <a href="{{ route('website.post', ['slug' => $recent->slug]) }}">
-
-                                    @if ($recent->image)
-                                        <img src="{{ $recent->image }}" alt="feature" class="img-fluid rounded">
-                                    @else
-                                        <img src="{{ $recent->image_url }}" alt="default" class="img-fluid rounded">
-                                    @endif
-
-
+                                    <img src="@if ($recent->image_url) {{ asset($recent->image_url) }} @else
+                                        {{ asset('backend/blog/default_image.png') }} @endif"
+                                        alt="feature" class="img-fluid card-img-top">
                                 </a>
-                                <div class="excerpt">
+
+                                <div class="card-body">
+                                    <h4>
+                                        <a
+                                            href="{{ route('website.post', ['slug' => $recent->slug]) }}">{{ $recent->title }}</a>
+                                    </h4>
                                     <span
                                         class="post-category text-white bg-secondary mb-3">{{ $recent->category->category_name }}</span>
 
-                                    <h2><a
-                                            href="{{ route('website.post', ['slug' => $recent->slug]) }}">{{ $recent->title }}</a>
-                                    </h2>
-                                    <div class="post-meta align-items-center text-left clearfix">
-                                        <figure class="author-figure mb-0 mr-3 float-left">
-                                            <img src="@if ($recent->user->image) {{ asset($recent->user->image) }} @else
-                                   {{ asset('backend/user/user.png') }} @endif"
-                                                alt="Image" class="img-fluid">
-                                        </figure>
-                                        <span class="d-inline-block mt-1">By <a
+                                    <p class="card-text text-justify">{{ Str::limit($recent->description, 100) }}</p>
+
+                                    <div class="d-flex">
+
+                                        <img src="@if ($recent->user->image) {{ asset($recent->user->image) }} @else
+                                      {{ asset('backend/user/user.png') }} @endif"
+                                            alt="Image" class="img-fluid rounded-circle"
+                                            style="width: 50px;height:50px;">
+
+                                        <span class="d-inline-block mt-2 ml-2">By <a
                                                 href="{{ route('website.post', ['slug' => $recent->slug]) }}">{{ $recent->user->name }}</a></span>
-                                        <span>&nbsp;-&nbsp; {{ $recent->created_at->format('M d, Y') }}</span>
+                                        <span class="d-inline-block mt-2 ml-2">&nbsp;-&nbsp;
+                                            {{ $recent->created_at->format('M d, Y') }}</span>
                                     </div>
 
-                                    <p>{{ Str::limit($recent->description, 100) }}</p>
-                                    <p><a href="{{ route('website.post', ['slug' => $recent->slug]) }}"
-                                            class="btn btn-outline-success">Read More</a></p>
+                                    <a href="{{ route('website.post', ['slug' => $recent->slug]) }}"
+                                        class="btn btn-outline-success justify-content-center mt-3">Read More</a>
+
                                 </div>
                             </div>
                         </div>

@@ -25,13 +25,14 @@
 
         <div class="sidebar-box search-form">
             <h3 class="sidebar-title">Search</h3>
-            <form action="{{ route('search') }}" method="post">
+            <form action="{{ route('website.blog') }}" method="get">
                 @csrf
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-search"></i></span>
                     </div>
-                    <input type="text" name="search" placeholder="Searching Your Post ...!!" class="form-control">
+                    <input type="text" name="search" placeholder="Searching Your Post ...!!"
+                        class="form-control  @error('search') is-invalid @enderror">
                 </div>
             </form>
         </div>
@@ -56,7 +57,7 @@
             <div class="post-entry-sidebar">
                 <ul>
 
-                    @foreach ($postList as $post)
+                    @foreach ($postLists as $post)
                         <li>
                             <a href="{{ url('singlePost', $post->slug) }}">
                                 <img src="{{ asset($post->image_url) }}" alt="Image placeholder" class="mr-4">

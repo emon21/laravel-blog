@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::prefix('admin/post')->middleware(['auth','admin'])->group(function() {
+
+   //post Route
     Route::get('/', 'BlogController@index')->name('postList');
     Route::get('/addpost', 'BlogController@create')->name('addPost');
     Route::post('/insert', 'BlogController@store')->name('InsertPost');

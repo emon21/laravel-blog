@@ -10,6 +10,7 @@ use App\Models\Comment;
 use App\Models\Contact;
 use App\Models\Team;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 
 class WebsiteController extends Controller
@@ -162,16 +163,25 @@ class WebsiteController extends Controller
     }
 
     //Blog LIst
-    public function BlogList()
+    public function BlogList(Request $request)
     {
-    //  $categoryList = Category::all();
-      $categoryList = Category::withCount('posts')->get();
-      $tag = Tag::all();
-
+      
+     //$categoryList = Category::all();
+     $categoryList = Category::withCount('posts')->get();
+     $tag = Tag::all();
      // return $categoryList;
-      $postList = Post::Paginate(8);
+   //  $postLists = Post::Paginate(8);
       //return $postList->count('category');
-       return view('frontend.blog',compact('categoryList','postList','tag'));
+     
+      $query =  Post::query();
+      $search = $request->search;
+      $query->whereHas('category', function($q) use($search) {
+         $q->where('category_name', 'like', "%$search%");
+      })->orWhere('title', 'like', "%$search%");
+      $postLists  = $query->withCount('category')->get();
+      $blogs = $query->paginate('10');
+        
+       return view('frontend.blog',compact('postLists','tag','categoryList','blogs'));
     }
 
     //category
@@ -214,27 +224,37 @@ class WebsiteController extends Controller
     public function search(Request $request)
     {
      
-      // $this->validate($request,[
-      //    'title' => 'required'
-      //   ]);
-      $search = $request->search;
-      
-      if($search != ""){
+     
+      //validation
+   //    $request->validate([
+   //       'search' => 'required'
+   //   ]);
+     
+     $search = $request->search;
 
-         $posts = Post::where('title','LIKE','%'.$search.'%')->get();
+     //$posts = Post::with('category', 'category:category_name')->get();
+     //$posts = Post::where('category_name', 'LIKE', "php")->get();
+    //return $posts;
+      if ($search) {
+
+         // $posts->where('slug', 'LIKE', "%$request->search%");
+          $posts = Post::where('title', 'like', "%$search%")->with('category')->get();
+        //$posts = Category::where('category_name', 'like', "%$search%")->with('posts')->get();
+       //return $posts;
       }
-
-      else{
-         $posts = Post::all();
-      }
-
-    // $products=DB::table('products')->where('title','LIKE','%'.$request->search."%")->get();
-
+      // elseif($search){
+      // $posts = Category::where('category_name', 'like', "%$search%")->with('posts')->get();
       //return $posts;
 
-      // foreach ($posts as $key => $value) {
-      //    $value->title;
-      //    }
+
+      // }
+
+      // $posts = Post::with('category','category:category_name')->withCount('category');
+      // if ($request->search && $request->search != null) {
+      //     $posts->where('title', 'LIKE', "%$request->search%")->orWhere('category_name', 'like', '%'.$request->search.'%');;
+      // }
+
+   
 
       return view('frontend.search',compact('posts'));
     }

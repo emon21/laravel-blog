@@ -44,57 +44,71 @@
             <div class="row g-5">
 
                 <div class="col-lg-8">
-
+                    <div class="mb-4">
+                        @if ($postLists->count() > 0)
+                            Total Posts : ( {{ $postLists->count() }} )
+                        @endif
+                    </div>
                     <div class="row gy-4 posts-list">
-
-                        @foreach ($postList as $post)
-                            <div class="col-lg-6 mb-4">
-                                <div class="entry2">
-                                    <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img
-                                            src="{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
-                                    <div class="excerpt">
-
-                                        <h2><a href="{{ route('singleCategory', $post->slug) }}">{{ $post->title }}</a>
-                                        </h2>
+                        @if ($blogs->count() > 0)
 
 
-                                        <h4>
-                                            Categories <span class="post-category text-white bg-danger mb-3 p-2">
-                                                {{ $post->category->category_name }}
-                                            </span>
-                                        </h4>
-                                        <div class="post-meta align-items-center text-left clearfix">
+                            @foreach ($blogs as $post)
+                                <div class="col-lg-6 mb-4">
+                                    <div class="entry2">
+                                        <a href="{{ route('website.post', ['slug' => $post->slug]) }}"><img
+                                                src="{{ $post->image }}" alt="Image" class="img-fluid rounded"></a>
+                                        <div class="excerpt">
 
-                                            <figure class="author-figure mb-0 mr-3 float-left"><img
-                                                    src="@if ($post->user->image) {{ asset($post->user->image) }} @else
+                                            <h2><a
+                                                    href="{{ route('singleCategory', $post->slug) }}">{{ $post->title }}</a>
+                                            </h2>
+
+                                            <h4>
+                                                Categories <span class="post-category text-white bg-danger mb-3 p-2">
+                                                    {{ $post->category->category_name }}
+                                                </span>
+                                            </h4>
+                                            <div class="post-meta align-items-center text-left clearfix">
+
+                                                <figure class="author-figure mb-0 mr-3 float-left"><img
+                                                        src="@if ($post->user->image) {{ asset($post->user->image) }} @else
                                                   {{ asset('backend/user/user.png') }} @endif"
-                                                    alt="Image" class="img-fluid">
-                                            </figure>
+                                                        alt="Image" class="img-fluid">
+                                                </figure>
 
-                                            <span class="d-inline-block mt-1">By <a
-                                                    href="#">{{ $post->user->name }}</a></span>
-                                            <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d , Y') }}</span>
-                                        </div>
-                                        <p>{{ $post->description }}</p>
-                                        {{-- <p><a href="{{ route('website.post', ['slug' => $post->slug]) }}"
+                                                <span class="d-inline-block mt-1">By <a
+                                                        href="#">{{ $post->user->name }}</a></span>
+                                                <span>&nbsp;-&nbsp; {{ $post->created_at->format('M d , Y') }}</span>
+                                            </div>
+                                            <p class="text-justify">{{ $post->description }}</p>
+                                            {{-- <p><a href="{{ route('website.post', ['slug' => $post->slug]) }}"
                                               class="btn btn-success">Read
                                               More</a>
                                       </p> --}}
-                                        <div class=" btn btn-outline-dark mt-auto align-self-center">
-                                            <a href="{{ route('website.post', ['slug' => $post->slug]) }}">Read
-                                                More</a>
+                                            <div class=" btn btn-outline-dark mt-auto align-self-center">
+                                                <a href="{{ route('website.post', ['slug' => $post->slug]) }}">Read
+                                                    More</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- End post list item -->
+                            @endforeach
+                        @else
+                            <div class="col-12 d-flex justify-content-center bg-light p-4" style="margin-top: 30%">
+                                <span
+                                    style="font-size: 50px;font-weight:bold;font-size: 50px;font-weight: bold;text-transform: capitalize;color: #f23a2ec9;">No
+                                    Data Found</span>
                             </div>
-                            <!-- End post list item -->
-                        @endforeach
+
+                        @endif
 
                     </div><!-- End blog posts list -->
 
                     <div class="blog-pagination">
                         <ul class="justify-content-center">
-                            {{ $postList->links() }}
+                            {{ $blogs->links() }}
                             {{-- <li><a href="#">1</a></li>
                                 <li class="active"><a href="#">2</a></li>
                                 <li><a href="#">3</a></li> --}}
