@@ -92,15 +92,7 @@
                     <div class="post-content-body">
                         {!! $post->description !!}
                     </div>
-                    <span class="btn btn-primary btn-md m-4" onclick="fb()">Facebook</span>
-                    <span>Post Share : {!! $shareComponent !!}</span>
-
-                    {{-- {{ url()->current() }} --}}
-                    {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}">Share
-                        on Facebook</a>
-
-                    <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}">Share on Twitter</a> --}}
-
+                    dfdsgg
 
 
                     <div class="col-lg-6 single-b-wrap col-md-12 mt-3">
