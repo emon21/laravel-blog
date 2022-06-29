@@ -13,7 +13,7 @@
     <meta property="og:description"
         content="{{ htmlspecialchars(trim(strip_tags(str_replace('&nbsp;', '', $post->description)))) }}"> --}}
 @endsection
-@section('title', 'Single Post')
+@section('title', $post->title)
 @section('styles')
     <style>
         #social-links ul {
@@ -92,33 +92,39 @@
                     <div class="post-content-body">
                         {!! $post->description !!}
                     </div>
-                    dfdsgg
 
+                    <div class="d-flex justify-content-between mt-4">
+                        <div class="">
+                            <span>Categories:</span>
+                            <p>
+                                <span class="badge badge-success p-2 ">
+                                    <a href="{{ route('singleCategory', $post->category->slug) }}"
+                                        class="text-white">{{ $post->category->category_name }}</a></span>
+                                @if ($post->tags->count() > 0)
+                                    Tags:
+                                    @foreach ($post->tags as $tag)
+                                        <span class="badge badge-dark badge-sm badge-pill px-2 py-1 ml-1 ">
+                                            <a href="{{ route('website.tag', ['slug' => $tag->slug]) }}"
+                                                class="text-light">{{ $tag->tag_name }}</a>
+                                        </span>
+                                    @endforeach
+                                @endif
+                            </p>
+                        </div>
+                        <div class="">
+                            <label for="">Post Share</label>
+                            {{-- <span class="btn btn-primary btn-md m-4" onclick="fb()">Facebook</span> --}}
+                            <span class="mt-4"> {!! $shareComponent !!}</span>
 
-                    <div class="col-lg-6 single-b-wrap col-md-12 mt-3">
-                        <button class="btn btn-primary" id="shareBtn" style="display: none"><i
-                                class="fa fa fa-share text-white" aria-hidden="true"></i> Share</button>
+                            {{-- {{ url()->current() }} --}}
+                            {{-- <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}">Shar on
+                              Facebook</a>
+                          <a href="https://twitter.com/intent/tweet?text={{ url()->current() }}">Share on Twitter</a> --}}
+
+                        </div>
                     </div>
-
-                    <div class="pt-2">
-                        <p>Categories:
-                            <span class="badge badge-success p-2 ">
-                                <a href="{{ route('singleCategory', $post->category->slug) }}"
-                                    class="text-white">{{ $post->category->category_name }}</a></span>
-                            @if ($post->tags->count() > 0)
-                                Tags:
-                                @foreach ($post->tags as $tag)
-                                    <span class="badge badge-dark badge-sm badge-pill px-2 py-1 ml-1 ">
-                                        <a href="{{ route('website.tag', ['slug' => $tag->slug]) }}"
-                                            class="text-light">{{ $tag->tag_name }}</a>
-                                    </span>
-                                @endforeach
-                            @endif
-                        </p>
-                    </div>
-
-
-                    <section class="site-section py-lg">
+                    <section class="site-section" style="margin-top: 0px;
+                    padding: 0px;">
                         <div class="container">
 
                             <div class="row blog-entries element-animate">
@@ -126,44 +132,30 @@
                                 <div class="col-md-12 main-content">
 
                                     <div class="post-content-body">
-                                        {!! $post->description !!}
 
-                                        <div class="row mb-5 mt-5">
+                                        <div class="row mb-5">
                                             <div class="col-md-12 mb-4">
                                                 <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
-                                                {{ asset('backend/blog/default.png') }} @endif"
-                                                    alt="Image placeholder" class="img-fluid rounded w-100">
+                                              {{ asset('backend/blog/default.png') }} @endif"
+                                                    alt="Image placeholder" class="img-fluid rounded" style="width: 100%">
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
-                                                {{ asset('backend/blog/default.png') }} @endif"
+                                              {{ asset('backend/blog/default.png') }} @endif"
                                                     alt="Image placeholder" class="img-fluid rounded">
                                             </div>
                                             <div class="col-md-6 mb-4">
                                                 <img src="@if ($post->image_url) {{ asset($post->image_url) }} @else
-                                                {{ asset('backend/blog/default.png') }} @endif"
+                                              {{ asset('backend/blog/default.png') }} @endif"
                                                     alt="Image placeholder" class="img-fluid rounded">
                                             </div>
                                         </div>
-                                        {!! $post->description !!}
+
 
                                     </div>
 
-
-                                    <div class="pt-2">
-                                        <p>Categories:
-
-                                            <a
-                                                href="{{ route('singleCategory', $post->category->slug) }}">{{ $post->category->category_name }}</a>
-                                            @if ($post->tags->count() > 0)
-                                                Tags:
-                                                @foreach ($post->tags as $tag)
-                                                    <a
-                                                        href="{{ route('website.tag', ['slug' => $tag->slug]) }}">{{ $tag->tag_name }}</a>,
-                                                @endforeach
-                                            @endif
-
-                                        </p>
+                                    <div class="mb-4">
+                                        {!! $post->description !!}
                                     </div>
 
                                     <div id="disqus_thread"></div>
@@ -185,7 +177,7 @@
                                                     <li class="comment">
                                                         <div class="vcard">
                                                             <img src="@if ($comment->user->image) {{ asset($comment->user->image) }} @else
-                                                            {{ asset('backend/user/user.png') }} @endif"
+                                                          {{ asset('backend/user/user.png') }} @endif"
                                                                 alt="Image placeholder">
                                                         </div>
                                                         <div class="comment-body">
@@ -208,7 +200,7 @@
                                                 <li class="comment">
                                                     <div class="vcard">
                                                         <img src="@if ($post->user->image) {{ asset($post->user->image) }} @else
-                                                      {{ asset('backend/user/user.png') }} @endif"
+                                                    {{ asset('backend/user/user.png') }} @endif"
                                                             alt="Image placeholder">
                                                     </div>
                                                     <div class="comment-body">
@@ -238,15 +230,15 @@
                                                     <div class="card-body mt-2">
                                                         <span class="alert alert-danger text-dark">Sorry Do Not Comment
                                                             This Blog Please Login Here</span>
-                                                        <a href="{{ route('login') }}" class="btn btn-success mt-4"><i
-                                                                class="fa fa-sign-in" aria-hidden="true"></> Login</a>
+                                                        <a href="{{ route('login') }}"
+                                                            class="btn btn-outline-success mt-4">
+                                                            <i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
                                                     </div>
                                                 </div>
                                             </div>
                                         @endif
 
                                         <!-- END comment-list -->
-
 
                                     </div>
 
@@ -296,15 +288,15 @@
                                 alt="Image Placeholder" class="img-fluid mb-1">
                             <div class="bio-body">
                                 <h2>{{ $post->user->name }}</h2>
-                                <p class="mb-4">{{ $post->user->description }}</p>
-                                <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a>
+                                <p class="text-justify">{{ $post->user->description }}</p>
+                                {{-- <p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Read my bio</a> --}}
                                 </p>
-                                <p class="social">
+                                {{-- <p class="social">
                                     <a href="#" class="p-2"><span class="fa fa-facebook"></span></a>
                                     <a href="#" class="p-2"><span class="fa fa-twitter"></span></a>
                                     <a href="#" class="p-2"><span class="fa fa-instagram"></span></a>
                                     <a href="#" class="p-2"><span class="fa fa-youtube-play"></span></a>
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
                     </div>

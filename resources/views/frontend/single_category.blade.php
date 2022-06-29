@@ -13,19 +13,19 @@
             </div> --}}
 
             {{-- <div class="section-header">
-                <h2>Category Of Post List : {{ $slug }}</h2>
+                <h2>Category : {{ $category->category_name }} ( {{ $category->posts_count }}
+                    )</h2>
                 <p>Architecto nobis eos vel nam quidem vitae temporibus voluptates qui hic deserunt iusto omnis nam
                     voluptas asperiores sequi tenetur dolores incidunt enim voluptatem magnam cumque fuga.</p>
             </div> --}}
 
-            ffff
             <div class="py-5 bg-light">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <span>Category</span>
-                            <h3>{{ $category->category_name }} ( {{ $category->posts_count }} )</h3>
-                            {{-- <span>{{ $category->count() }}</span> --}}
+                            <h2>Category : {{ $category->category_name }} ( {{ $category->posts_count }}
+                                )</h2>
+                            <h4>All Skills of Post List into Category</h4>
                             @if ($category->description)
                                 <p>{{ $category->description }}</p>
                             @endif
