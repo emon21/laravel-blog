@@ -49,6 +49,14 @@ We would like to extend our thanks to the following sponsors for funding Laravel
 
 ## Contributing
 
+## Project Setup
+>>composer install
+>>git cp .env.example .env
+>>php artisan key:generate
+>>database setup
+>>if you npm install && npm run dev
+>>run project >>php artisan serv
+
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
 ## Code of Conduct
